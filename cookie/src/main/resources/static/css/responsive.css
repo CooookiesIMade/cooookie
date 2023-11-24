@@ -1,137 +1,116 @@
-@media (max-width: 1120px) {
-    .slider_section .slider_container .detail_container .detail-box h1 {
-        font-size: 3rem;
-    }
-}
+@media (max-width: 1300px) {}
+
+@media (max-width: 1120px) {}
 
 @media (max-width: 992px) {
-    .slider_section .slider_container {
-        flex-direction: column;
-    }
+  .hero_area {
+    min-height: auto;
+  }
 
-    .custom_menu-btn span {
-        background-color: #000000;
-    }
+  .custom_nav-container .navbar-nav {
+    padding-top: 15px;
+    align-items: center;
+  }
 
-    .sub_page .header_section {
-        background: none;
-    }
 
-    .custom_menu-btn.menu_btn-style button span {
-        background-color: #ffffff;
-    }
+  .custom_nav-container .navbar-nav .nav-item .nav-link {
+    padding: 5px 25px;
+    margin: 5px 0;
+  }
 
-    .user_option a {
-        display: none;
-    }
+  .slider_section {
+    padding: 75px 0;
+  }
 
-    .slider_section .slider_container .detail_container .detail-box {
-        width: auto;
-        text-align: center;
-        margin: 45px auto 125px auto;
-    }
 
-    .slider_section .carousel-control-prev,
-    .slider_section .carousel-control-next {
-        top: -25px;
-        transform: none;
-    }
-
-    .slider_section .carousel-control-prev {
-        left: 25px;
-    }
-
-    .slider_section .carousel-control-next {
-        left: initial;
-        right: 25px;
-    }
-
-    .book_section form {
-        width: 90%;
-    }
-
-    .car_section .car_container {
-        justify-content: center;
-    }
-
-    .rent_section .rent_container .box {
-        width: 300px;
-    }
-
-    .contact_section .contact_items {
-        flex-wrap: wrap;
-        width: min-content;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .contact_section .contact_items a {
-        margin: 25px;
-    }
 }
 
 @media (max-width: 768px) {
-    .best_section .book_now {
-        flex-direction: column;
-        text-align: center;
-    }
+  .about_section .img-box {
+    margin-top: 45px;
+  }
 
-    .best_section .book_now .detail-box {
-        margin-bottom: 25px;
-    }
+  .contact_section {
+    padding-bottom: 0;
+  }
 
-    .blog_section .owl-carousel .owl-nav .owl-prev,
-    .blog_section .owl-carousel .owl-nav .owl-next {
-        top: -40px;
-    }
+  .contact_section .heading_container {
+    padding-left: 15px;
+  }
 
-    .blog_section .owl-carousel .owl-nav .owl-prev {
+  .contact_section .map_container {
+    margin-top: 45px;
+  }
 
-        left: calc(50% - 45px);
-    }
+  .contact_section .form_container {
+    padding: 0 15px;
+    margin: 0;
+  }
 
-    .blog_section .owl-carousel .owl-nav .owl-next {
-
-        right: calc(50% - 45px);
-    }
 }
 
 @media (max-width: 576px) {
-    .book_section .img-box {
-        display: none;
-    }
-
-    .blog_section .blog_container {
-        width: 100%;
-    }
-
-    .slider_section .carousel-control-prev,
-    .slider_section .carousel-control-next {
-        display: none;
-    }
+  .header_section .header_top .contact_nav a span {
+    display: none;
+  }
 
 
-    @media (max-width: 480px) {
-        .car_section .car_container .box::before {
-            border-radius: 0;
-        }
+  .client_section .client_container {
+    width: 100%;
+  }
 
-        .blog_section .blog_container {
-            width: 100%;
-        }
-    }
+  .client_section .box {
+    margin: 0;
+  }
 
-    @media (max-width: 400px) {}
+  .owl-nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 45px;
+  }
 
-    @media (max-width: 376px) {
-        .slider_section .slider_container .detail_container .detail-box h1 {
-            font-size: 2.5rem;
-        }
-    }
+  .client_section .owl-carousel .owl-nav .owl-prev,
+  .client_section .owl-carousel .owl-nav .owl-next {
+    position: unset;
+    margin: 0 2.5px;
+  }
+}
 
-    @media (min-width: 1200px) {
-        .container {
-            max-width: 1170px;
-        }
+@media (max-width: 480px) {
+  .slider_section .detail-box h1 {
+    font-size: 2rem;
+  }
 
-    }
+  .track_section form {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .track_section form input {
+    width: 100%;
+  }
+
+  .track_section form button {
+    padding: 10px 60px;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 420px) {
+  .service_section .box {
+    flex-direction: column;
+  }
+
+  .service_section .box .img-box {
+    justify-content: flex-start;
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 376px) {}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1170px;
+  }
+}
