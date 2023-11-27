@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import lombok.Data;
 
 @Data
-public class SPlace {
+public class Splace {
 	
 	private Long place_id;
 	private String member_id;
