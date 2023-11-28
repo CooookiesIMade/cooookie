@@ -61,23 +61,27 @@ public class MemberController {
 	@PostMapping("signin")
 	public String signIn(@Validated @ModelAttribute("signin") MemberSignIn memberSignIn, BindingResult result,
 						 HttpServletRequest request) {
-		if(result.hasErrors()) {
-			return "user/signin";
-		}
 		
 		// 로그인 검증 
 		Member findMember = memberService.findMember(memberSignIn.getMember_id());
-		if(findMember == null || !findMember.getMember_pw().equals(memberSignIn.getMember_pw())) {
-			result.reject("signinError", "아이디가 없거나 패스워드가 다릅니다");
+		
+		if(findMember == null) {
+			result.rejectValue("member_id", "idError", "해당하는 ID가 없음");
+		} else if(!findMember.getMember_pw().equals(memberSignIn.getMember_pw())) {
+			result.rejectValue("member_pw","pwError", "패스워드가 다름");
+		} 
+		
+		if(result.hasErrors()) {
 			return "user/signin";
 		}
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("signInMember", findMember);
 		
-		return "redirect:/";
-		
+		return "redirect:/main";
 	}
+	
+
 	
 	
 }

@@ -2,6 +2,65 @@
 <html>
 <head th:replace="~{header :: #header}"></head>
 <head th:replace="~{head :: #head}"></head>
+<style>
+	.hide {
+		display: none;
+	}
+	.bold {
+		font-weight: bold;
+	}
+</style>
+<script>
+	$(document).ready(function() {
+		let bgSection = $(".slider_bg_box");
+
+		function bgChange(idx){
+			let bg0 = $(".bg0");
+			let bg1 = $(".bg1");
+			let bg2 = $(".bg2");
+			let bg3 = $(".bg3");
+			let bg4 = $(".bg4");
+			if(idx == 0){
+				bg0.removeClass('hide');
+				bg1.addClass('hide');
+				bg2.addClass('hide');
+				bg3.addClass('hide');
+				bg4.addClass('hide');
+			} else if(idx == 1){
+				bg0.addClass('hide');
+				bg1.removeClass('hide');
+				bg2.addClass('hide');
+				bg3.addClass('hide');
+				bg4.addClass('hide');
+			} else if(idx == 2){
+				bg0.addClass('hide');
+				bg1.addClass('hide');
+				bg2.removeClass('hide')
+				bg3.addClass('hide');
+				bg4.addClass('hide');
+			} else if(idx == 3){
+				bg0.addClass('hide');
+				bg1.addClass('hide');
+				bg2.addClass('hide')
+				bg3.removeClass('hide');
+				bg4.addClass('hide');
+			} else if(idx == 4){
+				bg0.addClass('hide');
+				bg1.addClass('hide');
+				bg2.addClass('hide')
+				bg3.addClass('hide');
+				bg4.removeClass('hide');
+			}
+		}
+		// slide.bs.carousel 이벤트로 몇번째 캐러쉘인지 확인가능 
+		$('#customCarousel1').on('slide.bs.carousel', function(event) {
+			let idx = event.to;
+			console.log(idx)
+			bgChange(idx);
+		});
+	});
+</script>
+
 
 <body>
 	 <div class="hero_area">
@@ -11,7 +70,11 @@
     <!-- slider section -->
     <section class="slider_section ">
       <div class="slider_bg_box">
-        <img src="images/slider-bg.jpg" alt="">
+       <img src="images/bg-1.jpeg" alt="배경" class="bg0"/>
+       <img src="images/bg-2.jpg" alt="배경" class="bg1 hide"/>
+       <img src="images/bg-3.jpg" alt="배경" class="bg2 hide"/>
+       <img src="images/bg-4.jpg" alt="배경" class="bg3 hide"/>
+       <img src="images/bg-5.jpg" alt="배경" class="bg4 hide"/>
       </div>
       <div id="customCarousel1" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
@@ -20,16 +83,13 @@
               <div class="row">
                 <div class="col-md-7 ">
                   <div class="detail-box">
-                    <h1>
-                      We Provide best <br>
-                      Transport Service
-                    </h1>
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum magnam, voluptates distinctio, officia architecto tenetur debitis hic aspernatur libero commodi atque fugit adipisci, blanditiis quidem dolorum odit voluptas? Voluptate, eveniet?
+                    <p >
+                	성공적인 <span class="bold">협업</span>을 위한<br/> 
+                	<span class="bold">&nbsp;&nbsp;&nbsp;유연한</span> 비즈니스 환경
                     </p>
                     <div class="btn-box">
                       <a href="" class="btn1">
-                        Get A Quote
+                        공유 오피스 보러가기 >
                       </a>
                     </div>
                   </div>
@@ -41,17 +101,50 @@
             <div class="container ">
               <div class="row">
                 <div class="col-md-7 ">
-                  <div class="detail-box">
-                    <h1>
-                      We Provide best <br>
-                      Transport Service
-                    </h1>
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum magnam, voluptates distinctio, officia architecto tenetur debitis hic aspernatur libero commodi atque fugit adipisci, blanditiis quidem dolorum odit voluptas? Voluptate, eveniet?
+                  <div class="detail-box white">
+                     <p>
+                	함께할 <span class="bold">친구</span>가 필요하다면<br/> 
                     </p>
                     <div class="btn-box">
                       <a href="" class="btn1">
-                        Get A Quote
+                        사람 대여 서비스 >
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+           <div class="carousel-item">
+            <div class="container ">
+              <div class="row">
+                <div class="col-md-7 ">
+                  <div class="detail-box white">
+                    <p>
+                	 <span class="bold">공유주방</span>에서 즐기는<br/> 
+                	 <span class="bold">&nbsp;&nbsp;&nbsp;맛있는</span>연말 파티
+                    </p>
+                    <div class="btn-box">
+                      <a href="" class="btn1">
+                        공유주방 보러가기 >
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+           <div class="carousel-item">
+            <div class="container ">
+              <div class="row">
+                <div class="col-md-7 ">
+                  <div class="detail-box white">
+                    <p>
+                	누군가와 <span class="bold">함께</span>이고 싶다면<br/> 
+                    </p>
+                    <div class="btn-box">
+                      <a href="" class="btn1">
+                        사람 대여 서비스 >
                       </a>
                     </div>
                   </div>
@@ -63,17 +156,13 @@
             <div class="container ">
               <div class="row">
                 <div class="col-md-7 ">
-                  <div class="detail-box">
-                    <h1>
-                      We Provide best <br>
-                      Transport Service
-                    </h1>
+                  <div class="detail-box white">
                     <p>
-                      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum magnam, voluptates distinctio, officia architecto tenetur debitis hic aspernatur libero commodi atque fugit adipisci, blanditiis quidem dolorum odit voluptas? Voluptate, eveniet?
+                	 <span class="bold">#브라이덜 샤워 #생일파티 #기념일</span>
                     </p>
                     <div class="btn-box">
                       <a href="" class="btn1">
-                        Get A Quote
+                        파티룸 보러가기 >
                       </a>
                     </div>
                   </div>
@@ -86,18 +175,24 @@
           <li data-target="#customCarousel1" data-slide-to="0" class="active"></li>
           <li data-target="#customCarousel1" data-slide-to="1"></li>
           <li data-target="#customCarousel1" data-slide-to="2"></li>
+          <li data-target="#customCarousel1" data-slide-to="3"></li>
+          <li data-target="#customCarousel1" data-slide-to="4"></li>
         </ol>
       </div>
 
     </section>
     <!-- end slider section -->
+    <div>
+		
+	</div>
   </div>
 
-	<script src="js/jquery-3.4.1.min.js"></script>
+
 	<script src="js/bootstrap.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
 	</script>
 	<script src="js/custom.js"></script>
+	
 </body>
 
 </html>

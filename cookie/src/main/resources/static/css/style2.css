@@ -326,8 +326,7 @@ a:focus {
   left: 0;
   width: 100%;
   height: 100%;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(37, 37, 37, 0.9)), to(rgba(37, 37, 37, 0.7)));
-  background: linear-gradient(to right, rgba(37, 37, 37, 0.9), rgba(37, 37, 37, 0.7));
+ 
 }
 
 .slider_section .row {
@@ -353,8 +352,9 @@ a:focus {
 }
 
 .slider_section .detail-box p {
-  color: #fefefe;
-  font-size: 14px;
+  margin-top:55px;
+  color: black;
+  font-size: 36px;
 }
 
 .slider_section .detail-box .btn-box {
@@ -362,19 +362,18 @@ a:focus {
   display: -ms-flexbox;
   display: flex;
   margin: 0 -5px;
-  margin-top: 25px;
+  margin-top: 10px;
 }
 
 .slider_section .detail-box .btn-box a {
   margin: 5px;
   text-align: center;
-  width: 165px;
+  width: 100px;
 }
 
-.slider_section .detail-box .btn-box .btn1 {
+.slider_section .detail-box .btn-box {
   display: inline-block;
   padding: 10px 15px;
-  background-color: #0a97b0;
   color: #ffffff;
   border-radius: 0;
   -webkit-transition: all .3s;
@@ -382,8 +381,11 @@ a:focus {
   border: none;
 }
 
-.slider_section .detail-box .btn-box .btn1:hover {
-  background-color: #065968;
+.btn1 {
+	
+}
+
+.slider_section .detail-box .btn-box {
 }
 
 .slider_section .detail-box .btn-box .btn2 {
@@ -968,5 +970,9 @@ a:focus {
 
 .footer_section p a {
   color: inherit;
+}
+.white  {
+	
+	color: white !important ;
 }
 /*# sourceMappingURL=style.css.map */

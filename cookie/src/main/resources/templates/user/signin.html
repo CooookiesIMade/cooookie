@@ -12,10 +12,12 @@
 				<div class="wrapper">
 					<div class="title">이메일</div>
 					<input th:field="*{member_id}" type="email" placeholder="code@gmail.com" />
+					<div th:if="${#fields.hasErrors('member_id')}" class="error" th:errors="*{member_id}"/>
 				</div>
 				<div class="wrapper">
 					<div class="title">비밀번호</div>
-					<input th:field="*{member_pw}"type="password" />
+					<input th:field="*{member_pw}"type="password"/>
+					<div th:if="${#fields.hasErrors('member_pw')}" class="error" th:errors="*{member_pw}"/>
 				</div>
 				<button type="submit" class="submit-button" onclick="">로그인</button>
 				<a class="signupLink" href="/user/signup">회원가입</a>
