@@ -16,7 +16,6 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberService {
 
 	private final MemberMapper memberMapper;
-	
 	public void saveMember(Member member) {
 		memberMapper.saveMember(member);
 	}
@@ -25,4 +24,5 @@ public class MemberService {
 		Member findMember = memberMapper.findMember(member_id);
 		return findMember;
 	}
+	
 }
