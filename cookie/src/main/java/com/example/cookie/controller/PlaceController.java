@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("place")
 public class PlaceController {
 
-	@GetMapping("")
+	@GetMapping("/register")
 	public String Register(Model model) {
 		
 		return "place/register";

@@ -1,11 +1,77 @@
 <!DOCTYPE html>
 <html>
+
 <head th:replace="~{header :: #header}"></head>
 <head th:replace="~{head :: #head}"></head>
-<body>
-    <!-- header section strats -->
-   	<div th:replace="header"></div>
-   	
+<head th:replace="~{category :: #category}"></head>
+<style>
+	.reg-div {
+		margin-top: 70px;
+		width: 100vw;
+		height: fit-content;
+		background-color: #fbfbfb;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 50px 0px;
+	}
 
+	.formContainer {
+		width: 47rem;
+		height: fit-content;
+		padding: 0px 2.5em;
+	}
+
+	.reg-box {
+		height: fit-content;
+		margin-bottom: 25px;
+		background-color: #ffffff;
+		border-radius: 10px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 25px 10px;
+		box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 12px;
+	}
+
+	.reg-title {
+		width: 95%;
+		height: fit-content;
+		font-size: 1.05rem;
+		font-weight: 500;
+		color: black;
+		margin-bottom: 13px;
+	}
+
+	.reg-input {
+		width: 94%;
+		height: 1.1rem;
+		font-size: 0.85rem;
+		outline: none;
+		border: none;
+		border-bottom: 1px solid #aaa;
+		color: #2b2b2b;
+		padding: 5px;
+	}
+</style>
+
+<body>
+	<!-- header section strats -->
+	<div th:replace="header"></div>
+	<div class="reg-div">
+		<div class="formContainer">
+			<div class="reg-box">
+				<p class="reg-title">제목</p>
+				<input />
+			</div>
+			<div class="reg-box">
+				<p class="reg-title">카테고리</p>
+				<input/>
+				<div th:replace="category"></div>
+			</div>
+		</div>
+	</div>
 </body>
+
 </html>
