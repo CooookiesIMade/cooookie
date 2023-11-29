@@ -12,17 +12,19 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping("place")
-public class PlaceController {
+@RequestMapping("person")
+public class PersonController {
 
 	@GetMapping("/register")
 	public String Register(Model model) {
 		
-		return "place/register";
+		return "person/register";
 	}
 	
 	@PostMapping("/register")
 	public String Register() {
 		return null;
 	}
+	
+	
 }

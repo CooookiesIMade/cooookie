@@ -16,4 +16,6 @@ public class Splace {
 	private LocalDateTime place_end;
 	private Long place_count;
 	private Long place_price;
+	private Long place_latitude;
+	private Long place_longitude;
 }
