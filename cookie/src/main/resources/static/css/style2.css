@@ -525,6 +525,11 @@ a:focus {
   margin-top: 15px;
 }
 
+.bg0 {
+  width: 100%;
+  height: auto;
+}
+
 .about_section .detail-box a {
   display: inline-block;
   padding: 10px 45px;
