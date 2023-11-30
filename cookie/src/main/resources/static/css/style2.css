@@ -342,6 +342,7 @@ a:focus {
 
 .slider_section .detail-box {
   color: #04233b;
+  z-index: 1;
 }
 
 .slider_section .detail-box h1 {
