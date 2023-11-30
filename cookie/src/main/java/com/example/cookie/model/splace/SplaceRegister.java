@@ -6,5 +6,6 @@ import lombok.Data;
 public class SplaceRegister {
 
 	private String place_name;
+	private String category;
 
 }
