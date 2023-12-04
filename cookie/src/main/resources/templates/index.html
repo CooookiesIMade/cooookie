@@ -1,200 +1,252 @@
 <!DOCTYPE html>
 <html>
-<head th:replace="~{header :: #header}"></head>
+
 <head th:replace="~{head :: #head}"></head>
-<style>
-	.hide {
-		display: none;
-	}
-	.bold {
-		font-weight: bold;
-	}
 
-</style>
-<script>
-	$(document).ready(function() {
-		let bgSection = $(".slider_bg_box");
+<head th:replace="~{header :: #header}"></head>
+<div class="hero_area">
 
-		function bgChange(idx){
-			let bg0 = $(".bg0");
-			let bg1 = $(".bg1");
-			let bg2 = $(".bg2");
-			let bg3 = $(".bg3");
-			let bg4 = $(".bg4");
-			if(idx == 0){
-				bg0.removeClass('hide');
-				bg1.addClass('hide');
-				bg2.addClass('hide');
-				bg3.addClass('hide');
-				bg4.addClass('hide');
-			} else if(idx == 1){
-				bg0.addClass('hide');
-				bg1.removeClass('hide');
-				bg2.addClass('hide');
-				bg3.addClass('hide');
-				bg4.addClass('hide');
-			} else if(idx == 2){
-				bg0.addClass('hide');
-				bg1.addClass('hide');
-				bg2.removeClass('hide')
-				bg3.addClass('hide');
-				bg4.addClass('hide');
-			} else if(idx == 3){
-				bg0.addClass('hide');
-				bg1.addClass('hide');
-				bg2.addClass('hide')
-				bg3.removeClass('hide');
-				bg4.addClass('hide');
-			} else if(idx == 4){
-				bg0.addClass('hide');
-				bg1.addClass('hide');
-				bg2.addClass('hide')
-				bg3.addClass('hide');
-				bg4.removeClass('hide');
-			}
-		}
-		// slide.bs.carousel 이벤트로 몇번째 캐러쉘인지 확인가능 
-		$('#customCarousel1').on('slide.bs.carousel', function(event) {
-			let idx = event.to;
-			console.log(idx)
-			bgChange(idx);
-		});
-	});
+	<head th:replace="header"></head>
 
-</script>
+	<!--welcome-hero start -->
+	<section id="home" class="welcome-hero">
+		<div class="container">
+			<div class="welcome-hero-txt">
+				<h2>누구나 등록하고<br>누구든지 대여하는</h2>
+				<p>
+					Find Best Place, Restaurant, Hotel, Real State and many more think in just One click
+				</p>
+			</div>
+			<!--list-topics start -->
+	</section>
+	<!--/.welcome-hero-->
+	<!--works start -->
+	<section id="works" class="works">
+		<div class="container">
+			<div class="section-header">
+				<h2>how it works</h2>
+			</div><!--/.section-header-->
+			<div class="works-content">
+				<div class="row">
+					<div class="col-md-4 col-sm-6">
+						<div class="single-how-works">
+							<div class="single-how-works-icon">
+								<i class="flaticon-lightbulb-idea"></i>
+							</div>
+							<h2><a href="#">choose <span> what to</span> do</a></h2>
+							<p>
+								Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt
+								ut laboremagna aliqua.
+							</p>
+							<button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
+								read more
+							</button>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6">
+						<div class="single-how-works">
+							<div class="single-how-works-icon">
+								<i class="flaticon-networking"></i>
+							</div>
+							<h2><a href="#">find <span> what you want</span></a></h2>
+							<p>
+								Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt
+								ut laboremagna aliqua.
+							</p>
+							<button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
+								read more
+							</button>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6">
+						<div class="single-how-works">
+							<div class="single-how-works-icon">
+								<i class="flaticon-location-on-road"></i>
+							</div>
+							<h2><a href="#">explore <span> amazing</span> place</a></h2>
+							<p>
+								Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt
+								ut laboremagna aliqua.
+							</p>
+							<button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
+								read more
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/.container-->
 
-
-<body>
-	 <div class="hero_area">
-    <!-- header section strats -->
-   	<div th:replace="header"></div>
-    <!-- end header section -->
-    <!-- slider section -->
-    <section class="slider_section ">
-      <div class="slider_bg_box">
-       <img src="images/bg-1.jpeg" alt="배경" class="bg0"/>
-       <img src="images/bg-2.jpg" alt="배경" class="bg1 hide"/>
-       <img src="images/bg-3.jpg" alt="배경" class="bg2 hide"/>
-       <img src="images/bg-4.jpg" alt="배경" class="bg3 hide"/>
-       <img src="images/bg-5.jpg" alt="배경" class="bg4 hide"/>
-      </div>
-      <div id="customCarousel1" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="container ">
-              <div class="row">
-                <div class="col-md-7 ">
-                  <div class="detail-box">
-                    <p>
-                	성공적인 <span class="bold">협업</span>을 위한<br/> 
-                	<span class="bold">&nbsp;&nbsp;&nbsp;유연한</span> 비즈니스 환경
-                    </p>
-                    <div class="btn-box">
-                      <a href="" class="btn1">
-                        공유 오피스 보러가기 >
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="container ">
-              <div class="row">
-                <div class="col-md-7 ">
-                  <div class="detail-box white">
-                     <p>
-                	함께할 <span class="bold">친구</span>가 필요하다면<br/> 
-                    </p>
-                    <div class="btn-box">
-                      <a href="" class="btn1">
-                        사람 대여 서비스 >
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-           <div class="carousel-item">
-            <div class="container ">
-              <div class="row">
-                <div class="col-md-7 ">
-                  <div class="detail-box white">
-                    <p>
-                	 <span class="bold">공유주방</span>에서 즐기는<br/> 
-                	 <span class="bold">&nbsp;&nbsp;&nbsp;맛있는</span>연말 파티
-                    </p>
-                    <div class="btn-box">
-                      <a href="" class="btn1">
-                        공유주방 보러가기 >
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-           <div class="carousel-item">
-            <div class="container ">
-              <div class="row">
-                <div class="col-md-7 ">
-                  <div class="detail-box white">
-                    <p>
-                	누군가와 <span class="bold">함께</span>이고 싶다면<br/> 
-                    </p>
-                    <div class="btn-box">
-                      <a href="" class="btn1">
-                        사람 대여 서비스 >
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="container ">
-              <div class="row">
-                <div class="col-md-7 ">
-                  <div class="detail-box white">
-                    <p>
-                	 <span class="bold">#브라이덜 샤워 #생일파티 #기념일</span>
-                    </p>
-                    <div class="btn-box">
-                      <a href="" class="btn1">
-                        파티룸 보러가기 >
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <ol class="carousel-indicators">
-          <li data-target="#customCarousel1" data-slide-to="0" class="active"></li>
-          <li data-target="#customCarousel1" data-slide-to="1"></li>
-          <li data-target="#customCarousel1" data-slide-to="2"></li>
-          <li data-target="#customCarousel1" data-slide-to="3"></li>
-          <li data-target="#customCarousel1" data-slide-to="4"></li>
-        </ol>
-      </div>
-
-    </section>
-    <!-- end slider section -->
-    <div>
-		
-	</div>
-  </div>
+	</section><!--/.works-->
+	<!--works end -->
 
 
-	<script src="js/bootstrap.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
-	</script>
-	<script src="js/custom.js"></script>
-	
-</body>
+
+
+	<!-- statistics strat -->
+	<section id="statistics" class="statistics">
+		<div class="container">
+			<div class="statistics-counter">
+				<div class="col-md-3 col-sm-6">
+					<div class="single-ststistics-box">
+						<div class="statistics-content">
+							<div class="counter">90 </div> <span>K+</span>
+						</div><!--/.statistics-content-->
+						<h3>listings</h3>
+					</div><!--/.single-ststistics-box-->
+				</div><!--/.col-->
+				<div class="col-md-3 col-sm-6">
+					<div class="single-ststistics-box">
+						<div class="statistics-content">
+							<div class="counter">40</div> <span>k+</span>
+						</div><!--/.statistics-content-->
+						<h3>listing categories</h3>
+					</div><!--/.single-ststistics-box-->
+				</div><!--/.col-->
+				<div class="col-md-3 col-sm-6">
+					<div class="single-ststistics-box">
+						<div class="statistics-content">
+							<div class="counter">65</div> <span>k+</span>
+						</div><!--/.statistics-content-->
+						<h3>visitors</h3>
+					</div><!--/.single-ststistics-box-->
+				</div><!--/.col-->
+				<div class="col-md-3 col-sm-6">
+					<div class="single-ststistics-box">
+						<div class="statistics-content">
+							<div class="counter">50</div> <span>k+</span>
+						</div><!--/.statistics-content-->
+						<h3>happy clients</h3>
+					</div><!--/.single-ststistics-box-->
+				</div><!--/.col-->
+			</div><!--/.statistics-counter-->
+		</div><!--/.container-->
+
+	</section><!--/.counter-->
+	<!-- statistics end -->
+
+	<!--blog start -->
+	<section id="blog" class="blog">
+		<div class="container">
+			<div class="section-header">
+				<h2>news and articles</h2>
+				<p>Always upto date with our latest News and Articles </p>
+			</div><!--/.section-header-->
+			<div class="blog-content">
+				<div class="row">
+					<div class="col-md-4 col-sm-6">
+						<div class="single-blog-item">
+							<div class="single-blog-item-img">
+								<img src="/images/blog/b1.jpg" alt="blog image">
+							</div>
+							<div class="single-blog-item-txt">
+								<h2><a href="#">How to find your Desired Place more quickly</a></h2>
+								<h4>posted <span>by</span> <a href="#">admin</a> march 2018</h4>
+								<p>
+									Lorem ipsum dolor sit amet, consectetur de adipisicing elit, sed do eiusmod tempore
+									incididunt ut labore et dolore magna.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6">
+						<div class="single-blog-item">
+							<div class="single-blog-item-img">
+								<img src="/images/blog/b2.jpg" alt="blog image">
+							</div>
+							<div class="single-blog-item-txt">
+								<h2><a href="#">How to find your Desired Place more quickly</a></h2>
+								<h4>posted <span>by</span> <a href="#">admin</a> march 2018</h4>
+								<p>
+									Lorem ipsum dolor sit amet, consectetur de adipisicing elit, sed do eiusmod tempore
+									incididunt ut labore et dolore magna.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6">
+						<div class="single-blog-item">
+							<div class="single-blog-item-img">
+								<img src="/images/blog/b3.jpg" alt="blog image">
+							</div>
+							<div class="single-blog-item-txt">
+								<h2><a href="#">How to find your Desired Place more quickly</a></h2>
+								<h4>posted <span>by</span> <a href="#">admin</a> march 2018</h4>
+								<p>
+									Lorem ipsum dolor sit amet, consectetur de adipisicing elit, sed do eiusmod tempore
+									incididunt ut labore et dolore magna.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/.container-->
+
+	</section><!--/.blog-->
+	<!--blog end -->
+
+
+
+	<!--footer start-->
+	<footer id="footer" class="footer">
+		<div class="container">
+			<div class="footer-menu">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="navbar-header">
+							<a class="navbar-brand" href="index.html">list<span>race</span></a>
+						</div><!--/.navbar-header-->
+					</div>
+					<div class="col-sm-9">
+						<ul class="footer-menu-item">
+							<li class="scroll"><a href="#works">how it works</a></li>
+							<li class="scroll"><a href="#explore">explore</a></li>
+							<li class="scroll"><a href="#reviews">review</a></li>
+							<li class="scroll"><a href="#blog">blog</a></li>
+							<li class="scroll"><a href="#contact">contact</a></li>
+							<li class=" scroll"><a href="#contact">my account</a></li>
+						</ul><!--/.nav -->
+					</div>
+				</div>
+			</div>
+			<div class="hm-footer-copyright">
+				<div class="row">
+					<div class="col-sm-5">
+						<p>
+							&copy;copyright. designed and developed by <a
+								href="https://www.themesine.com/">themesine</a>
+						</p><!--/p-->
+					</div>
+					<div class="col-sm-7">
+						<div class="footer-social">
+							<span><i class="fa fa-phone"> +1 (222) 777 8888</i></span>
+							<a href="#"><i class="fa fa-facebook"></i></a>
+							<a href="#"><i class="fa fa-twitter"></i></a>
+							<a href="#"><i class="fa fa-linkedin"></i></a>
+							<a href="#"><i class="fa fa-google-plus"></i></a>
+						</div>
+					</div>
+				</div>
+
+			</div><!--/.hm-footer-copyright-->
+		</div><!--/.container-->
+
+		<div id="scroll-Top">
+			<div class="return-to-top">
+				<i class="fa fa-angle-up " id="scroll-top" data-toggle="tooltip" data-placement="top" title=""
+					data-original-title="Back to Top" aria-hidden="true"></i>
+			</div>
+
+		</div><!--/.scroll-Top-->
+
+	</footer><!--/.footer-->
+	<!--footer end-->
+
+	<!-- Include all js compiled plugins (below), or include individual files as needed -->
+
+
+
+	</body>
 
 </html>

@@ -1,11 +1,11 @@
 .signup-div {
 	width: 100vw;
 	/* height: 800px; */
-	height: 100%;
+	
 	background-color: #f9f9f9;
 	display: flex;
 	justify-content: center;
-	padding-bottom: 100px;
+	
 }
 
 .signin-div {
@@ -15,13 +15,13 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-top: 55px;
+	
 }
 
 .signup-container {
-	margin-top: 20%;
-	width: 38rem;
-	height: flex;
+	margin-top: 10%;
+	width: 50rem;
+	height: auto;
 	padding: 70px 0px;
 	background-color: #ffffff;
 	border-radius: 20px;
@@ -94,7 +94,7 @@
 input {
 	width: 99%;
 	height: fit-content;
-	font-size: 1rem;
+	font-size: 1.2rem;
 	font: inherit;
 	outline: none;
 	border: none;
@@ -105,12 +105,12 @@ input {
 }
 
 ::placeholder {
-	font-size: 0.9rem;
+	font-size: 1.3rem;
 	font-weight: 500;
 }
 
 select {
-	font-size: 0.82rem;
+	font-size: 1.3rem;
 	width: 100%;
 }
 
@@ -142,7 +142,7 @@ select {
 
 .signin-container {
 	margin-top: -100px;
-	width: 38rem;
+	width: 50rem;
 	height: flex;
 	padding: 4rem 0rem 5rem 0rem;
 	background-color: #ffffff;
@@ -163,7 +163,7 @@ select {
 .title {
 	width: 100%;
 	height: fit-content;
-	font-size: 0.95rem;
+	font-size: 1.45rem;
 	font-weight: 500;
 	color: black;
 	margin-bottom: 10px;
@@ -179,7 +179,7 @@ select {
 	color: #2b2b2b;
 
 	font: inherit;
-	font-size: 1.2rem;
+	font-size: 1.5rem;
 	font-weight: 500;
 	border: none;
 
@@ -209,17 +209,182 @@ select {
 
 .signupLink {
 	color: #666666;
-	font-size: 0.8rem;
+	font-size: 1.3rem;
 	font-weight: 500;
 }
 
 .loginLink {
 	color: #666666;
-	font-size: 0.8rem;
+	font-size: 1.5rem;
 	font-weight: 500;
 }
 .error {
 	color: red;
 	font-weight: bold;
 	margin-top: 5px;
+}
+.white  {
+	
+	color: white !important ;
+}
+.reg-div {
+	width: 100vw;
+	height: fit-content;
+	background-color: #fbfbfb;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 50px 0px;
+}
+
+.formContainer {
+	width: 55rem;
+	height: fit-content;
+	padding: 0px 2.5em;
+}
+
+.reg-box {
+	height: fit-content;
+	margin-bottom: 25px;
+	background-color: #ffffff;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 20px 10px;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 12px;
+	font-size: 16px;
+}
+
+.reg-title {
+	width: 95%;
+	height: fit-content;
+	font-size: 1.5rem;
+	font-weight: 500;
+	color: black;
+	margin-bottom: 5px;
+}
+
+.reg-input {
+	width: 94%;
+	height: 1.3rem;
+	font-size: 1.3rem;
+	outline: none;
+	border: none;
+	border-bottom: 1px solid #aaa;
+	color: #2b2b2b;
+	padding: 5px;
+}
+
+textarea {
+	width: 94%;
+	height: 200px;
+	font-size: 0.8rem;
+	outline: none;
+	border: 1px solid #aaa;
+	border-radius: 5px;
+	color: #2b2b2b;
+	padding: 5px;
+	resize: none;
+}
+
+.ibutton {
+	width: fit-content;
+	height: 35px;
+	background-color: #ffda77;
+	border-radius: 40px;
+	color: #2b2b2b;
+	font: inherit;
+	font-size: 1.3rem;
+	font-weight: 500;
+	border: none;
+	padding: 0px 10px;
+	margin-bottom: 5px;
+}
+
+.set-charge {
+	width: 95%;
+	display: flex;
+	align-items: center;
+}
+
+.hour-description {
+	width: fit-content;
+	font-size: 1.3rem;
+	color: #2b2b2b;
+}
+
+.small {
+	width: 15%;
+	height: 1.3rem;
+	font-size: 1.5rem;
+	outline: none;
+	border: 1px solid #aaa;
+	border-radius: 5px;
+	color: #2b2b2b;
+	padding: 5px 5px 3px 5px;
+	margin: 0px 5px;
+	text-align: center;
+}
+
+.b-wrapper {
+	height: fit-content;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.reg-button {
+	width: 300px;
+	height: 55px;
+	margin-top: 25px;
+	background-color: #ffda77;
+	border-radius: 40px;
+	color: #2b2b2b;
+	font: inherit;
+	font-size: 1.5rem;
+	font-weight: 500;
+	border: none;
+	align-items: start;
+}
+
+.re-input {
+	width: 90%;
+}
+
+
+.show {
+	display: block;
+}
+
+.delbtn {
+	margin-top: 5px;
+	font-size: 0.6rem;
+	border-radius: 50%;
+	background-color: #eb7470;
+	color: white;
+	padding: 2px;
+}
+
+.smallInput {
+	width: 1.8rem;
+	height: 1.5rem;
+	font-size: 1.3rem;
+	outline: none;
+	border: 1px solid #aaa;
+	border-radius: 5px;
+	color: #2b2b2b;
+	padding: 5px 5px 3px 5px;
+	margin: 0px 5px;
+	text-align: center;
+}
+label {
+	font-size: 1.3rem;
+}
+textarea {
+	font-size : 1.3rem;
+}
+._count>span {
+	cursor: pointer;
 }
