@@ -25,4 +25,9 @@ public class PlaceController {
 	public String Register() {
 		return null;
 	}
+	
+	@GetMapping("list")
+	public String List(Model model) {
+		return "/placeList";
+	}
 }
