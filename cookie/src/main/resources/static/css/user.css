@@ -1,11 +1,11 @@
 .signup-div {
 	width: 100vw;
 	/* height: 800px; */
-	
+
 	background-color: #f9f9f9;
 	display: flex;
 	justify-content: center;
-	
+
 }
 
 .signin-div {
@@ -15,7 +15,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	
+
 }
 
 .signup-container {
@@ -218,17 +218,20 @@ select {
 	font-size: 1.5rem;
 	font-weight: 500;
 }
+
 .error {
 	color: red;
 	font-weight: bold;
 	margin-top: 5px;
 }
-.white  {
-	
-	color: white !important ;
+
+.white {
+
+	color: white !important;
 }
+
 .reg-div {
-	width: 100vw;
+	width: 100%;
 	height: fit-content;
 	background-color: #fbfbfb;
 	display: flex;
@@ -238,7 +241,7 @@ select {
 }
 
 .formContainer {
-	width: 55rem;
+	width: 80rem;
 	height: fit-content;
 	padding: 0px 2.5em;
 }
@@ -317,7 +320,7 @@ textarea {
 
 .small {
 	width: 15%;
-	height: 1.3rem;
+	height: 2.0rem;
 	font-size: 1.5rem;
 	outline: none;
 	border: 1px solid #aaa;
@@ -368,8 +371,8 @@ textarea {
 }
 
 .smallInput {
-	width: 1.8rem;
-	height: 1.5rem;
+	width: 2.5rem;
+	height: 2.5rem;
 	font-size: 1.3rem;
 	outline: none;
 	border: 1px solid #aaa;
@@ -379,12 +382,39 @@ textarea {
 	margin: 0px 5px;
 	text-align: center;
 }
+
 label {
 	font-size: 1.3rem;
 }
+
 textarea {
-	font-size : 1.3rem;
+	font-size: 1.3rem;
 }
+
 ._count>span {
 	cursor: pointer;
+}
+
+.wrapper {
+	width: 95%;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	margin-top: -5px;
+	justify-content: space-between;
+}
+
+.cat-cat {
+	font-size: 0.85rem;
+	display: flex;
+	align-items: center;
+	word-break: keep-all;
+	margin-bottom: 3px;
+}
+
+label {
+	color: #2b2b2b !important;
+	margin-left: 4px;
+	font-weight: 500;
+	margin-top: 7px;
 }

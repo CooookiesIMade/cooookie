@@ -2,154 +2,24 @@
 <html>
 
 <head th:replace="~{head :: #head}"></head>
+
 <head th:replace="~{header :: #header}"></head>
-
-<style>
-	.hide {
-		display: none;
-	}
-	.bold {
-		font-weight: bold;
-	}
-</style>
-<script>
-	$(document).ready(function() {
-		let bgSection = $(".slider_bg_box");
-
-		function bgChange(idx){
-			let bg0 = $(".bg0");
-			let bg1 = $(".bg1");
-			let bg2 = $(".bg2");
-			let bg3 = $(".bg3");
-			if(idx == 0){
-				bg0.removeClass('hide');
-				bg1.addClass('hide');
-				bg2.addClass('hide');
-				bg3.addClass('hide');
-			} else if(idx == 1){
-				bg0.addClass('hide');
-				bg1.removeClass('hide');
-				bg2.addClass('hide');
-				bg3.addClass('hide');
-			} else if(idx == 2){
-				bg0.addClass('hide');
-				bg1.addClass('hide');
-				bg2.removeClass('hide')
-				bg3.addClass('hide');
-			} else if(idx == 3){
-				bg0.addClass('hide');
-				bg1.addClass('hide');
-				bg2.addClass('hide')
-				bg3.removeClass('hide');
-			}
-		}
-		// slide.bs.carousel 이벤트로 몇번째 캐러쉘인지 확인가능 
-		$('#customCarousel1').on('slide.bs.carousel', function(event) {
-			let idx = event.to;
-			// console.log(idx)
-			bgChange(idx);
-		});
-	});
-</script>
 <div class="hero_area">
 
 	<head th:replace="header"></head>
 
 	<!--welcome-hero start -->
-	<div class="slider-container">
-	 <section class="slider_section">
-      <div class="slider_bg_box">
-       <img src="images/welcome-hero/bg-4.jpg" alt="배경" class="bg0"/>
-       <img src="images/welcome-hero/bg-1.jpg" alt="배경" class="bg1 hide"/>
-       <img src="images/welcome-hero/bg-3.jpg" alt="배경" class="bg2 hide"/>
-       <img src="images/welcome-hero/bg-2.jpg" alt="배경" class="bg3 hide"/>
-      </div>
-      <div id="customCarousel1" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="container">
-              <div class="row">
-                <div class="col-md-7">
-                  <div class="detail-box">
-                    <p>
-                	성공적인 <span class="bold">협업</span>을 위한<br/> 
-                	<span class="bold">&nbsp;&nbsp;&nbsp;유연한</span> 비즈니스 환경
-                    </p>
-                    <div class="btn-box">
-                      <a href="" class="btn1">
-                        공유 오피스 보러가기 >
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="container ">
-              <div class="row">
-                <div class="col-md-7 ">
-                  <div class="detail-box">
-                     <p>
-                	함께할 <span class="bold">친구</span>가 필요하다면<br/> 
-                    </p>
-                    <div class="btn-box">
-                      <a href="" class="btn1">
-                        사람 대여 서비스 >
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-           <div class="carousel-item">
-            <div class="container ">
-              <div class="row">
-                <div class="col-md-7 ">
-                  <div class="detail-box">
-                    <p>
-                	누군가와 <span class="bold">함께</span>이고 싶다면<br/> 
-                    </p>
-                    <div class="btn-box">
-                      <a href="" class="btn1">
-                        사람 대여 서비스 >
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="container ">
-              <div class="row">
-                <div class="col-md-7 ">
-                  <div class="detail-box">
-                    <p>
-                	 <span class="bold">#브라이덜 샤워 #생일파티 #기념일</span>
-                    </p>
-                    <div class="btn-box">
-                      <a href="" class="btn1">
-                        파티룸 보러가기 >
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <ol class="carousel-indicators">
-          <li data-target="#customCarousel1" data-slide-to="0" class="active"></li>
-          <li data-target="#customCarousel1" data-slide-to="1"></li>
-          <li data-target="#customCarousel1" data-slide-to="2"></li>
-          <li data-target="#customCarousel1" data-slide-to="3"></li>
-        </ol>
-      </div>
-
-    </section>
-	</div>
+	<section id="home" class="welcome-hero">
+		<div class="container">
+			<div class="welcome-hero-txt">
+				<h2>누구나 등록하고<br>누구든지 대여하는</h2>
+				<p>
+					Find Best Place, Restaurant, Hotel, Real State and many more think in just One click
+				</p>
+			</div>
+			<!--list-topics start -->
+	</section>
+	
 	<!--/.welcome-hero-->
 	
 
@@ -219,7 +89,7 @@
 
 	<!-- statistics strat -->
 	<section id="statistics" class="statistics">
-		<div class=	"container">
+		<div class="container">
 			<div class="statistics-counter">
 				<div class="col-md-3 col-sm-6">
 					<div class="single-ststistics-box">
@@ -377,11 +247,8 @@
 	</footer><!--/.footer-->
 	<!--footer end-->
 
-	<script src="js/bootstrap.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
-		
-	</script>
-	
+	<!-- Include all js compiled plugins (below), or include individual files as needed -->
+
 
 
 	</body>
