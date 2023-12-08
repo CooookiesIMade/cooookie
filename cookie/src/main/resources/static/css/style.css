@@ -94,7 +94,7 @@ html,body{height: 100%;}
 /*-------------------------------------
         2. Header-top
 --------------------------------------*/
-.header-top{border-bottom:1px solid #f6f8fa;}
+
 
 .header-top ul li {display: inline-block;}
 
@@ -143,7 +143,7 @@ html,body{height: 100%;}
 --------------------------------------*/
 nav.navbar.bootsnav {
     background-color:#fff;
-    border-bottom: transparent;
+    
 }
 .wrap-sticky nav.navbar.bootsnav.sticked {background-color: #fff;box-shadow: 0 2px 5px rgba(0,0,0,.2);}
 
@@ -227,7 +227,6 @@ nav.navbar.bootsnav .navbar-toggle i{color:#8B4513;}
 --------------------------------------*/
 .welcome-hero {
     position: relative;
-    background:url(/images/welcome-hero/bg-3.jpg)no-repeat;
     background-position:center;
     background-size:cover;
     text-align: center;
@@ -244,6 +243,11 @@ nav.navbar.bootsnav .navbar-toggle i{color:#8B4513;}
     background:rgba(65,73,89,.65);
     z-index: -1;
 }
+img[class^=bg] {
+	width: 100%;
+	height: 550px;
+}
+
 .welcome-hero-txt { padding-top: 155px;}
 
 .welcome-hero-txt h2 {
@@ -327,34 +331,35 @@ nav.navbar.bootsnav .navbar-toggle i{color:#8B4513;}
 --------------------------------------*/
 .list-topics-content {
     position: relative;
-    top: -120px;
+    top: 10px;
     z-index: 1;
 }
-.list-topics-content ul li { display: inline-block;}
+.list-topics-content ul li { 
+	display: inline-block;
+	margin-left: 20px;
+	}
 
 .single-list-topics-content{
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    width: 205px;
-    height: 170px;
-    background:#fff;
+    width: 80px;
+    height: 80px;
     border-radius: 3px;
     margin-right: 20px;
     margin-bottom: 20px;
-    box-shadow: 0 0px 10px rgba(71,71,71,.2);
     -webkit-transition: .3s linear; 
     -moz-transition:.3s linear; 
     -ms-transition:.3s linear; 
     -o-transition:.3s linear;
     transition: .3s linear;
 }
-.single-list-topics-content h2>a { margin: 13px 0;}
+.single-list-topics-content h2>a { margin: 13px 0; font-size: 15px;}
 /*.single-list-topics-content:last-child{margin-right: 0;}*/
 
-.single-list-topics-icon [class^="flaticon-"]:before,.single-list-topics-icon [class*=" flaticon-"]:before,.single-list-topics-icon [class^="flaticon-"]:after,.single-list-topics-icon [class*=" flaticon-"]:after {font-size: 45px;color:#343a3f;}
-.single-list-topics-content:hover .single-list-topics-icon [class^="flaticon-"]:before,.single-list-topics-content:hover .single-list-topics-icon [class*=" flaticon-"]:before,.single-list-topics-content:hover .single-list-topics-icon [class^="flaticon-"]:after,.single-list-topics-content:hover .single-list-topics-icon [class*=" flaticon-"]:after {color:#fff;}
+.single-list-topics-icon [class^="fa-"]:before,.single-list-topics-icon [class*=" flaticon-"]:before,.single-list-topics-icon [class^="fa-"]:after,.single-list-topics-icon [class*=" flaticon-"]:after {font-size: 20px;color:#343a3f;}
+.single-list-topics-content:hover .single-list-topics-icon [class^="fa-"]:before,.single-list-topics-content:hover .single-list-topics-icon [class*=" flaticon-"]:before,.single-list-topics-content:hover .single-list-topics-icon [class^="fa-"]:after,.single-list-topics-content:hover .single-list-topics-icon [class*=" flaticon-"]:after {color:#fff;}
 
 .single-list-topics-content:hover h2>a,.single-list-topics-content:hover p{color: #fff!important;}
 .single-list-topics-content:hover{
@@ -402,8 +407,10 @@ nav.navbar.bootsnav .navbar-toggle i{color:#8B4513;}
 .single-how-works h2 a span {text-transform:  lowercase;}
 .single-how-works p {margin-bottom: 25px;text-transform: initial;}
 
+
 .single-how-works-icon [class^="fa-"]:before,.single-how-works-icon [class*=" fa-"]:before,.single-how-works-icon [class^="fa-"]:after,.single-how-works-icon [class*=" fa-"]:after {font-size: 35px;}
 .single-how-works:hover .single-how-works-icon [class^="fa-"]:before,.single-how-works:hover .single-how-works-icon [class*=" fa-"]:before,.single-how-works:hover .single-how-works-icon [class^="fa-"]:after,.single-how-works:hover .single-how-works-icon [class*=" fa-"]:after {color:#8B4513;}
+
 
 .fa-solid {
 	margin-top:20px;
@@ -429,7 +436,7 @@ nav.navbar.bootsnav .navbar-toggle i{color:#8B4513;}
         7. Explore
 --------------------------------------*/
 .explore{
-    padding:117px 0 95px;
+    padding:20px 0 95px;
     background: #f8fafb;
 }
 .explore-content{margin-top: 78px;}
@@ -940,4 +947,9 @@ nav.navbar.bootsnav .navbar-toggle i{color:#8B4513;}
     0%   {bottom:0px;}
     100%  {bottom:7px;}
 }
+.slider_bg_box{
+	margin : 15px;
+}
+	
 /*========================Thank you=================
+

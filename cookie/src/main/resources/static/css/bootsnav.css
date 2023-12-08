@@ -1059,7 +1059,7 @@ body.on-side .wrap-sticky nav.navbar.bootsnav.sticked{
         border-bottom: solid 1px #e0e0e0;
         padding: 10px 0;
         border-top: solid 1px #e0e0e0;
-        margin-bottom: -1px;
+        margin-bottom: -100px;
     }
     
     nav.navbar.bootsnav .navbar-nav > li:first-child > a{
