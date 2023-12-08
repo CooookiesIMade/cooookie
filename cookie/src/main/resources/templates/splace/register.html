@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="~{header :: #header}"></head>
+
+<head th:replace="~{head :: #head}"></head>
+
+<head th:replace="~{category :: #category}"></head>
+
+
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+	var element = $('#wrap');
+	function foldPostcode() {
+		element.style.display = 'none';
+	}
+
+	// 주소 가지고 오기 위한 함수
+	function daumPostcode() {
+		new daum.Postcode({
+			oncomplete :function(data){
+				console.log(data.address)
+                $("#address").val(data.address);
+                // 커서를 상세주소 필드로 이동한다.
+                $("#detailAddress").focus();
+			}
+		}).open();
+	}
+	
+	// 파일업로드 눌렀을때 실행되는 함수
+	function clickUpload(){
+		let myInput = $("#my-input");
+		myInput.click();
+		
+		myInput.on("change", function(event){
+			var file = event.target.files[0];
+			var reader = new FileReader();
+			reader.onload = function(e){
+				$("#preview").attr("src", e.target.result);
+				$("#preview").addClass('show');
+				$(".delete").append(`<button class="delbtn" onclick="closeUpload()">X</button>`)
+			}
+			reader.readAsDataURL(file);
+		}) 
+	}
+	// 파일 닫기
+	function closeUpload(){
+			$("#preview").removeClass('show');
+			$(".delete").remove()
+	}
+	
+	// 인원수 함수 
+	function countClick(e){
+		let plus = $(".plus");
+		let minus = $(".minus")
+		let count = $(".smallInput").val();
+		count = parseInt(count);
+		console.log(plus[0].classList[0])
+		
+		if(e === plus[0].classList[0]){
+			count += 1;
+		} else if(e == minus[0].classList[0]){
+			if(count > 0){
+				count -= 1;			
+			} else return;
+		} 
+		$(".smallInput").val(count);
+	}
+	
+	
+	
+</script>
+
+<body>
+	<!-- header section strats -->
+	<div th:replace="header"></div>
+	<div class="reg-div">
+		<div class="formContainer">
+			<section class="reg-box">
+				<p class="reg-title">제목</p>
+				<input class="re-input"/>
+			</section>
+			<section class="reg-box">
+				<p class="reg-title">카테고리</p>
+				<div th:replace="category"></div>
+			</section>
+			<section class="reg-box">
+				<p class="reg-title">최대 인원</p>
+				 <div class="_count">
+				<span class="minus" onclick="countClick('minus')">⬅️</span>
+				<input class="smallInput" value="1" type="text"/>
+				<span class="plus" onclick="countClick('plus')">➡️</button>
+				</div>
+			</section>
+			<section class="reg-box ">
+				<p class="reg-title">주소</p>
+				<input onclick="daumPostcode()" id="address" class="re-input"/>
+				<p class="reg-title" style="margin-top: 5px;">상세주소</p>
+				<input id="detailAddress" class="re-input"/>	
+			</section>
+			
+			<section class="reg-box">
+				<p class="reg-title">상세정보</p>
+				<textarea></textarea>
+			</section>
+			<section class="reg-box">
+				<p class="reg-title">사진</p>
+				<input type="file" accept="image/*" style="display: none;" enctpye="multipart/form-data"
+					id="my-input" />
+				<button class="ibutton" onclick="clickUpload()">사진 업로드하기</button>
+				<img id="preview" class="">
+				<div class="delete">
+					
+				</div>
+			</section>
+			<section class="reg-box">
+				<p class="reg-title">금액 설정</p>
+				<section class="set-charge">
+					<div class="hour-description">1시간 /</div>
+					<input class="small" />원
+				</section>
+			</section>
+			<section class="b-wrapper">
+				<button type="submit" class="reg-button">등록하기</button>
+				
+			</section>
+			<div id="wrap"
+				style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
+				<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap"
+					style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldPostcode()"
+					alt="접기 버튼">
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
