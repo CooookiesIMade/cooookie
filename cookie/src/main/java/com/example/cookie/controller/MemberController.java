@@ -81,6 +81,15 @@ public class MemberController {
 		return "redirect:/main";
 	}
 	
+	// 로그아웃 하기
+	@GetMapping("logout")
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+	
+		session.invalidate();
+		
+		return "redirect:/";
+	}
 
 	
 	

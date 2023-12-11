@@ -8,15 +8,36 @@
 <link rel="stylesheet" href="/css/detail.css" />
 <script>
 	$(document).ready(function () {
+		let start = $(".first-date");
+		let end = $(".end-date");
+		let date = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, -8);
+		let price = $(".totalprice").attr("value") // span 태그는 value속성없어서 속성으로 가져와야함
+		start.val(date);
+		start.attr("min", date);
+
 		$('.end-date').change(function () {
-			let start = $(".first-date").val();
-			let end = $(".end-date").val();
-			if (new Date(start) >= new Date(end)) {
-				return $(".end-date").val("");
-			} else return null;
-		})
-	})
+			if (new Date(start.val()) >= new Date(end.val())) {
+				$(".end-date").val("");
+			}
+		});
+
+		$('.end-date').change(function () {
+			let startDate = new Date(start.val());
+			let endDate = new Date(end.val());
+			let rentHour = (endDate - startDate) / (1000 * 60 * 60);
+			let totalPrice = price * rentHour
+			$(".totalprice").text(totalPrice);
+			$(".totaltime").text(rentHour + '시간');
+		});
+
+	});
 </script>
+<style>
+	.totaltime {
+		margin-right: 140px;
+		text-align: right;
+	}
+</style>
 
 <body>
 	<div th:replace="header" />
@@ -24,8 +45,8 @@
 		<div class="product_container">
 			<div class="product_imgbox">
 				<img src="/images/blog/b1.jpg" alt="상품 메인 사진">
-				<div>
-					<h4>상품상세정보</h4>
+				<div class="product_content">
+					<h4 style="margin-bottom: 10px;">상품상세정보</h4>
 					<p>모든 국민은 직업선택의 자유를 가진다. 대통령은 취임에 즈음하여 다음의 선서를 한다. 위원은 정당에 가입하거나 정치에 관여할 수 없다. 제1항의 탄핵소추는 국회재적의원 3분의
 						1 이상의 발의가 있어야 하며, 그 의결은 국회재적의원 과반수의 찬성이 있어야 한다. 다만, 대통령에 대한 탄핵소추는 국회재적의원 과반수의 발의와 국회재적의원 3분의 2
 						이상의 찬성이 있어야 한다.</p>
@@ -40,17 +61,9 @@
 					<p>법률은 특별한 규정이 없는 한 공포한 날로부터 20일을 경과함으로써 효력을 발생한다. 국회는 헌법 또는 법률에 특별한 규정이 없는 한 재적의원 과반수의 출석과 출석의원
 						과반수의 찬성으로 의결한다. 가부동수인 때에는 부결된 것으로 본다. 국가유공자·상이군경 및 전몰군경의 유가족은 법률이 정하는 바에 의하여 우선적으로 근로의 기회를
 						부여받는다.</p>
-
-					<p>국가는 지역간의 균형있는 발전을 위하여 지역경제를 육성할 의무를 진다. 민주평화통일자문회의의 조직·직무범위 기타 필요한 사항은 법률로 정한다. 국회는 의원의 자격을 심사하며,
-						의원을 징계할 수 있다. 비상계엄이 선포된 때에는 법률이 정하는 바에 의하여 영장제도, 언론·출판·집회·결사의 자유, 정부나 법원의 권한에 관하여 특별한 조치를 할 수
-						있다.</p>
-
-					<p>모든 국민은 종교의 자유를 가진다. 형사피해자는 법률이 정하는 바에 의하여 당해 사건의 재판절차에서 진술할 수 있다. 국회의원은 법률이 정하는 직을 겸할 수 없다. 공공필요에
-						의한 재산권의 수용·사용 또는 제한 및 그에 대한 보상은 법률로써 하되, 정당한 보상을 지급하여야 한다. 대통령은 국무총리·국무위원·행정각부의 장 기타 법률이 정하는 공사의
-						직을 겸할 수 없다.</p>
 				</div>
-
 			</div>
+			<div class="sticky-parent">
 			<div class="product_detail">
 				<div class="product_caption">
 					40,000원 / 1시간
@@ -59,7 +72,7 @@
 					<div class="form-group">
 						<label>시작일시</label>
 						<span>
-							<input type="datetime-local" placeholder="날짜를 선택해주세요" required class="first-date">
+							<input type="datetime-local" placeholder="날짜를 선택해주세요" required class="first-date" onchange="setMinValue()">
 						</span>
 					</div>
 					<div class="form-group">
@@ -77,23 +90,21 @@
 					<input type="hidden" />
 					<table> <!-- table을 thead와 tbody로 나눠주지 않으면 jquery 정상작동 X-->
 						<colgroup>
-							<col width="60%" />
-							<col width="20%" />
+							<col width="50%" />
+							<col width="30%" />
 							<col width="20%" />
 						</colgroup>
 						<thead>
 							<tr>
 								<td>장소</td>
-								<td>대여시간</td>
+								<td class="td_time">대여시간</td>
 								<td class="td_price">가격</td>
 							</tr>
 						</thead>
-						<tbody>
-
-						</tbody>
 					</table>
 					<div class="totalprice_box">
-						₩ <span class="totalprice">0</span>
+						<span class="totaltime"></span>
+						₩ <span class="totalprice" value="40000"></span>
 					</div>
 					<div class="formbtn_box">
 						<input type="submit" class="buynowbtn formbtn" formaction="#바로구매"
@@ -104,12 +115,8 @@
 					<button class="naver_talk">대여자에게 <b>톡톡</b> 문의하세요!</button>
 				</div>
 			</div>
-
 		</div>
-
-
-
-
+		</div>
 	</section>
 </body>
 

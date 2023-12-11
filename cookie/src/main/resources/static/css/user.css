@@ -20,7 +20,7 @@
 
 .signup-container {
 	margin-top: 10%;
-	width: 50rem;
+	width: 60rem;
 	height: auto;
 	padding: 70px 0px;
 	background-color: #ffffff;
@@ -50,7 +50,7 @@
 .submit-button {
 	width: 15rem;
 	height: 55px;
-	margin-top: 15px;
+	margin-top: 10px;
 	margin-bottom: 15px;
 	background-color: #ffda77;
 	border-radius: 40px;
@@ -69,6 +69,12 @@
 		opacity: 0.7;
 		box-shadow: none;
 	}
+}
+
+.submit-button:hover {
+	color: white;
+	background-color: tomato;
+
 }
 
 .description {
@@ -94,7 +100,7 @@
 input {
 	width: 99%;
 	height: fit-content;
-	font-size: 1.2rem;
+	font-size: 1.4rem;
 	font: inherit;
 	outline: none;
 	border: none;
@@ -105,7 +111,7 @@ input {
 }
 
 ::placeholder {
-	font-size: 1.3rem;
+	font-size: 1.5rem;
 	font-weight: 500;
 }
 
@@ -163,36 +169,13 @@ select {
 .title {
 	width: 100%;
 	height: fit-content;
-	font-size: 1.45rem;
+	font-size: 1.6rem;
 	font-weight: 500;
 	color: black;
 	margin-bottom: 10px;
 }
 
-.submit-button {
-	width: 15rem;
-	height: 3rem;
-	margin-top: 60px;
-	margin-bottom: 15px;
-	background-color: #ffda77;
-	border-radius: 40px;
-	color: #2b2b2b;
 
-	font: inherit;
-	font-size: 1.5rem;
-	font-weight: 500;
-	border: none;
-
-	:active {
-		box-shadow: none;
-	}
-
-	:disabled {
-		cursor: not-allowed;
-		opacity: 0.7;
-		box-shadow: none;
-	}
-}
 
 .description {
 	width: 100%;
@@ -395,7 +378,7 @@ textarea {
 	cursor: pointer;
 }
 
-.wrapper {
+.wrapper-pl {
 	width: 95%;
 	display: flex;
 	flex-wrap: wrap;
