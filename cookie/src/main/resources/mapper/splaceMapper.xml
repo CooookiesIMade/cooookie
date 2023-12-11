@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.cookie.repository.SplaceMapper">
+    <insert id="saveSplace" parameterType="com.example.cookie.model.splace.Splace">
+    <selectKey keyProperty="place_id" order="BEFORE" resultType="java.lang.Long">
+        SELECT place_id_seq.NEXTVAL FROM DUAL
+    </selectKey>
+        insert into splace (
+    place_id,
+    place_name,
+    place_address,
+    place_content,
+    place_start,
+    place_end,
+    place_count,
+    place_price,
+    place_latitude,
+    place_longitude,
+    place_cat
+) values (
+    #{place_id, jdbcType=NUMERIC},
+    #{place_name, jdbcType=VARCHAR},
+    #{place_address, jdbcType=VARCHAR},
+    #{place_content, jdbcType=VARCHAR},
+    #{place_start, jdbcType=DATE},
+    #{place_end, jdbcType=DATE},
+    #{place_count, jdbcType=NUMERIC},
+    #{place_price, jdbcType=NUMERIC},
+    #{place_latitude, jdbcType=NUMERIC},
+    #{place_longitude, jdbcType=NUMERIC},
+    #{place_cat, jdbcType=VARCHAR}
+)
+    </insert>
+
+    <select id="findSplace" resultType="com.example.cookie.model.splace.Splace">
+        select * from splace where place_id = #{place_id}
+    </select>
+</mapper>
