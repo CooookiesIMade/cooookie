@@ -107,5 +107,19 @@ public class MemberController {
         }
     }
 	
+	@PostMapping("update")
+	public String updateInfo(@Validated @ModelAttribute("member") Member updatedMember, BindingResult result, Model model) {
+	    // 유효성 검사
+	    if (result.hasErrors()) {
+	        return "user/mypage";
+	    }
+
+	    // 사용자 정보 업데이트
+	    memberService.updateMemberInfo(updatedMember);
+
+	    // 수정 후에는 마이페이지로 리다이렉트 또는 다른 처리
+	    return "redirect:/user/mypage";
+	}
+	
 	
 }
