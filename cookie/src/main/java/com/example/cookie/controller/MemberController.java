@@ -1,5 +1,7 @@
 package com.example.cookie.controller;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -26,7 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("user")
 public class MemberController {
 	
-	private final MemberService memberService;
+	private final MemberService memberService; 
 
 	// 회원가입 페이지 이동
 	@GetMapping("signup")
@@ -81,7 +83,29 @@ public class MemberController {
 		return "redirect:/main";
 	}
 	
+	@GetMapping("mypage")
+    public String myPage(Model model, Principal principal) {
+        if (principal == null) {
+            // 로그인되지 않은 상태에서는 로그인 페이지로 리다이렉트 또는 처리
+            return "redirect:/user/signin";  // 로그인 페이지로 리다이렉트하는 예시
+        }
 
+        // Principal 객체를 사용하여 현재 로그인한 사용자의 정보를 가져옴
+        String email = principal.getName();
+
+        // 사용자 정보를 데이터베이스에서 가져오기
+        Member member = memberService.findMember(email);
+
+        if (member != null) {
+            // 모델에 사용자 정보 추가
+            model.addAttribute("member", member);
+            return "user/mypage";
+        } else {
+            log.error("User not found with email: {}", email);
+            // 에러 페이지로 리다이렉트 또는 처리
+            return "error";
+        }
+    }
 	
 	
 }

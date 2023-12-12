@@ -13,7 +13,7 @@ public interface MemberMapper {
 	
 	void updateMember(Member member);
 	
-	void updateAdminMember(Member mbember);
+	void updateAdminMember(Member member);
 	
 
 }
