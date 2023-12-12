@@ -36,8 +36,8 @@
 			var file = event.target.files[0];
 			var reader = new FileReader();
 			reader.onload = function(e){
-				$("#preview").attr("src", e.target.result);
-				$("#preview").addClass('show');
+				$(".preview").attr("src", e.target.result);
+				$(".preview").addClass('show');
 				$(".delete").append(`<button class="delbtn" onclick="closeUpload()">X</button>`)
 			}
 			reader.readAsDataURL(file);
@@ -45,87 +45,57 @@
 	}
 	// 파일 닫기
 	function closeUpload(){
-			$("#preview").removeClass('show');
+			$(".preview").removeClass('show');
+			$(".preview").remove();
 			$(".delete").remove()
 	}
-	
-	// 인원수 함수 
-	function countClick(e){
-		let plus = $(".plus");
-		let minus = $(".minus")
-		let count = $(".smallInput").val();
-		count = parseInt(count);
-		console.log(plus[0].classList[0])
-		
-		if(e === plus[0].classList[0]){
-			count += 1;
-		} else if(e == minus[0].classList[0]){
-			if(count > 0){
-				count -= 1;			
-			} else return;
-		} 
-		$(".smallInput").val(count);
-	}
-	
 </script>
 
 <body>
 	<!-- header section strats -->
+	<form action="register" method="post" th:object="${personRegister}">
+  	<div th:if="${#fields.hasGlobalErrors()}">
+ 	  	<p class="error" th:each="err : ${#fields.globalErrors}" th:text="${err}">
+  	</div>
 	<div th:replace="header"></div>
-	<div class="reg-div">
+		<div class="reg-div">
 		<div class="formContainer">
 			<section class="reg-box">
-				<p class="reg-title">장소 등록</p>
+				<p class="reg-title">사람 등록</p>
 			</section>
+	
 	<div class="reg-div">
 		<div class="formContainer">
 			<section class="reg-box">
 				<p class="reg-title">제목</p>
-				<input class="re-input"/>
+				<input class="re-input" th:field="*{person_name}">
+				<div class="error" th:errors="*{person_name}"></div>
 			</section>
+			
 			<section class="reg-box">
 				<p class="reg-title">카테고리</p>
-				<div th:replace="category"></div>
-			</section>
-			<section class="reg-box">
-				<p class="reg-title">최대 인원</p>
-				 <div class="_count">
-				<span class="minus" onclick="countClick('minus')">⬅️</span>
-				<input class="smallInput" value="1" type="text"/>
-				<span class="plus" onclick="countClick('plus')">➡️</button>
-				</div>
-			</section>
-			<section class="reg-box ">
-				<p class="reg-title">주소</p>
-				<input onclick="daumPostcode()" id="address" class="re-input"/>
-				<p class="reg-title" style="margin-top: 5px;">상세주소</p>
-				<input id="detailAddress" class="re-input"/>	
+				<div th:replace="category1" ></div>
+				<div class="error" th:errors="*{person_category}"></div>
 			</section>
 			
 			<section class="reg-box">
 				<p class="reg-title">상세정보</p>
-				<textarea></textarea>
+				<textarea th:field="*{person_content}"></textarea>
+				<div class="error" th:errors="*{person_content}"></div>
 			</section>
+			
 			<section class="reg-box">
 				<p class="reg-title">사진</p>
-				<input type="file" accept="image/*" style="display: none;" enctpye="multipart/form-data"
-					id="my-input" />
-				<button class="ibutton" onclick="clickUpload()">사진 업로드하기</button>
-				<img id="preview" class="">
+				<label for="person_profile">
+					<button class="ibutton" onclick="clickUpload()" type="button">사진 업로드하기</button>
+				</label>
+				<input type="file" accept="image/*" id="my-input" name="person_profile" style="display: none;">
+				<img class="preview">
 				<div class="delete">
-					
-				</div>
 			</section>
-			<section class="reg-box">
-				<p class="reg-title">금액 설정</p>
-				<section class="set-charge">
-					<div class="hour-description">1시간 /</div>
-					<input class="small" />원
-				</section>
-			</section>
+	
 			<section class="b-wrapper">
-				<button type="submit" class="reg-button">등록하기</button>
-				
+				<input type="submit" class="reg-button"></input>
 			</section>
 			<div id="wrap"
 				style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
@@ -135,6 +105,7 @@
 			</div>
 		</div>
 	</div>
+	</form>
 </body>
 
 </html>
