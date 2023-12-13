@@ -61,8 +61,8 @@ public class MemberController {
 	
 	// 로그인 하기
 	@PostMapping("signin")
-	public String signIn(@Validated @ModelAttribute("signin") MemberSignIn memberSignIn, BindingResult result,
-						 HttpServletRequest request) {
+	public String signIn(@Validated @ModelAttribute("signin") MemberSignIn memberSignIn,
+												BindingResult result, HttpServletRequest request) {
 		
 		// 로그인 검증 
 		Member findMember = memberService.findMember(memberSignIn.getMember_id());

@@ -81,6 +81,7 @@
 	width: 100%;
 	margin-top: 10px;
 	color: #666666;
+
 }
 
 .alert {
@@ -209,7 +210,6 @@ select {
 }
 
 .white {
-
 	color: white !important;
 }
 
@@ -346,11 +346,13 @@ textarea {
 
 .delbtn {
 	margin-top: 5px;
-	font-size: 2.5rem;
+	font-size: 1.5rem;
 	border-radius: 50%;
 	background-color: #eb7470;
 	color: white;
-	padding: 2px;
+	padding-left: 3px;
+	padding-right: 3px;
+	padding: 1px;
 }
 
 .smallInput {
@@ -400,4 +402,8 @@ label {
 	margin-left: 4px;
 	font-weight: 500;
 	margin-top: 7px;
+}
+
+.show2 {
+	display: block;
 }

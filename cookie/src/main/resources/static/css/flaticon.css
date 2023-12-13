@@ -28,7 +28,9 @@
   font-style: normal;
   margin-left: 0px;
 }
-
+.red:hover {
+	background-color: tomato;
+}
 .flaticon-placeholder:before { content: "\f100"; }
 .flaticon-search:before { content: "\f101"; }
 .flaticon-gps-fixed-indicator:before { content: "\f102"; }
