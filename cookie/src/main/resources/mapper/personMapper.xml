@@ -10,38 +10,36 @@
 	</selectKey>
 		insert into sperson(
 			person_id,
+			member_id,
 			person_name,
 			person_content,
-			person_category,
-			person_profile
+			person_category
 		) values (
 			#{person_id},
+			#{member_id},
 			#{person_name},
 			#{person_content},
-			#{person_category},
-			#{person_profile}
+			#{person_category}
 		)
 	</insert>
 	
-	<!--  <insert id="saveFile">
-    <selectKey keyProperty="attachedFile_id" resultType="long" order="BEFORE">
+ <insert id="saveFile" parameterType="personfile">
+    <selectKey keyProperty="attachedfile_id" resultType="long" order="BEFORE">
     	select seq_sperson.nextval from dual
     </selectKey>
     insert into attached_file(
     	attachedfile_id,
-    	member_id,
     	person_id,
     	original_filename,
     	saved_filename,
     	file_size
     ) values (
     	#{attachedfile_id},
-    	#{member_id},
     	#{person_id},
     	#{original_filename},
     	#{saved_filename},
     	#{file_size}
     )
-  </insert>  -->
+  </insert>
   
 </mapper>

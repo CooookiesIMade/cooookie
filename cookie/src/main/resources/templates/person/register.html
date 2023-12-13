@@ -53,7 +53,7 @@
 
 <body>
 	<!-- header section strats -->
-	<form action="register" method="post" th:object="${personRegister}">
+	<form action="register" method="post" enctype="multipart/form-data" th:object="${personRegister}">
   	<div th:if="${#fields.hasGlobalErrors()}">
  	  	<p class="error" th:each="err : ${#fields.globalErrors}" th:text="${err}">
   	</div>
@@ -89,7 +89,7 @@
 				<label for="person_profile">
 					<button class="ibutton" onclick="clickUpload()" type="button">사진 업로드하기</button>
 				</label>
-				<input type="file" accept="image/*" id="my-input" name="person_profile" style="display: none;">
+				<input type="file" accept="image/*" id="my-input" name="file" style="display: none;">
 				<img class="preview">
 				<div class="delete">
 			</section>
