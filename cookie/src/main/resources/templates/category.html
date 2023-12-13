@@ -2,46 +2,39 @@
 
 
 <head id="category">
-	<script>
-		 function handleClick(e) {
-      if(e.target.type === 'checkbox') {
-        console.log(e.target.value);
-       
-      }
-    }
-	</script>
 
-	<div class="wrapper-pl"  onclick="handleClick(event)" th:field="*{place_category}">
+
+	<div class="wrapper-pl">
 		<div class="cat-cat">
-			<input type="checkbox" id="office" value="office" th:name="*{place_category}"/>
+			<input type="checkbox" id="office" value="office" name="place_category"/>
 			<label for="office">공유오피스</label>
 		</div>
 		<div class="cat-cat">
-			<input type="checkbox" id="camping" value="camping" th:name="*{place_category}" />
+			<input type="checkbox" id="camping" value="camping" name="place_category" />
 			<label for="camping">캠핑</label>
 		</div>
 		<div class="cat-cat">
-			<input type="checkbox" id="sea" value="sea" th:name="*{place_category}"/>
+			<input type="checkbox" id="sea" value="sea" name="place_category"/>
 			<label for="sea">바다근처</label>
 		</div>
 		<div class="cat-cat">
-			<input type="checkbox" id="ptroom" value="ptroom" th:name="*{place_category}" />
+			<input type="checkbox" id="ptroom" value="ptroom" name="place_category" />
 			<label for="ptroom">파티룸</label>
 		</div>
 		<div class="cat-cat">
-			<input type="checkbox" id="guset" value="guest" th:name="*{place_category}" />
+			<input type="checkbox" id="guset" value="guest" name="place_category" />
 			<label for="guset">게스트하우스</label>
 		</div>
 		<div class="cat-cat">
-			<input type="checkbox" id="study" value="study" th:name="*{place_category}"/>
+			<input type="checkbox" id="study" value="study" name="place_category"/>
 			<label for="study">스터디룸</label>
 		</div>
 		<div class="cat-cat">
-			<input type="checkbox" id="hotel" value="hotel" th:name="*{place_category}"/>
+			<input type="checkbox" id="hotel" value="hotel" name="place_category"/>
 			<label for="hotel">호텔</label>
 		</div>
 		<div class="cat-cat">
-			<input type="checkbox" id="pack" value="pack" th:name="*{place_category}" />
+			<input type="checkbox" id="pack" value="pack" name="place_category" />
 			<label for="pack">공연장</label>
 		</div>
 	</div>

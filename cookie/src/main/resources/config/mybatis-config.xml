@@ -5,6 +5,8 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.example.cookie.model.member.Member" alias="member" />
+		<typeAlias type="com.example.cookie.model.file.AttachedFile" alias="file"/>
+		<typeAlias type="com.example.cookie.model.file.PlaceAttachedFile" alias="placefile"/>
 	</typeAliases>
 </configuration>
   

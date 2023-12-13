@@ -27,6 +27,24 @@
 			#{place_price}
 		)
 	</insert>
+	<insert id="saveFile" parameterType="placefile">
+		<selectKey keyProperty="attachedfile_id" resultType="long" order="BEFORE">
+			select place_seq.nextval from dual
+		</selectKey>
+			insert into place_attached_file(
+				attachedfile_id,
+				place_id,
+				original_filename,
+				saved_filename,
+				file_size
+			) values(
+				#{attachedfile_id},
+				#{place_id},
+				#{original_filename},
+				#{saved_filename},
+				#{file_size}
+			)
+	</insert>
 	
 	
 </mapper>
