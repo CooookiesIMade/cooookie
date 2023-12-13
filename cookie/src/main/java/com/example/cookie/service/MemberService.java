@@ -21,24 +21,25 @@ public class MemberService {
     }
 
     public Member findMember(String member_id) {
-        Member findMember = memberMapper.findMember(member_id);
-        return findMember;
-    }
-
-    // 사용자 정보 수정을 위한 메서드
-    @Transactional
-    public void updateMemberInfo(Member updatedMember) {
-        memberMapper.updateMemberInfo(updatedMember);
+        return memberMapper.findMember(member_id);
     }
 
     @Transactional
-    public void updatePassword(String memberId) {
-        Member member = memberMapper.findMember(memberId);      
+    public void updateMember(String member_id, Member modifiedMember) {
+        Member currentMember = memberMapper.findMember(member_id);
+
+        if (currentMember != null) {
+            // 여기에서 modifiedMember의 필드들을 가져와서 currentMember에 업데이트합니다.
+            currentMember.setMember_pw(modifiedMember.getMember_pw());
+            currentMember.setMember_nick(modifiedMember.getMember_nick());
+            currentMember.setMember_pho(modifiedMember.getMember_pho());
+            currentMember.setMember_mbti(modifiedMember.getMember_mbti());
+
+            memberMapper.updateMember(currentMember);
+        } else {
+            log.error("Member not found for id: {}", member_id);
+            // 예외 처리 또는 경고 로그를 남기고 필요에 따라 예외를 던질 수 있습니다.
         }
-
-    @Transactional
-    public void updateMemberInfoWithoutIdChange(Member updatedMember) {
-        // 아이디를 변경하지 않도록 업데이트
-        memberMapper.updateMemberInfoWithoutIdChange(updatedMember);
     }
 }
+

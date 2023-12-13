@@ -6,15 +6,18 @@
 <head th:replace="~{head :: #head}"></head>
 
 <head th:replace="~{category :: #category}"></head>
-
-
+<link rel="stylesheet" href="/css/user.css"/>
+<style>
+	.show2 {
+		display: block;
+	}
+</style>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 	var element = $('#wrap');
 	function foldPostcode() {
 		element.style.display = 'none';
 	}
-
 	// 주소 가지고 오기 위한 함수
 	function daumPostcode() {
 		new daum.Postcode({
@@ -26,7 +29,6 @@
 			}
 		}).open();
 	}
-	
 	// 파일업로드 눌렀을때 실행되는 함수
 	function clickUpload(){
 		let myInput = $("#my-input");
@@ -37,7 +39,7 @@
 			var reader = new FileReader();
 			reader.onload = function(e){
 				$("#preview").attr("src", e.target.result);
-				$("#preview").addClass('show');
+				$("#preview").addClass('show2');
 				$(".delete").append(`<button class="delbtn" onclick="closeUpload()">X</button>`)
 			}
 			reader.readAsDataURL(file);
@@ -45,10 +47,10 @@
 	}
 	// 파일 닫기
 	function closeUpload(){
-			$("#preview").removeClass('show');
-			$(".delete").remove()
-	}
-	
+			$(".preview").removeClass('show2');
+			$(".preview").addClass('hide')
+			$(".delete").remove();
+	}	
 	// 인원수 함수 
 	function countClick(e){
 		let plus = $(".plus");
@@ -67,6 +69,10 @@
 		$(".smallInput").val(count);
 	}
 	
+	// 주소랑 상세주소 합치는 함수
+	function plusAddr(){
+		let 
+	}
 	
 	
 </script>
@@ -75,40 +81,41 @@
 	<!-- header section strats -->
 	<div th:replace="header"></div>
 	<div class="reg-div">
-		<div class="formContainer">
+		<form class="formContainer" method="post" th:object="${splace}" action="register">
 			<section class="reg-box">
 				<p class="reg-title">제목</p>
-				<input class="re-input"/>
+				<input class="re-input" th:field="*{place_name}"/>
 			</section>
 			<section class="reg-box">
 				<p class="reg-title">카테고리</p>
 				<div th:replace="category"></div>
 			</section>
+			<span th:field="${member_id}" style="display: none;"></span>
 			<section class="reg-box">
 				<p class="reg-title">최대 인원</p>
 				 <div class="_count">
 				<span class="minus" onclick="countClick('minus')">⬅️</span>
-				<input class="smallInput" value="1" type="text"/>
+				<input class="smallInput" type="text"  value="1"/>
 				<span class="plus" onclick="countClick('plus')">➡️</button>
 				</div>
 			</section>
 			<section class="reg-box ">
 				<p class="reg-title">주소</p>
-				<input onclick="daumPostcode()" id="address" class="re-input"/>
+				<input onclick="daumPostcode()" id="address" class="re-input" th:field="*{place_address}"/>
 				<p class="reg-title" style="margin-top: 5px;">상세주소</p>
 				<input id="detailAddress" class="re-input"/>	
 			</section>
 			
 			<section class="reg-box">
 				<p class="reg-title">상세정보</p>
-				<textarea></textarea>
+				<textarea th:field="*{place_content}"></textarea>
 			</section>
 			<section class="reg-box">
 				<p class="reg-title">사진</p>
 				<input type="file" accept="image/*" style="display: none;" enctpye="multipart/form-data"
 					id="my-input" />
-				<button class="ibutton" onclick="clickUpload()">사진 업로드하기</button>
-				<img id="preview" class="">
+				<button class="ibutton" onclick="clickUpload()" type="button">사진 업로드하기</button>
+				<img id="preview" class="preview">
 				<div class="delete">
 					
 				</div>
@@ -117,7 +124,7 @@
 				<p class="reg-title">금액 설정</p>
 				<section class="set-charge">
 					<div class="hour-description">1시간 /</div>
-					<input class="small" />원
+					<input class="small" th:field="*{place_price}"/>원
 				</section>
 			</section>
 			<section class="b-wrapper">
@@ -130,7 +137,7 @@
 					style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldPostcode()"
 					alt="접기 버튼">
 			</div>
-		</div>
+		</form>
 	</div>
 </body>
 

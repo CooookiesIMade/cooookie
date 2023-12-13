@@ -3,25 +3,39 @@
 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.cookie.repository.MemberMapper">
-	<insert id="saveMember">
-		insert into member(
-			member_id,
-			member_pw,
-			member_nick,
-			member_pho,
-			member_mbti,
-			member_date
-		) values (
-			#{member_id},
-			#{member_pw},
-			#{member_nick},
-			#{member_pho},
-			#{member_mbti},
-			SYSDATE
-		)
-	</insert>
-	
-	<select id="findMember" resultType="member">
-		select * from cooookie.member where member_id = #{member_id}
-	</select>
+
+    <insert id="saveMember">
+        insert into member(
+            member_id,
+            member_pw,
+            member_nick,
+            member_pho,
+            member_mbti,
+            member_date
+        ) values (
+            #{member_id},
+            #{member_pw},
+            #{member_nick},
+            #{member_pho},
+            #{member_mbti},
+            SYSDATE
+        )
+    </insert>
+
+    <select id="findMember" resultType="member">
+        select * from cooookie.member where member_id = #{member_id}
+    </select>
+
+	<!-- 저장된 멤버 업데이트 -->
+    <update id="updateMember" parameterType="com.example.cookie.model.member.Member">
+        UPDATE cooookie.member
+        SET
+            member_pw = #{member_pw},
+            member_nick = #{member_nick},
+            member_pho = #{member_pho},
+            member_mbti = #{member_mbti}
+        WHERE
+            member_id = #{member_id}
+    </update>
+
 </mapper>

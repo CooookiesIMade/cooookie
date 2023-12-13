@@ -15,7 +15,4 @@ public class Member {
 	private LocalDateTime member_new;
 	private String member_profile;
 	
-	// 이전 비밀번호를 저장할 필드
-    private String previousPassword;
-	
 }

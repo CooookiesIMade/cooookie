@@ -1,10 +1,9 @@
 package com.example.cookie.controller;
 
-import java.security.Principal;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,8 +26,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequestMapping("user")
 public class MemberController {
-	
-	private final MemberService memberService; 
+
+    @Autowired
+    private final MemberService memberService;
 
 	// 회원가입 페이지 이동
 	@GetMapping("signup")
@@ -83,43 +83,62 @@ public class MemberController {
 		return "redirect:/main";
 	}
 	
-	@GetMapping("mypage")
-    public String myPage(Model model, Principal principal) {
-        if (principal == null) {
-            // 로그인되지 않은 상태에서는 로그인 페이지로 리다이렉트 또는 처리
-            return "redirect:/user/signin";  // 로그인 페이지로 리다이렉트하는 예시
-        }
-
-        // Principal 객체를 사용하여 현재 로그인한 사용자의 정보를 가져옴
-        String email = principal.getName();
-
-        // 사용자 정보를 데이터베이스에서 가져오기
-        Member member = memberService.findMember(email);
-
-        if (member != null) {
-            // 모델에 사용자 정보 추가
-            model.addAttribute("member", member);
-            return "user/mypage";
-        } else {
-            log.error("User not found with email: {}", email);
-            // 에러 페이지로 리다이렉트 또는 처리
-            return "error";
-        }
-    }
+	// 로그아웃 하기
+		@GetMapping("logout")
+		public String logout(HttpServletRequest request) {
+			HttpSession session = request.getSession();
+		
+			session.invalidate();
+			
+			return "redirect:/";
+		}
 	
-	@PostMapping("update")
-	public String updateInfo(@Validated @ModelAttribute("member") Member updatedMember, BindingResult result, Model model) {
-	    // 유효성 검사
-	    if (result.hasErrors()) {
-	        return "user/mypage";
+		@GetMapping("mypage")
+		public String myPage(Model model, HttpServletRequest request) {
+		    HttpSession session = request.getSession();
+		    Member member = (Member) session.getAttribute("signInMember");
+
+		    if (member != null) {
+		        model.addAttribute("member", member);
+		        return "user/mypage";
+		    } else {
+		        log.error("User not found in session");
+		        return "redirect:/user/signin";
+		    }
+		}
+		
+		@PostMapping("/modify")
+	    public String modifyMember(@Validated @ModelAttribute("member") Member modifiedMember, BindingResult result, HttpServletRequest request) {
+	        HttpSession session = request.getSession();
+	        Member currentMember = (Member) session.getAttribute("signInMember");
+
+	        if (currentMember != null) {
+	            // 현재 로그인한 사용자의 ID
+	            String currentUserId = currentMember.getMember_id();
+
+	            // 수정된 사용자 정보의 ID (입력 폼에서의 ID)
+	            String modifiedUserId = modifiedMember.getMember_id();
+
+	            // 현재 로그인한 사용자와 수정 폼에서의 사용자 ID가 일치하는지 확인
+	            if (!currentUserId.equals(modifiedUserId)) {
+	                log.error("Attempted to modify another user's information");
+	                return "redirect:/user/mypage"; // 예외 처리 또는 경고 페이지로 리다이렉션
+	            }
+
+	            if (result.hasErrors()) {
+	                return "user/modify"; // 입력 유효성 검사에 실패하면 수정 페이지로 다시 이동
+	            }
+
+	            // 현재 로그인한 사용자의 정보를 수정된 정보로 업데이트
+	            memberService.updateMember(currentUserId, modifiedMember);
+
+	            // 수정 완료 후 마이페이지로 리다이렉션
+	            return "redirect:/user/mypage";
+	        } else {
+	            log.error("User not found in session");
+	            return "redirect:/user/signin";
+	        }
 	    }
 
-	    // 사용자 정보 업데이트
-	    memberService.updateMemberInfo(updatedMember);
-
-	    // 수정 후에는 마이페이지로 리다이렉트 또는 다른 처리
-	    return "redirect:/user/mypage";
 	}
-	
-	
-}
+

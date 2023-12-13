@@ -17,10 +17,11 @@ section {
 /*product_imgbox*/
 .product_container .product_imgbox{
     height: auto;
+    margin-right: 50px;
 }
 
 .product_container .product_imgbox img{
-    width: 600px;
+    width: 100%;
     display: block;
     top: 100px;
 }
@@ -28,7 +29,7 @@ section {
 /*product_detail*/
 .product_container .product_detail {
     width: 560px;
-    height: 100%;
+    height: auto;
 }
 .product_detail {
 	position: sticky;
@@ -54,6 +55,9 @@ section {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+}
+.product_content{
+	margin-top: 20px;
 }
 
 .form-group label {
@@ -161,6 +165,10 @@ form .formbtn_box .buynowbtn{
     color: white;
     width: 100%;
 }
+form .formbtn_box .buynowbtn:hover{
+	background-color: #8B4513;
+	color: white;
+} 
 
 /*sns_talk*/
 .sns_talk {
@@ -174,7 +182,7 @@ form .formbtn_box .buynowbtn{
 }
 
 .sns_talk button.naver_talk {
-    background-color: #36b044;
+    background-color: tomato;
     color: white;
 }
 
@@ -229,4 +237,8 @@ input[type='datetime-local']::-webkit-calendar-picker-indicator {
 }
 input[type='datetime-local']:valid::before {
   display: none; 
+}
+
+.sticky-parent {
+	height: 100%;
 }
