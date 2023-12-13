@@ -81,7 +81,7 @@
 	width: 100%;
 	margin-top: 10px;
 	color: #666666;
-	
+
 }
 
 .alert {
@@ -402,4 +402,8 @@ label {
 	margin-left: 4px;
 	font-weight: 500;
 	margin-top: 7px;
+}
+
+.show2 {
+	display: block;
 }

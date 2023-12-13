@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.cookie.repository.PersonMapper">
+
+	<insert id="savePerson">
+		<selectKey keyProperty="person_id" resultType="long" order="BEFORE">
+		select seq_sperson.nextval from dual	
+	</selectKey>
+		insert into sperson(
+			person_id,
+			member_id,
+			person_name,
+			person_content,
+			person_category
+		) values (
+			#{person_id},
+			#{member_id},
+			#{person_name},
+			#{person_content},
+			#{person_category}
+		)
+	</insert>
+	
+ <insert id="saveFile" parameterType="personfile">
+    <selectKey keyProperty="attachedfile_id" resultType="long" order="BEFORE">
+    	select seq_sperson.nextval from dual
+    </selectKey>
+    insert into attached_file(
+    	attachedfile_id,
+    	person_id,
+    	original_filename,
+    	saved_filename,
+    	file_size
+    ) values (
+    	#{attachedfile_id},
+    	#{person_id},
+    	#{original_filename},
+    	#{saved_filename},
+    	#{file_size}
+    )
+  </insert>
+  
+</mapper>

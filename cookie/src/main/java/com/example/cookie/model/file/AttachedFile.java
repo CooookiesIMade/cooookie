@@ -1,3 +1,4 @@
+
 package com.example.cookie.model.file;
 
 import lombok.Data;
@@ -18,3 +19,5 @@ public class AttachedFile {
 		this.file_size = file_size;
 	}
 }
+
+
