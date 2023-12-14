@@ -26,6 +26,7 @@ a,a:hover,a:active,a:focus {
 	text-decoration:none;
 	color: #343a3f;
 	font-size:16px;
+	margin-bottom: 5px;
 	padding:0;
     font-weight: 500;
     text-transform: capitalize;
@@ -45,6 +46,7 @@ p {
     text-transform: initial;
 }
 img{border:none;max-width:100%; height:auto;}
+.personImg{border:none;width:70px;border-radius:50%}
 ul{
 	padding: 0;
     margin: 0 auto;
@@ -75,6 +77,7 @@ html,body{height: 100%;}
     text-align: center;
 }
 .section-header h2{
+		margin-top: 45px;
     color: #505866;
     font-size:24px;
     font-weight: 500;
@@ -393,7 +396,7 @@ img[class^=bg] {
 .single-list-topics-content:hover h2>a,.single-list-topics-content:hover p{color: #fff!important;}
 .single-list-topics-content:hover{
     color: #fff;
-    background:#8B4513;
+    background: #8b4512;
     box-shadow: 0 5px 10px rgba(71,71,71,.4);
 }
 
@@ -464,9 +467,9 @@ img[class^=bg] {
 .single2-how-works p {margin-bottom: 25px;text-transform: initial;}
 
 .single-how-works-icon [class^="fa-"]:before,.single-how-works-icon [class*=" fa-"]:before,.single-how-works-icon [class^="fa-"]:after,.single-how-works-icon [class*=" fa-"]:after {font-size: 35px;}
-.single-how-works:hover .single-how-works-icon [class^="fa-"]:before,.single-how-works:hover .single-how-works-icon [class*=" fa-"]:before,.single-how-works:hover .single-how-works-icon [class^="fa-"]:after,.single-how-works:hover .single-how-works-icon [class*=" fa-"]:after {color:#8B4513;}
+.single-how-works:hover .single-how-works-icon [class^="fa-"]:before,.single-how-works:hover .single-how-works-icon [class*=" fa-"]:before,.single-how-works:hover .single-how-works-icon [class^="fa-"]:after,.single-how-works:hover .single-how-works-icon [class*=" fa-"]:after {color:#8b4512}
 .single2-how-works-icon [class^="fa-"]:before,.single2-how-works-icon [class*=" fa-"]:before,.single2-how-works-icon [class^="fa-"]:after,.single2-how-works-icon [class*=" fa-"]:after {font-size: 35px;}
-.single2-how-works:hover .single2-how-works-icon [class^="fa-"]:before,.single2-how-works:hover .single2-how-works-icon [class*=" fa-"]:before,.single2-how-works:hover .single2-how-works-icon [class^="fa-"]:after,.single2-how-works:hover .single2-how-works-icon [class*=" fa-"]:after {color:#8B4513;}
+.single2-how-works:hover .single2-how-works-icon [class^="fa-"]:before,.single2-how-works:hover .single2-how-works-icon [class*=" fa-"]:before,.single2-how-works:hover .single2-how-works-icon [class^="fa-"]:after,.single2-how-works:hover .single2-how-works-icon [class*=" fa-"]:after {color:#8b4512}
 
 
 .fa-solid {
@@ -487,12 +490,16 @@ img[class^=bg] {
 .single-how-works:hover h2 a,.single-how-works:hover p{color: #fff;}
 .single2-how-works:hover h2 a,.single2-how-works:hover p{color: #fff;}
 .single-how-works:hover .single-how-works-icon{background: #fff;}
-.single-how-works:hover .welcome-hero-btn.how-work-btn{background: #fff;color:#8B4513;}
+.single2-how-works:hover .single2-how-works-icon{background: #fff;}
+.single-how-works:hover .welcome-hero-btn.how-work-btn{background: #fff;color:#8b4512}
+.single-how-works:hover .movebtn{background: #fff;color:#8b4512}
+.single2-how-works:hover .welcome-hero-btn.how-work-btn{background: #fff;color:#8b4512}
+.single2-how-works:hover .movebtn{background: #fff;color:#8b4512}
 .single-how-works:hover{box-shadow: 0 0px 10px rgba(71,71,71,.4);background-image: url('../images/welcome-hero/bg-4.jpg'); background-size: cover;}
 .single2-how-works:hover{box-shadow: 0 0px 10px rgba(71,71,71,.4);background-image: url('../images/welcome-hero/bg-1.jpg'); background-size: cover;}
 
 /*-------------------------------------
-        7. Explore
+        7. Explore color:#8b4512
 --------------------------------------*/
 .explore{
     padding:20px 0 95px;
@@ -645,7 +652,6 @@ img[class^=bg] {
 /*single-testimonial-box */
 .single-testimonial-box  {
     padding: 50px 30px;
-    box-shadow: 0 0px 5px rgba(71,71,71,.2); 
     overflow-x:hidden;
     -webkit-transition: .3s; 
     -moz-transition:.3s; 
@@ -657,7 +663,9 @@ img[class^=bg] {
 .slick-current .single-testimonial-box{box-shadow:0 10px 20px rgba(21,19,19,.2);}
 /*testimonial-description*/
 .single-testimonial-box{
-    width: 404px;
+    width: 370px;
+    height: 302px;
+    margin: 10px;
     background:#fff;
 }
 /* testimonial-info */
@@ -690,6 +698,7 @@ img[class^=bg] {
     font-size: 14px;
     font-weight: 400;
     margin-top: 10px;
+    margin-bottom: 2px;
 }
 .testimonial-person-star i {
     color: #ffda2b;

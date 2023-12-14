@@ -9,6 +9,6 @@ public class SPerson {
 	private String member_id;
 	private String person_name;
 	private String person_content;
-	private String person_profile;
+	private String saved_filename;
 	private String person_category;
 }

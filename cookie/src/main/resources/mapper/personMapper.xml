@@ -13,13 +13,15 @@
 			member_id,
 			person_name,
 			person_content,
-			person_category
+			person_category,
+			saved_filename
 		) values (
 			#{person_id},
 			#{member_id},
 			#{person_name},
 			#{person_content},
-			#{person_category}
+			#{person_category},
+			#{saved_filename}
 		)
 	</insert>
 	
@@ -42,4 +44,7 @@
     )
   </insert>
   
+   <select id="findPersons" resultType="person">
+    select * from sperson order by person_id desc
+  </select>
 </mapper>

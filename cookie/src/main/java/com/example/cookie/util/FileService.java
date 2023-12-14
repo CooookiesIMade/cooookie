@@ -35,8 +35,7 @@ public class FileService {
         String originalFilename = file.getOriginalFilename();
 
         // 저장할 파일명을 오늘 날짜의 년월일로 생성
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-        String savedFilename = sdf.format(new Date());
+        String savedFilename = file.getOriginalFilename();
 
         // 원본 파일의 확장자
         String ext;
@@ -57,7 +56,7 @@ public class FileService {
 
         // 같은 이름의 파일이 있는 경우의 처리
         while (true) {
-            serverFile = new File(uploadPath + "/" + savedFilename + ext);
+            serverFile = new File(uploadPath + "/" + savedFilename);
             // 같은 이름의 파일이 없으면 나감
             if (!serverFile.isFile()) break;
             // 같은 이름의 파일이 있으면 이름 뒤에 long 타입의 시간 정보를 덧붙임.
@@ -72,7 +71,7 @@ public class FileService {
             e.printStackTrace();
         }
 
-        return new AttachedFile(originalFilename, savedFilename + ext, file.getSize());
+        return new AttachedFile(originalFilename, savedFilename, file.getSize());
     }
 
     /**

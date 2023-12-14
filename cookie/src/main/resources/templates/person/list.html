@@ -2,13 +2,14 @@
 <html>
 <head th:replace="~{head :: #head}"></head>
 <head th:replace="~{header :: #header}"></head>
+<link rel="stylesheet" type="text/css" href="/css/flaticon.css">
 <body>
 	<div th:replace="header"/>
 	<!--explore start -->
 		<section id="explore" class="explore">
 			<div class="container">
 				<div class="section-header">
-					<h2>사람</h2>
+					<h2>사람 대여</h2>
 				</div><!--/.section-header-->
 				
 				<section id="list-topics" class="list-topics">
@@ -26,7 +27,7 @@
 					<li>
 						<button class="single-list-topics-content" onclick="location.href='/'">
 							<div class="single-list-topics-icon">
-								<i class="fa-solid fa-umbrella-beach"></i>
+								<i class="fa-solid fa-utensils"></i>
 							</div>
 							<h2><a>식사</a></h2>
 						</button>
@@ -34,7 +35,7 @@
 					<li>
 						<button class="single-list-topics-content" onclick="location.href='/'">
 							<div class="single-list-topics-icon">
-								<i class="fa-solid fa-campground"></i>
+								<i class="fa-solid fa-comments"></i>
 							</div>
 							<h2><a>고민상담</a></h2>
 						</button>
@@ -42,7 +43,7 @@
 					<li>
 						<button class="single-list-topics-content" onclick="location.href='/'">
 							<div class="single-list-topics-icon">
-								<i class="fa-solid fa-user-group"></i>
+								<i class="fa-solid fa-cart-shopping"></i>
 							</div>
 							<h2><a>장보기</a></h2>
 						</button>
@@ -50,7 +51,7 @@
 					<li>
 						<button class="single-list-topics-content" onclick="location.href='/'">
 							<div class="single-list-topics-icon">
-								<i class="fa-solid fa-suitcase-rolling"></i>
+								<i class="fa-solid fa-dog"></i>
 							</div>
 							<h2><a >애견산책</a></h2>
 						</button>
@@ -58,7 +59,7 @@
 					<li>
 						<button class="single-list-topics-content" onclick="location.href='/'">
 							<div class="single-list-topics-icon">
-								<i class="fa-solid fa-bed"></i>
+								<i class="fa-solid fa-person-half-dress"></i>
 							</div>
 							<h2><a href="#">역할대행</a></h2>
 						</button>
@@ -66,9 +67,17 @@
 					<li>
 						<button class="single-list-topics-content" onclick="location.href='/'">
 							<div class="single-list-topics-icon">
-								<i class="fa-solid fa-hotel"></i>
+								<i class="fa-solid fa-bars"></i>
 							</div>
-							<h2><a href="#">호텔</a></h2>
+							<h2><a href="">기타</a></h2>
+						</button>
+					</li>
+					<li>
+						<button class="single-list-topics-content red" onclick="location.href='/person/register'">
+							<div class="single-list-topics-icon">
+								<i class="fa-solid fa-plus"></i>
+							</div>
+							<h2><a href="/person/register">등록하기</a></h2>
 						</button>
 					</li>
 				</ul>
@@ -77,16 +86,16 @@
 		
 				<div class="explore-content">
 					<div class="row">
-						<div class=" col-md-4 col-sm-6">
+						<div class=" col-md-4 col-sm-6" th:each="person, personStat: ${persons}">
 							<div class="single-testimonial-box">
 						<div class="testimonial-description">
 							<div class="testimonial-info">
 								<div class="testimonial-img">
-									<img src="assets/images/clients/c3.png" alt="clients">
+									<img class="personImg" th:src="@{'/images/upload/' + ${person.saved_filename}}" alt="이미지입니당">
 								</div><!--/.testimonial-img-->
 								<div class="testimonial-person">
-									<h2>Shohrab Hossain</h2>
-									<h4>london, UK</h4>
+									<h1><a th:text="${person.person_name}" th:href="@{/person/detail}"></a></h1>
+									<h4 th:text="${person.person_category}"></h4>
 									<div class="testimonial-person-star">
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star"></i>
@@ -97,150 +106,13 @@
 								</div><!--/.testimonial-person-->
 							</div><!--/.testimonial-info-->
 							<div class="testimonial-comment">
-								<p>
-									Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis eaque.
-								</p>
+								<p th:text="${person.person_content}"></p>
 							</div><!--/.testimonial-comment-->
 						</div><!--/.testimonial-description-->
 					</div><!--/.single-testimonial-box-->
 						</div>
-						<div class="col-md-4 col-sm-6">
-							<div class="single-testimonial-box">
-						<div class="testimonial-description">
-							<div class="testimonial-info">
-								<div class="testimonial-img">
-									<img src="assets/images/clients/c3.png" alt="clients">
-								</div><!--/.testimonial-img-->
-								<div class="testimonial-person">
-									<h2>Shohrab Hossain</h2>
-									<h4>london, UK</h4>
-									<div class="testimonial-person-star">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-									</div>
-								</div><!--/.testimonial-person-->
-							</div><!--/.testimonial-info-->
-							<div class="testimonial-comment">
-								<p>
-									Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis eaque.
-								</p>
-							</div><!--/.testimonial-comment-->
-						</div><!--/.testimonial-description-->
-					</div><!--/.single-testimonial-box-->
-						</div>
-						<div class="col-md-4 col-sm-6">
-							<div class="single-testimonial-box">
-						<div class="testimonial-description">
-							<div class="testimonial-info">
-								<div class="testimonial-img">
-									<img src="assets/images/clients/c3.png" alt="clients">
-								</div><!--/.testimonial-img-->
-								<div class="testimonial-person">
-									<h2>Shohrab Hossain</h2>
-									<h4>london, UK</h4>
-									<div class="testimonial-person-star">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-									</div>
-								</div><!--/.testimonial-person-->
-							</div><!--/.testimonial-info-->
-							<div class="testimonial-comment">
-								<p>
-									Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis eaque.
-								</p>
-							</div><!--/.testimonial-comment-->
-						</div><!--/.testimonial-description-->
-					</div><!--/.single-testimonial-box-->
-						</div>
-						<div class=" col-md-4 col-sm-6">
-							<div class="single-testimonial-box">
-						<div class="testimonial-description">
-							<div class="testimonial-info">
-								<div class="testimonial-img">
-									<img src="assets/images/clients/c3.png" alt="clients">
-								</div><!--/.testimonial-img-->
-								<div class="testimonial-person">
-									<h2>Shohrab Hossain</h2>
-									<h4>london, UK</h4>
-									<div class="testimonial-person-star">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-									</div>
-								</div><!--/.testimonial-person-->
-							</div><!--/.testimonial-info-->
-							<div class="testimonial-comment">
-								<p>
-									Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis eaque.
-								</p>
-							</div><!--/.testimonial-comment-->
-						</div><!--/.testimonial-description-->
-					</div><!--/.single-testimonial-box-->
-						</div>
-						<div class="col-md-4 col-sm-6">
-							<div class="single-testimonial-box">
-						<div class="testimonial-description">
-							<div class="testimonial-info">
-								<div class="testimonial-img">
-									<img src="assets/images/clients/c3.png" alt="clients">
-								</div><!--/.testimonial-img-->
-								<div class="testimonial-person">
-									<h2>Shohrab Hossain</h2>
-									<h4>london, UK</h4>
-									<div class="testimonial-person-star">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-									</div>
-								</div><!--/.testimonial-person-->
-							</div><!--/.testimonial-info-->
-							<div class="testimonial-comment">
-								<p>
-									Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis eaque.
-								</p>
-							</div><!--/.testimonial-comment-->
-						</div><!--/.testimonial-description-->
-					</div><!--/.single-testimonial-box-->
-						</div>
-						<div class="col-md-4 col-sm-6">
-							<div class="single-testimonial-box">
-						<div class="testimonial-description">
-							<div class="testimonial-info">
-								<div class="testimonial-img">
-									<img src="assets/images/clients/c3.png" alt="clients">
-								</div><!--/.testimonial-img-->
-								<div class="testimonial-person">
-									<h2>Shohrab Hossain</h2>
-									<h4>london, UK</h4>
-									<div class="testimonial-person-star">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-									</div>
-								</div><!--/.testimonial-person-->
-							</div><!--/.testimonial-info-->
-							<div class="testimonial-comment">
-								<p>
-									Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis eaque.
-								</p>
-							</div><!--/.testimonial-comment-->
-						</div><!--/.testimonial-description-->
-					</div><!--/.single-testimonial-box-->
-						</div>
-					</div>
 				</div>
+					</div>
 			</div><!--/.container-->
 
 		</section><!--/.explore-->
