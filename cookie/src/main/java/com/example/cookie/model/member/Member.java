@@ -9,10 +9,11 @@ public class Member {
 
 	private String member_id;
 	private String member_pw;
+	private String member_pw2;
 	private String member_nick;
 	private String member_pho;
 	private String member_mbti;
 	private LocalDateTime member_new;
 	private String member_profile;
-	
+
 }

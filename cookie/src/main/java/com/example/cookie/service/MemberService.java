@@ -25,21 +25,21 @@ public class MemberService {
     }
 
     @Transactional
-    public void updateMember(String member_id, Member modifiedMember) {
+    public void updateMember(String member_id, Member updatedMember) {
         Member currentMember = memberMapper.findMember(member_id);
 
         if (currentMember != null) {
-            // 여기에서 modifiedMember의 필드들을 가져와서 currentMember에 업데이트합니다.
-            currentMember.setMember_pw(modifiedMember.getMember_pw());
-            currentMember.setMember_nick(modifiedMember.getMember_nick());
-            currentMember.setMember_pho(modifiedMember.getMember_pho());
-            currentMember.setMember_mbti(modifiedMember.getMember_mbti());
+        	currentMember.setMember_pw(updatedMember.getMember_pw());
+            currentMember.setMember_nick(updatedMember.getMember_nick());
+            currentMember.setMember_pho(updatedMember.getMember_pho());
+            currentMember.setMember_mbti(updatedMember.getMember_mbti());
 
             memberMapper.updateMember(currentMember);
         } else {
             log.error("Member not found for id: {}", member_id);
-            // 예외 처리 또는 경고 로그를 남기고 필요에 따라 예외를 던질 수 있습니다.
+            throw new RuntimeException("Member not found for id: " + member_id);
         }
+        
     }
 }
 

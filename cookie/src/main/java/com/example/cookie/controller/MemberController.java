@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.cookie.model.member.Member;
 import com.example.cookie.model.member.MemberSignIn;
 import com.example.cookie.model.member.MemberSignUp;
+import com.example.cookie.model.member.MemberValidator;
 import com.example.cookie.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
@@ -30,6 +32,9 @@ public class MemberController {
     @Autowired
     private final MemberService memberService;
 
+    @Autowired
+    private final MemberValidator memberValidator;
+    
 	// 회원가입 페이지 이동
 	@GetMapping("signup")
 	public String signUp(Model model) {
@@ -106,39 +111,48 @@ public class MemberController {
 		        return "redirect:/user/signin";
 		    }
 		}
-		
-		@PostMapping("/modify")
-	    public String modifyMember(@Validated @ModelAttribute("member") Member modifiedMember, BindingResult result, HttpServletRequest request) {
-	        HttpSession session = request.getSession();
-	        Member currentMember = (Member) session.getAttribute("signInMember");
 
-	        if (currentMember != null) {
-	            // 현재 로그인한 사용자의 ID
-	            String currentUserId = currentMember.getMember_id();
+		@RequestMapping(value = "update", method = {RequestMethod.GET, RequestMethod.POST})
+		public String update(@Validated @ModelAttribute("updatedMember") Member updatedMember, BindingResult result, Model model, HttpServletRequest request) {
+		    HttpSession session = request.getSession();
+		    session.setAttribute("signInMember", updatedMember);
+		    Member currentMember = (Member) session.getAttribute("signInMember");
 
-	            // 수정된 사용자 정보의 ID (입력 폼에서의 ID)
-	            String modifiedUserId = modifiedMember.getMember_id();
+		    if (currentMember != null) {
+		        // 기존 정보를 update 페이지로 전달
+		        model.addAttribute("member", currentMember);
+		        // 수정 폼을 위한 빈 객체도 추가
+		        model.addAttribute("updatedMember", updatedMember);
 
-	            // 현재 로그인한 사용자와 수정 폼에서의 사용자 ID가 일치하는지 확인
-	            if (!currentUserId.equals(modifiedUserId)) {
-	                log.error("Attempted to modify another user's information");
-	                return "redirect:/user/mypage"; // 예외 처리 또는 경고 페이지로 리다이렉션
-	            }
+		        if (request.getMethod().equals("POST")) {
+		            // POST 요청 시에만 유효성 검사 수행
+		            // 기존 로그인한 사용자 정보 가져오기
+		            String currentUserId = currentMember.getMember_id();
 
-	            if (result.hasErrors()) {
-	                return "user/modify"; // 입력 유효성 검사에 실패하면 수정 페이지로 다시 이동
-	            }
+		            // 유효성 검사 수행
+		            memberValidator.validate(updatedMember, result);
 
-	            // 현재 로그인한 사용자의 정보를 수정된 정보로 업데이트
-	            memberService.updateMember(currentUserId, modifiedMember);
+		            if (!result.hasErrors()) {
+		                // 유효성 검사 통과 시에만 업데이트 수행
+		                // 현재 로그인한 사용자의 정보를 수정된 정보로 업데이트
+		                memberService.updateMember(currentUserId, updatedMember);
+		                // 수정 완료 후 메인으로 리다이렉션
+		                return "redirect:/main";
+		            }
+		        }
 
-	            // 수정 완료 후 마이페이지로 리다이렉션
-	            return "redirect:/user/mypage";
-	        } else {
-	            log.error("User not found in session");
-	            return "redirect:/user/signin";
-	        }
-	    }
+		        return "user/update";
+		    } else {
+		        log.error("User not found in session");
+		        return "redirect:/user/signin";
+		    }
+		}
+
+
+
+
+
+
 
 	}
 
