@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.cookie.model.file.PlaceAttachedFile;
 import com.example.cookie.model.member.Member;
 import com.example.cookie.model.splace.Splace;
 import com.example.cookie.model.splace.SplaceRegister;
@@ -19,7 +20,7 @@ import com.example.cookie.service.PlaceService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
+import java.util.List;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
@@ -38,13 +39,19 @@ public class PlaceController {
 	}
 	
 	@GetMapping("list")
-	public String List() {
-		
+	public String list(Model model) {
+		List<Splace> findAllPlaces = placeService.findAllPlaces();
+		model.addAttribute("places", findAllPlaces);
 		return "place/list";
 	}
 	
 	@GetMapping("detail")
-	public String Detail(Model model) {
+	public String detail(Model model, @RequestParam("place_id") Long place_id) {
+		
+		Splace place = placeService.findPlaceById(place_id);
+		log.info("상세 place 정보 : {}" , place);
+		
+		model.addAttribute("place", place);
 		
 		return "place/detail";
 	}
@@ -61,7 +68,7 @@ public class PlaceController {
 		}
 		
 		splaceRegister.setMember_id(signInMember.getMember_id());
-		
+		splaceRegister.setSaved_filename(file.getOriginalFilename());
 		log.info("file : {}" , file);
 		placeService.savePlace(SplaceRegister.toPlace(splaceRegister), file);
 		

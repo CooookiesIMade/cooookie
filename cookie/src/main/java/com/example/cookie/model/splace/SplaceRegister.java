@@ -18,8 +18,8 @@ public class SplaceRegister {
 	private String place_address;
 	@NotNull(message = "상세정보를 입력해주셈")
 	private String place_content;
-	private String place_profile;
 	private Long place_price;
+	private String saved_filename;
 	
 	
 	public static Splace toPlace(SplaceRegister splaceRegister) {
@@ -32,8 +32,8 @@ public class SplaceRegister {
 		splace.setMember_id(splaceRegister.getMember_id());
 		splace.setPlace_address(splaceRegister.getPlace_address());
 		splace.setPlace_content(splaceRegister.getPlace_content());
-		splace.setPlace_profile(splaceRegister.getPlace_profile());
 		splace.setPlace_price(splaceRegister.getPlace_price());
+		splace.setSaved_filename(splaceRegister.getSaved_filename());
 		
 		return splace;
 	}

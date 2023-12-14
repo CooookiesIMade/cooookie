@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="~{header :: #header}"></head>
+<head th:replace="~{head :: #head}"></head>
+<link rel="stylesheet" href="/css/user.css" />
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<style>
+   .hide {
+      display: none;
+   }
+
+   [class^="fail-"] {
+      color: red;
+      font-weight: bold;
+   }
+</style>
+
+<body>
+   <div th:replace="header"></div>
+   <div class="update-div">
+      <form th:action="@{/user/update}" method="post" id="updateForm" th:object="${updatedMember}">
+         <div class="mypage-container">
+            <img src="../images/cookie.png" alt="cookie" height="22px" width="22px" />
+            <h3 style="margin-top: -0.1px;">Cookie</h3>
+
+            <!-- 이메일 -->
+            <div class="wrapper">
+               <div class="title">이메일</div>
+               <input th:name="member_id" th:value="${member.member_id}" placeholder="code@gmail.com"
+                  th:readonly="${true}" />
+            </div>
+
+            <!-- 비밀번호 -->
+            <div class="wrapper">
+               <div class="title">비밀번호</div>
+               <input th:name="member_pw" placeholder="4글자 이상 영문, 숫자, 특수문자를 사용하세요." type="password" />
+            </div>
+
+            <!-- 닉네임 -->
+            <div class="wrapper">
+               <div class="title">닉네임</div>
+               <input th:name="member_nick" placeholder="1자 이상의 한글,영문,숫자만 사용할 수 있습니다"
+                  th:value="${member.member_nick}" />
+            </div>
+
+            <!-- 핸드폰 번호 -->
+            <div class="wrapper">
+               <div class="title">핸드폰 번호</div>
+               <input th:name="member_pho" th:value="${member.member_pho}" />
+            </div>
+
+            <!-- MBTI -->
+            <div class="wrapper">
+               <div class="title">MBTI</div>
+               <select th:name="member_mbti" class="Select">
+                  <option th:value="none">없음</option>
+                  <option th:value="ISTJ">ISTJ</option>
+                  <option th:value="ISFJ">ISFJ</option>
+                  <option th:value="INFJ">INFJ</option>
+                  <option th:value="INTJ">INTJ</option>
+                  <option th:value="ISTP">ISTP</option>
+                  <option th:value="ISFP">ISFP</option>
+                  <option th:value="INFP">INFP</option>
+                  <option th:value="ISTJ">INTP</option>
+                  <option th:value="ESTJ">ESTJ</option>
+                  <option th:value="ESFJ">ESFJ</option>
+                  <option th:value="ENFJ">ENFJ</option>
+                  <option th:value="ENTJ">ENTJ</option>
+                  <option th:value="ESTP">ESTP</option>
+                  <option th:value="ESFP">ESFP</option>
+                  <option th:value="ENFP">ENFP</option>
+                  <option th:value="ENTP">ENTP</option>
+               </select>
+            </div>
+            <button type="submit" class="submit-button">적용</button>
+         </div>
+
+      </form>
+   </div>
+</body>
+
+</html>

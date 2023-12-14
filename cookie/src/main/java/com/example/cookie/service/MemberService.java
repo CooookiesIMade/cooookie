@@ -25,4 +25,22 @@ public class MemberService {
 		Member findMember = memberMapper.findMember(member_id);
 		return findMember;
 	}
+	
+	@Transactional
+    public void updateMember(String member_id, Member updatedMember) {
+        Member currentMember = memberMapper.findMember(member_id);
+
+        if (currentMember != null) {
+           currentMember.setMember_pw(updatedMember.getMember_pw());
+            currentMember.setMember_nick(updatedMember.getMember_nick());
+            currentMember.setMember_pho(updatedMember.getMember_pho());
+            currentMember.setMember_mbti(updatedMember.getMember_mbti());
+
+            memberMapper.updateMember(currentMember);
+        } else {
+            log.error("Member not found for id: {}", member_id);
+            throw new RuntimeException("Member not found for id: " + member_id);
+        }
+        
+    }
 }

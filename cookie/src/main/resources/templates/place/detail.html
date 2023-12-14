@@ -6,15 +6,8 @@
 <head th:replace="~{header :: #header}"></head>
 
 <link rel="stylesheet" href="/css/detail.css" />
-<style>
-	.hide {
-		display: none;
-	}
-	.show {
-		display: block;
-	}
-</style>
-<script>
+
+<script type="text/javascript">
 	$(document).ready(function () {
 		let start = $(".first-date");
 		let end = $(".end-date");
@@ -38,7 +31,7 @@
 			$(".totaltime").text(rentHour + '시간');
 		});
 
-	});
+	});			
 </script>
 <style>
 	.totaltime {
@@ -46,84 +39,127 @@
 		text-align: right;
 	}
 </style>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=944707d69905406d0ad68a85d6b30793&libraries=services,clusterer,drawing"></script>
 
 <body>
-	<div th:replace="header" />
+	<div th:replace="header"/>
 	<section>
-		<div class="product_container">
+		<div class="product_container" th:object="${place}">
 			<div class="product_imgbox">
-				<img src="/images/blog/b1.jpg" alt="상품 메인 사진">
+				<img th:src="@{'/images/upload/' + ${place.saved_filename}}" alt="상품 메인 사진">
 				<div class="product_content">
 					<h4 style="margin-bottom: 10px;">상품상세정보</h4>
-					<p>모든 국민은 직업선택의 자유를 가진다. 대통령은 취임에 즈음하여 다음의 선서를 한다. 위원은 정당에 가입하거나 정치에 관여할 수 없다. 제1항의 탄핵소추는 국회재적의원 3분의
-						1 이상의 발의가 있어야 하며, 그 의결은 국회재적의원 과반수의 찬성이 있어야 한다. 다만, 대통령에 대한 탄핵소추는 국회재적의원 과반수의 발의와 국회재적의원 3분의 2
-						이상의 찬성이 있어야 한다.</p>
-
-					<p>정부는 예산에 변경을 가할 필요가 있을 때에는 추가경정예산안을 편성하여 국회에 제출할 수 있다. 대법원장과 대법관이 아닌 법관의 임기는 10년으로 하며, 법률이 정하는 바에
-						의하여 연임할 수 있다. 새로운 회계연도가 개시될 때까지 예산안이 의결되지 못한 때에는 정부는 국회에서 예산안이 의결될 때까지 다음의 목적을 위한 경비는 전년도 예산에
-						준하여 집행할 수 있다.</p>
-
-					<p>군인은 현역을 면한 후가 아니면 국무위원으로 임명될 수 없다. 일반사면을 명하려면 국회의 동의를 얻어야 한다. 국무총리·국무위원 또는 정부위원은 국회나 그 위원회에 출석하여
-						국정처리상황을 보고하거나 의견을 진술하고 질문에 응답할 수 있다. 제안된 헌법개정안은 대통령이 20일 이상의 기간 이를 공고하여야 한다.</p>
-
-					<p>법률은 특별한 규정이 없는 한 공포한 날로부터 20일을 경과함으로써 효력을 발생한다. 국회는 헌법 또는 법률에 특별한 규정이 없는 한 재적의원 과반수의 출석과 출석의원
-						과반수의 찬성으로 의결한다. 가부동수인 때에는 부결된 것으로 본다. 국가유공자·상이군경 및 전몰군경의 유가족은 법률이 정하는 바에 의하여 우선적으로 근로의 기회를
-						부여받는다.</p>
+					<p th:text="${place.place_content}">
+						
+					</p>
 				</div>
+				<h4 style="margin-top: 15px; margin-bottom: 12px;">위치</h4>
+				<h6 style="font-size: 15px; margin-bottom: 15px" th:text="${place.place_name}"></h6>
+				<div id="map" style="width: 600px; height: 600px;"></div>
+				<script th:inline="javascript">					
+					var container = document.getElementById('map'); // 지도를 표시할 div
+					var options = {
+						center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+						level: 3 // 지도의 확대 레벨
+					};
+					// 지도를 생성합니다
+					var map = new kakao.maps.Map(container, options);
+					
+					// 주소-좌표 변환 객체를 생성
+					var geocoder = new kakao.maps.services.Geocoder();
+					
+					// 주소로 좌표를 검색합니다
+					let placeAddr = /*[[${place.place_address}]]*/'';
+					let placeName = /*[[${place.place_name}]]*/'';
+					console.log(placeAddr)
+					geocoder.addressSearch(placeAddr, function(result, status) {
+						
+						// 정상적으로 검색이 완료됐으면 
+						if(status === kakao.maps.services.Status.OK){
+							
+							var coords = new kakao.maps.LatLng(result[0].y , result[0].x);
+							
+							// 결과값으로 받은 위치를 마커로 표시
+							var marker = new kakao.maps.Marker({
+								map : map,
+								position : coords
+							});
+							
+							// 인포윈도우로 장소에 대한 설명을 표시합니다
+							var infowindow = new kakao.maps.InfoWindow({
+								content : `<div style="width:150px;text-align:center;padding:3px 0;">${placeName}</div>`
+							});
+							infowindow.open(map, marker);
+							
+							// 지도의 중심을 결과값으로 받은 위치로 이동 
+							map.setCenter(coords);
+						};
+					});
+		
+				</script>
 			</div>
 			<div class="sticky-parent">
-			<div class="product_detail">
-				<div class="product_caption">
-					40,000원 / 1시간
-				</div>
-				<div class="product_option">
-					<div class="form-group">
-						<label>시작일시</label>
-						<span>
-							<input type="datetime-local" placeholder="날짜를 선택해주세요" required class="first-date" onchange="setMinValue()">
-						</span>
+				<div class="product_detail">
+					<div class="product_caption" th:text="${place.place_name}">
+						
 					</div>
-					<div class="form-group">
-						<label>반납일시</label>
-						<span>
-							<input type="datetime-local" placeholder="날짜를 선택해주세요" required class="end-date">
-						</span>
+					<div class="product_option">
+						<div class="form-group">
+							<label>시작일시</label>
+							<span>
+								<input type="datetime-local" placeholder="날짜를 선택해주세요" required class="first-date"
+									onchange="setMinValue()">
+							</span>
+						</div>
+						<div class="form-group">
+							<label>반납일시</label>
+							<span>
+								<input type="datetime-local" placeholder="날짜를 선택해주세요" required class="end-date">
+							</span>
+						</div>
+						<div class="form-group">
+							<label>총 인원수</label>
+							<span>
+								<input type="number" value="1">
+							</span>
+						</div>
 					</div>
-				</div>
-				<form action="" method="POST" id="buyform" onsubmit="return sendorder()"> <!-- 상품명, 색상, 수량 데이터 전송 -->
-					<input type="hidden" class="price" value="35000"> <!-- 상품 1개의 가격이다(jquery에서 가격을 뽑기위해 선언)-->
-					<input type="hidden" name="item_idx" value="1"> <!-- 넘어갈 데이터 -->
-					<input type="hidden" name="itemlist">
-					<input type="hidden" name="where" value="product"> <!-- 현재 넘어가는 정보는 product 페이지에서 넘어간다 -->
-					<input type="hidden" />
-					<table> <!-- table을 thead와 tbody로 나눠주지 않으면 jquery 정상작동 X-->
-						<colgroup>
-							<col width="50%" />
-							<col width="30%" />
-							<col width="20%" />
-						</colgroup>
-						<thead>
-							<tr>
-								<td>장소</td>
-								<td class="td_time">대여시간</td>
-								<td class="td_price">가격</td>
-							</tr>
-						</thead>
-					</table>
-					<div class="totalprice_box">
-						<span class="totaltime"></span>
-						₩ <span class="totalprice" value="40000"></span>
+					<form action="" method="POST" id="buyform" onsubmit="return sendorder()">
+						<!-- 상품명, 색상, 수량 데이터 전송 -->
+						<input type="hidden" class="price" value="35000"> <!-- 상품 1개의 가격이다(jquery에서 가격을 뽑기위해 선언)-->
+						<input type="hidden" name="item_idx" value="1"> <!-- 넘어갈 데이터 -->
+						<input type="hidden" name="itemlist">
+						<input type="hidden" name="where" value="product"> <!-- 현재 넘어가는 정보는 product 페이지에서 넘어간다 -->
+						<input type="hidden" />
+						<table> <!-- table을 thead와 tbody로 나눠주지 않으면 jquery 정상작동 X-->
+							<colgroup>
+								<col width="50%" />
+								<col width="30%" />
+								<col width="20%" />
+							</colgroup>
+							<thead>
+								<tr>
+									<td>장소</td>
+									<td class="td_time">대여시간</td>
+									<td class="td_price">가격</td>
+								</tr>
+							</thead>
+						</table>
+						<div class="totalprice_box">
+							<span class="totaltime"></span>
+							<span class="tomato">₩</span><span class="totalprice" value="40000"></span>
+						</div>
+						<div class="formbtn_box">
+							<input type="submit" class="buynowbtn formbtn" formaction="#바로구매"
+								th:formaction="@{/main/payment}" value="예약하기">
+						</div>
+					</form>
+					<div class="sns_talk">
+						<button class="naver_talk">대여자에게 <b>톡톡</b> 문의하세요!</button>
 					</div>
-					<div class="formbtn_box">
-						<input type="submit" class="buynowbtn formbtn" formaction="#바로구매"
-							th:formaction="@{/main/payment}" value="예약하기">
-					</div>
-				</form>
-				<div class="sns_talk">
-					<button class="naver_talk">대여자에게 <b>톡톡</b> 문의하세요!</button>
 				</div>
 			</div>
-		</div>
 		</div>
 	</section>
 </body>

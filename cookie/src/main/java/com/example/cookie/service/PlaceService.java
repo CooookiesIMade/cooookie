@@ -1,5 +1,7 @@
 package com.example.cookie.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,9 +41,23 @@ public class  PlaceService {
 				// 첨부파일 내용을 데이터베이스에 저장
 				placeMapper.saveFile(saveFile);
 		}
+	}
+	
+	public List<Splace> findAllPlaces(){
+		List<Splace> findAllPlace = placeMapper.findAllPlace();
+		return findAllPlace;
+	}
+	
+	public List<PlaceAttachedFile> findFiles(){
+		List<PlaceAttachedFile> files = placeMapper.findFiles();
 		
-		
+		return files;
+	}
+	
+	public Splace findPlaceById(Long place_id) {
+		return placeMapper.findPlaceById(place_id);
 		
 	}
 	
+
 }

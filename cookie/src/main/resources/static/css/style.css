@@ -337,17 +337,17 @@ img[class^=bg] {
     background: transparent;
     color: #767f86;
     border: 1px solid #d3d6d9;
-    border-radius: 3px
+    border-radius: 3px;
+
 }
 
 .movebtn:hover {
 	background-color:rgb(234, 64, 37);
-	font-weight: bold;
-	color:lightgray;
+	font-weight: bolder;
 	cursor: pointer;
 	
 }
-.welcome-hero-btn:hover{/*background: #fd4043;*/background:#8B4513;}
+.welcome-hero-btn:hover{background-color: tomato; font-weight: bolder;}
 
 .welcome-hero-btn svg {
     width:  14px;

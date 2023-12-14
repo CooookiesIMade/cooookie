@@ -15,7 +15,8 @@
 			place_count,
 			place_address,
 			place_content,
-			place_price
+			place_price,
+			saved_filename
 		) values(
 			#{place_id},
 			#{place_name},
@@ -24,9 +25,28 @@
 			#{place_count},
 			#{place_address},
 			#{place_content},
-			#{place_price}
+			#{place_price},
+			#{saved_filename}
 		)
 	</insert>
+	
+	<select id="findAllPlace" resultType="place">
+		select * from splace order by place_id desc
+	</select>
+	
+	<select id="findPlaceById" resultType="place">
+		select * from splace where place_id = #{place_id}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<insert id="saveFile" parameterType="placefile">
 		<selectKey keyProperty="attachedfile_id" resultType="long" order="BEFORE">
 			select place_seq.nextval from dual
@@ -45,6 +65,9 @@
 				#{file_size}
 			)
 	</insert>
+	<select id="findFiles" resultType="placefile">
+  		select * from place_attached_file
+  	</select>
 	
 	
 </mapper>
