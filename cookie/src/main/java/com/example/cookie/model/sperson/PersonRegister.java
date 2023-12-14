@@ -15,7 +15,7 @@ public class PersonRegister {
 	private String person_category;
 	@NotEmpty(message="상세정보를 입력해주세요")
 	private String person_content;
-	private String person_profile;
+	private String saved_filename;
 	
 	public static SPerson toSPerson(PersonRegister personRegister) {
 		SPerson sPerson = new SPerson();
@@ -23,7 +23,7 @@ public class PersonRegister {
 		sPerson.setPerson_name(personRegister.getPerson_name());
 		sPerson.setPerson_category(personRegister.getPerson_category());
 		sPerson.setPerson_content(personRegister.getPerson_content());
-		sPerson.setPerson_profile(personRegister.getPerson_profile());
+		sPerson.setSaved_filename(personRegister.getSaved_filename());
 		return sPerson;
 	}
 }

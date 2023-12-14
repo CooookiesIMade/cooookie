@@ -71,8 +71,10 @@ public class FileService {
             e.printStackTrace();
         }
 
-        return new AttachedFile(originalFilename, savedFilename , file.getSize());
-    }
+
+        return new AttachedFile(originalFilename, savedFilename, file.getSize());
+
+}
 
     /**
      * 서버에 저장된 파일의 전체 경로를 전달받아, 해당 파일을 삭제
