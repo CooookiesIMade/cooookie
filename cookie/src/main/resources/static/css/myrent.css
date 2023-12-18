@@ -1,0 +1,78 @@
+@charset "UTF-8";
+.my-container {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		border-radius: 20px;
+		width: 840px;
+		box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 15px;
+		background-color: #ffffff;
+		padding: 20px;
+		box-sizing: border-box;
+		margin: 0 auto;
+		margin-top: 140px;
+		margin-bottom: 60px;
+
+		@media (max-width: 840px) {
+			width: 480px;
+		}
+
+		;
+	}
+
+	.my-img {
+		width: 64px;
+		height: 64px;
+		overflow: hidden;
+		border-radius: 35px;
+		margin-bottom: 8px;
+		border: 2px solid rgba(255, 255, 255, 0);
+
+		:hover {
+			cursor: pointer;
+			border: 2px solid #ffda77;
+		}
+	}
+
+	.nameIcon-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: row;
+		margin-bottom: 6px;
+
+		& svg {
+			color: #ffda77;
+			margin-left: 8px;
+			cursor: pointer;
+		}
+	}
+
+	.myNickName {
+		font-size: 1.3rem;
+		font-weight: 700;
+	}
+
+	.myMBTI {
+		font-size: 1rem;
+		font-weight: 500;
+	}
+
+	.content-category {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.content-category>span {
+		width: 100px;
+		margin: 10px;
+		text-align: center;
+		font-size: 15px;
+	}
+	.content-category>span:hover{
+		color: tomato;
+	}
+
+	.content-category>span>p {
+		margin-top: 8%;
+	}

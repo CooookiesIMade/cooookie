@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.cookie.repository.ReviewMapper">
+	
+	<insert id="savePlaceReview">
+		<selectKey keyProperty="review_id" resultType="long" order="BEFORE">
+			select seq_review.nextval from dual
+		</selectKey>
+		insert into review_pl(
+			review_id,
+			member_id,
+			place_id,
+			review_contents,
+			review_time
+		) values(
+			#{review_id},
+			#{member_id},
+			#{place_id},
+			#{review_contents},
+			SYSDATE
+		)
+	</insert>
+	
+	
+	
+	
+	
+
+	
+</mapper>

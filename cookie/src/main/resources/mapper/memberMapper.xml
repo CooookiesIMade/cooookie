@@ -24,4 +24,51 @@
 	<select id="findMember" resultType="member">
 		select * from member where member_id = #{member_id}
 	</select>
+	
+	<select id="findRentPlaces" resultType="rentPlace">
+		select 
+			r.rentPlace_id,
+			r.member_id,
+			s.place_id,
+			s.place_name,
+			s.place_address,
+			r.rentPlace_start,
+			r.rentPlace_end,
+			r.rentPlace_count,
+			r.rentPlace_price,
+			s.saved_filename
+		 from 
+		 	rentPlace r join splace s
+		 	on (r.place_id = s.place_id)
+		where 
+			r.member_id = #{member_id}
+		order by
+			rentPlace_id desc
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- 저장된 멤버 업데이트 -->
+    <update id="updateMember" parameterType="com.example.cookie.model.member.Member">
+        UPDATE cooookie.member
+        SET
+            member_pw = #{member_pw},
+            member_nick = #{member_nick},
+            member_pho = #{member_pho},
+            member_mbti = #{member_mbti}
+        WHERE
+            member_id = #{member_id}
+    </update>
+    
+    
+   
 </mapper>

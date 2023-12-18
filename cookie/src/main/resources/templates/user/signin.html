@@ -2,6 +2,36 @@
 <html>
 <head th:replace="~{header :: #header}"></head>
 <head th:replace="~{head :: #head}"></head>
+
+<body>
+	<div th:replace="header"></div>
+	<div class="signin-div">
+		<form action="" method="post" th:object="${signin}">
+			<div class="signin-container">
+				<img src="../images/cookie.png" alt="cookie" height="22px" width="22px" />
+				<h3 style="margin-top: -0.1px;">Cookie</h3>
+				<div class="wrapper">
+					<div class="title">이메일</div>
+					<input th:field="*{member_id}" type="email" placeholder="code@gmail.com" />
+					<div th:if="${#fields.hasErrors('member_id')}" class="error" th:errors="*{member_id}"/>
+				</div>
+				<div class="wrapper">
+					<div class="title">비밀번호</div>
+					<input th:field="*{member_pw}"type="password"/>
+					<div th:if="${#fields.hasErrors('member_pw')}" class="error" th:errors="*{member_pw}"/>
+				</div>
+				<button type="submit" class="submit-button" onclick="">로그인</button>
+				<a class="signupLink" href="/user/signup">회원가입</a>
+			</div>
+		</form>
+	</div>
+</body>
+=======
+<!DOCTYPE html>
+<html>
+<head th:replace="~{header :: #header}"></head>
+<head th:replace="~{head :: #head}"></head>
+<link rel="stylesheet" href="/css/user.css"/>
 <body>
 	<div th:replace="header"></div>
 	<div class="signin-div">
@@ -26,4 +56,5 @@
 	</div>
 
 </body>
+>>>>>>> branch 'main' of https://github.com/CooookiesIMade/cooookie.git
 </html>
