@@ -4,60 +4,62 @@
 <head th:replace="~{header :: #header}"></head>
 <head th:replace="~{head :: #head}"></head>
 <link rel="stylesheet" href="/css/user.css" />
-	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <style>
-	.hide {
-		display: none;
-	}
-	[class^="fail-"] {
-		color: red;
-		font-weight: bold;
-	}
+   .hide {
+      display: none;
+   }
+
+   [class^="fail-"] {
+      color: red;
+      font-weight: bold;
+   }
 </style>
 
-
 <body>
-	<div th:replace="header"></div>
-	<div class="mypage-div">
-		<form th:action="@{/user/update}" method="post" th:object="${member}">
-			<div class="mypage-container">
-				<img src="../images/cookie.png" alt="cookie" height="22px" width="22px" />
-				<h3 style="margin-top: -0.1px;">Cookie</h3>
+   <div th:replace="header"></div>
+   <div class="mypage-div">
+      <form th:action="@{/user/update}" method="post" th:object="${member}">
+         <div class="mypage-container">
+            <img src="../images/cookie.png" alt="cookie" height="22px" width="22px" />
+            <h3 style="margin-top: -0.1px;">Cookie</h3>
 
-				<!-- 이메일 -->
-				<div class="wrapper">
-					<div class="title">이메일</div>
-					<input type="text" th:field="*{member_id}" th:readonly="${true}" />
-				</div>
+            <!-- 이메일 -->
+            <div class="wrapper">
+               <div class="title">이메일</div>
+               <input type="text" th:field="*{member_id}" th:readonly="${true}" />
+            </div>
 
-				<!-- 비밀번호 -->
-				<div class="wrapper">
-					<div class="title">비밀번호</div>
-					<input type="password" th:field="*{member_pw}" th:readonly="${true}" />
-				</div>
+            <!-- 비밀번호 -->
+            <div class="wrapper">
+               <div class="title">비밀번호</div>
+               <input type="password" th:field="*{member_pw}" th:readonly="${true}" />
+            </div>
 
-				<!-- 닉네임 -->
-				<div class="wrapper">
-					<div class="title">닉네임</div>
-					<input type="text" th:field="*{member_nick}" th:readonly="${true}" />
-				</div>
+            <!-- 닉네임 -->
+            <div class="wrapper">
+               <div class="title">닉네임</div>
+               <input type="text" th:field="*{member_nick}" th:readonly="${true}" />
+            </div>
 
-				<!-- 핸드폰 번호 -->
-				<div class="wrapper">
-					<div class="title">핸드폰 번호</div>
-					<input type="text" th:field="*{member_pho}" th:readonly="${true}" />
-				</div>
+            <!-- 핸드폰 번호 -->
+            <div class="wrapper">
+               <div class="title">핸드폰 번호</div>
+               <input type="text" th:field="*{member_pho}" th:readonly="${true}" />
+            </div>
 
-				<!-- MBTI -->
-				<div class="wrapper">
-					<div class="title">MBTI</div>
-					<input type="text" th:field="*{member_mbti}" th:readonly="${true}" />
-				</div>
+            <!-- MBTI -->
+            <div class="wrapper">
+               <div class="title">MBTI</div>
+               <input type="text" th:field="*{member_mbti}" th:readonly="${true}" />
+            </div>
 
-				<button type="submit" class="submit-button">수정</button>
-			</div>
-		</form>
-	</div>
+            <button type="submit" class="submit-button">수정</button>
+
+
+         </div>
+      </form>
+   </div>
 </body>
 
 </html>
