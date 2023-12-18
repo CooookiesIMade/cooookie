@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.example.cookie.model.file.AttachedFile;
+import com.example.cookie.model.file.PersonAttachedFile;
 import com.example.cookie.model.member.Member;
 import com.example.cookie.model.rent.RentPlace;
 
@@ -19,5 +21,7 @@ public interface MemberMapper {
 	void updateAdminMember(Member mbember);
 	
 	List<RentPlace> findRentPlaces(String member_id);
+	
+	void saveFile(AttachedFile attachedFile);
 
 }

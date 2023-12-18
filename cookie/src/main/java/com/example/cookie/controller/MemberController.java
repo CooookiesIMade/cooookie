@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,7 +38,9 @@ public class MemberController {
 	private final MemberService memberService;
 	
 	private final MemberValidator memberValidator;
-
+	
+	@Value("${file.upload.path}")
+	private String uploadPath;
 	// 회원가입 페이지 이동
 	@GetMapping("signup")
 	public String signUp(Model model) {
@@ -58,7 +61,7 @@ public class MemberController {
 			return "user/signup";
 		}
 		memberSignUp.setSaved_filename(file.getOriginalFilename());
-		memberService.saveMember(MemberSignUp.toMember(memberSignUp));
+		memberService.saveMember(MemberSignUp.toMember(memberSignUp), file);
 		return "redirect:/";
 		
 	}
@@ -103,9 +106,6 @@ public class MemberController {
 		
 		return "redirect:/";
 	}
-	
-
-	
 	
 	@GetMapping("myrent")
 	public String myRent(@SessionAttribute("signInMember") Member signinMember, Model model) {

@@ -3,51 +3,42 @@
 <script src="https://kit.fontawesome.com/5e5e7712e7.js" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link href="/css/user.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <script th:inline="javascript">
-	function reviewModal(id){
-		console.log(id)
+	function removeReview(review_id){
+		console.log(review_id)
 		Swal.fire({
-			input : "textarea",
-			inputLabel : "리뷰쓰기",
-			inputPlaceholder : "리뷰는 이용자들에게 도움이 됩니다",
-			confirmButtonText : '등록하기',
+			title : '작성한 리뷰 삭제하시겠습니까?',
+			icon: 'warning',
 			showCancelButton: true,
-			cancelButtonText : '취소하기'
-		}).then((result)=>{
-			if (result.isConfirmed) {
-				const text = result.value;
-				const url = "/review/place";
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: '삭제하기 ',
+			cancelButtonText: '취소하기'
+		}).then((result) => {
+			if(result.isConfirmed){
+				const url = "/review/delete?review_id=" + review_id;
 				$.ajax({
 					url : url,
-					type : "POST",
-					data : {place_id : id, review_contents : text},
+					type : "GET",
 					success : function(result){
 						Swal.fire(
-							'리뷰 등록되었습니다'
+							'삭제완료'
 						).then((result)=>{
-							if(result.isConfirmed){
-								location.href='/user/myrent'
-							} 
-						})
-					},
-					error : function(error){
-						Swal.fire({
-							title : '이미 작성한 리뷰가 있습니다',
-							icon : 'error'
-						}).then((result)=>{
 							if(result.isConfirmed){
 								location.reload();
 							}
 						})
 					}
-				});
+				})
 			}
-		});
+		})
 	}
 </script>
+
+
 
 <body>
 	<div class="my-container" th:object="${signInMember}">
@@ -71,22 +62,23 @@
 			<span><i class="fa-regular fa-heart"></i>
 				<p>관심장소</p>
 			</span>
-			<span th:onclick="location.href='/review/place'"><i class="fa-solid fa-bars"></i>
+			<span th:onclick="loaction.href='/review/place'"><i class="fa-solid fa-bars"></i>
 				<p>리뷰내역</p>
 			</span>
 			<span th:onclick="location.href='/'"><i class="fa-solid fa-house"></i>
 				<p>홈으로</p>
 			</span>
 		</section>
-		<div class="row body-container" th:each="rplace : ${rentPlace}">
-			<p class="place-h" th:text="${rplace.place_name}"></p>
+		<div class="row body-container" th:each="review : ${reviews}">
+			<p class="place-h" th:text="${review.place_name}"></p>
 		<div class="col-md-8">
-			<span class="place-addr bold" th:text="${rplace.place_address}">주소</span>
-			<div class="place-addr" th:text="${#dates.format(rplace.rentPlace_start, 'yyyy-MM-dd HH:mm')} + ' ~ ' + ${#dates.format(rplace.rentPlace_end, 'yyyy-MM-dd HH:mm')}"></div>
-			<div class="re-btn" th:onclick="reviewModal(this.getAttribute('id'))" th:id="${rplace.place_id}">리뷰쓰기</div>
+			<span class="place-addr bold" th:text="${review.place_address}">주소</span>
+			<div class="place-addr" th:text="${#dates.format(review.review_time ,'yyyy-MM-dd HH:mm')}"></div>
+			<div th:text="${review.review_contents}"></div>
+			<div class="re-btn" th:onclick="removeReview(this.getAttribute('id'))" th:id="${review.review_id}">리뷰삭제</div>
 		</div>
 			<div class="col-md-4">
-			<img th:src="@{'/images/upload/' + ${rplace.saved_filename}}" alt="이미지" width="100%" height="100px"/>				
+			<img th:src="@{'/images/upload/' + ${review.saved_filename}}" alt="이미지" width="100%" height="100px"/>				
 			</div>
 		</div>
 	</div>
