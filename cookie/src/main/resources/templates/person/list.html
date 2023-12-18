@@ -3,23 +3,21 @@
 <head th:replace="~{head :: #head}"></head>
 <head th:replace="~{header :: #header}"></head>
 <link rel="stylesheet" type="text/css" href="/css/flaticon.css">
-<script src="https://kit.fontawesome.com/5e5e7712e7.js" crossorigin="anonymous"></script>
 <body>
-	<head th:replace="header"></head>
+	<div th:replace="header"/>
 	<!--explore start -->
 		<section id="explore" class="explore">
 			<div class="container">
 				<div class="section-header">
-					<h2>장소</h2>
+					<h2>사람 대여</h2>
 				</div><!--/.section-header-->
-				<!--welcome-hero end -->
-		
-		<section id="list-topics" class="list-topics">
+				
+				<section id="list-topics" class="list-topics">
 			<div class="container">
 			<div class="list-topics-content">
 				<ul>
 					<li>
-						<button class="single-list-topics-content" th:onclick="location.href='/place/list'">
+						<button class="single-list-topics-content" onclick="location.href='/place/list'">
 							<div class="single-list-topics-icon">
 								<i class="fa-solid fa-house"></i>
 							</div>
@@ -27,159 +25,94 @@
 						</button>
 					</li>
 					<li>
-						<button class="single-list-topics-content" th:onclick="location.href='/place/exercise'">
+						<button class="single-list-topics-content" onclick="location.href='/'">
 							<div class="single-list-topics-icon">
-								<i class="fa-solid fa-baseball-bat-ball"></i>
+								<i class="fa-solid fa-utensils"></i>
 							</div>
-							<h2><a>체육시설</a></h2>
-						</button>
-					</li>
-					<li>
-						<button class="single-list-topics-content" onclick="location.href='/place/camping'">
-							<div class="single-list-topics-icon">
-								<i class="fa-solid fa-campground"></i>
-							</div>
-							<h2><a>캠핑</a></h2>
-						</button>
-					</li>
-					<li>
-						<button class="single-list-topics-content" onclick="location.href='/place/office'">
-							<div class="single-list-topics-icon">
-								<i class="fa-solid fa-user-group"></i>
-							</div>
-							<h2><a>공유오피스</a></h2>
-						</button>
-					</li>
-					<li>
-						<button class="single-list-topics-content" onclick="location.href='/place/carry'">
-							<div class="single-list-topics-icon">
-								<i class="fa-solid fa-suitcase-rolling"></i>
-							</div>
-							<h2><a >짐보관</a></h2>
-						</button>
-					</li>
-					<li>
-						<button class="single-list-topics-content" onclick="location.href='/place/guset'">
-							<div class="single-list-topics-icon">
-								<i class="fa-solid fa-bed"></i>
-							</div>
-							<h2><a href="#">게스트하우스</a></h2>
-						</button>
-					</li>
-					<li>
-						<button class="single-list-topics-content" onclick="location.href='/place/ptroom'">
-							<div class="single-list-topics-icon">
-								<i class="fa-solid fa-hotel"></i>
-							</div>
-							<h2><a href="#">파티룸</a></h2>
-						</button>
-					</li>
-					<li>
-						<button class="single-list-topics-content" onclick="location.href='/place/study'">
-							<div class="single-list-topics-icon">
-							<i class="fa-solid fa-pen-to-square"></i>
-							</div>
-							<h2><a href="#">스터디룸</a></h2>
-						</button>
-					</li>
-					<li>
-						<button class="single-list-topics-content" onclick="location.href='/place/pack'">
-							<div class="single-list-topics-icon">
-							<i class="fa-solid fa-microphone"></i>
-							</div>
-							<h2><a href="#">공연장</a></h2>
+							<h2><a>식사</a></h2>
 						</button>
 					</li>
 					<li>
 						<button class="single-list-topics-content" onclick="location.href='/'">
 							<div class="single-list-topics-icon">
-							<i class="fa-solid fa-bars"></i>
+								<i class="fa-solid fa-comments"></i>
 							</div>
-							<h2><a href="#">기타</a></h2>
+							<h2><a>고민상담</a></h2>
 						</button>
 					</li>
 					<li>
-						<button class="single-list-topics-content red" onclick="location.href='/place/register'">
+						<button class="single-list-topics-content" onclick="location.href='/'">
 							<div class="single-list-topics-icon">
-							<i class="fa-solid fa-plus"></i>
+								<i class="fa-solid fa-cart-shopping"></i>
 							</div>
-							<h2><a href="/place/register">장소등록</a></h2>
+							<h2><a>장보기</a></h2>
 						</button>
 					</li>
-					
+					<li>
+						<button class="single-list-topics-content" onclick="location.href='/'">
+							<div class="single-list-topics-icon">
+								<i class="fa-solid fa-dog"></i>
+							</div>
+							<h2><a >애견산책</a></h2>
+						</button>
+					</li>
+					<li>
+						<button class="single-list-topics-content" onclick="location.href='/'">
+							<div class="single-list-topics-icon">
+								<i class="fa-solid fa-person-half-dress"></i>
+							</div>
+							<h2><a href="#">역할대행</a></h2>
+						</button>
+					</li>
+					<li>
+						<button class="single-list-topics-content" onclick="location.href='/'">
+							<div class="single-list-topics-icon">
+								<i class="fa-solid fa-bars"></i>
+							</div>
+							<h2><a href="">기타</a></h2>
+						</button>
+					</li>
+					<li>
+						<button class="single-list-topics-content red" onclick="location.href='/person/register'">
+							<div class="single-list-topics-icon">
+								<i class="fa-solid fa-plus"></i>
+							</div>
+							<h2><a href="/person/register">등록하기</a></h2>
+						</button>
+					</li>
 				</ul>
 			</div>
 		</div><!--/.container-->
-
-	</section><!--/.list-topics-->
-	<!--list-topics end-->
-				<div class="explore-content" >
+		
+				<div class="explore-content">
 					<div class="row">
-						<div class=" col-md-4 col-sm-6" th:each="place : ${places}">
-							<div class="single-explore-item">
-								<div class="single-explore-img">
-									<img th:src="@{'/images/upload/' + ${place.saved_filename}}" alt="이미지임">
-									<div class="single-explore-img-info">
-										<button onclick="window.location.href='#'">best rated</button>
-										<div class="single-explore-image-icon-box">
-											<ul>
-												<li>
-													<div class="single-explore-image-icon">
-														<i class="fa fa-arrows-alt"></i>
-													</div>
-												</li>
-												<li>
-													<div class="single-explore-image-icon">
-														<i class="fa fa-bookmark-o"></i>
-													</div>
-												</li>
-											</ul>
-										</div>
+						<div class=" col-md-4 col-sm-6" th:each="person, personStat: ${persons}">
+							<div class="single-testimonial-box" th:onclick="|location.href='@{/person/detail(person_id=${person.person_id})}'|">
+						<div class="testimonial-description">
+							<div class="testimonial-info">
+								<div class="testimonial-img">
+									<img class="personImg" th:src="@{'/images/upload/' + ${person.saved_filename}}" alt="이미지입니당">
+								</div><!--/.testimonial-img-->
+								<div class="testimonial-person">
+									<h1><a th:text="${person.person_name}" ></a></h1>
+									<h4 th:text="${person.person_category}"></h4>
+									<div class="testimonial-person-star">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
 									</div>
-								</div>
-								<div class="single-explore-txt bg-theme-1">
-									<h2><a th:href="@{/place/detail(place_id=${place.place_id})}" th:text="${place.place_name}"></a></h2>
-									<p class="explore-rating-price">
-										<span class="explore-rating">5.0</span>
-										<a href="#" th:text="'수용인원 : ' + ${place.place_count} + 명"></a> 
-										<span class="explore-price-box">
-											시간당 
-											<span class="explore-price" th:text="${place.place_price} + '원'"></span>
-										</span>
-										 <a href="#" th:text="${place.place_category}"></a>
-									</p>
-									<div class="explore-person">
-										<div class="row">
-											<div class="col-sm-11" style="overflow: hidden; white-space: nowrap;">
-												<p th:text="${place.place_content}">
-												 
-												</p>
-												<p>...더보기</p>
-											</div>
-										</div>
-									</div>
-									<div class="explore-open-close-part">
-										<div class="row">
-											<div class="col-sm-5">
-												<button class="close-btn" th:href="@{/place/detail}">상세보기</button>
-											</div>
-											<div class="col-sm-7">
-												<div class="explore-map-icon">
-													<a href="#"><i data-feather="map-pin"></i></a>
-													<a href="#"><i data-feather="upload"></i></a>
-													<a href="#"><i data-feather="heart"></i></a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+								</div><!--/.testimonial-person-->
+							</div><!--/.testimonial-info-->
+							<div class="testimonial-comment">
+								<p th:text="${person.person_content}"></p>
+							</div><!--/.testimonial-comment-->
+						</div><!--/.testimonial-description-->
+					</div><!--/.single-testimonial-box-->
 						</div>
-						
-						
-						</div>
-					</div>
 				</div>
+					</div>
 			</div><!--/.container-->
 
 		</section><!--/.explore-->
