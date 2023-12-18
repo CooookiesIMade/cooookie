@@ -300,6 +300,8 @@ input[type='datetime-local']:valid::before {
 }
 
 .placeImg{
+	width: 640px;
+	height: 480px;
 	margin: 20px;
 }
 

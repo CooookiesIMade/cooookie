@@ -37,6 +37,7 @@
 	<select id="findPlaceById" resultType="place">
 		select * from splace where place_id = #{place_id} order by place_id desc
 	</select>
+
 	
 	<select id="findPlaceByCategory" resultType="place">
 		select * from splace where place_category = #{place_category} order by place_id desc
@@ -73,6 +74,7 @@
 	
 	
 	
+
 	<insert id="saveFile" parameterType="placefile">
 		<selectKey keyProperty="attachedfile_id" resultType="long" order="BEFORE">
 			select place_seq.nextval from dual
