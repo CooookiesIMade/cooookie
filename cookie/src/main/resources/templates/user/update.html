@@ -56,21 +56,21 @@
 					<select th:name="member_mbti" class="Select">
 						<option th:value="none">없음</option>
 						<option th:value="ISTJ">ISTJ</option>
-						<option th:value="ISFJ">ISFJ</option>
-						<option th:value="INFJ">INFJ</option>
-						<option th:value="INTJ">INTJ</option>
-						<option th:value="ISTP">ISTP</option>
-						<option th:value="ISFP">ISFP</option>
-						<option th:value="INFP">INFP</option>
-						<option th:value="ISTJ">INTP</option>
-						<option th:value="ESTJ">ESTJ</option>
-						<option th:value="ESFJ">ESFJ</option>
-						<option th:value="ENFJ">ENFJ</option>
-						<option th:value="ENTJ">ENTJ</option>
-						<option th:value="ESTP">ESTP</option>
-						<option th:value="ESFP">ESFP</option>
-						<option th:value="ENFP">ENFP</option>
-						<option th:value="ENTP">ENTP</option>
+						<option th:value="ISFJ" th:selected="${member.member_mbti == 'ISFJ'}">ISFJ</option>
+						<option th:value="INFJ" th:selected="${member.member_mbti == 'INFJ'}">INFJ</option>
+						<option th:value="INTJ" th:selected="${member.member_mbti == 'INTJ'}">INTJ</option>
+						<option th:value="ISTP" th:selected="${member.member_mbti == 'ISTP'}">ISTP</option>
+						<option th:value="ISFP" th:selected="${member.member_mbti == 'ISFP'}">ISFP</option>
+						<option th:value="INFP" th:selected="${member.member_mbti == 'INFP'}">INFP</option>
+						<option th:value="INTP" th:selected="${member.member_mbti == 'INTP'}">INTP</option>
+						<option th:value="ESTJ" th:selected="${member.member_mbti == 'ESTJ'}">ESTJ</option>
+						<option th:value="ESFJ" th:selected="${member.member_mbti == 'ESFJ'}">ESFJ</option>
+						<option th:value="ENFJ" th:selected="${member.member_mbti == 'ENFJ'}">ENFJ</option>
+						<option th:value="ENTJ" th:selected="${member.member_mbti == 'ENTJ'}">ENTJ</option>
+						<option th:value="ESTP" th:selected="${member.member_mbti == 'ESTP'}">ESTP</option>
+						<option th:value="ESFP" th:selected="${member.member_mbti == 'ESFP'}">ESFP</option>
+						<option th:value="ENFP" th:selected="${member.member_mbti == 'ENFP'}">ENFP</option>
+						<option th:value="ENTP" th:selected="${member.member_mbti == 'ENTP'}">ENTP</option>
 					</select>
 				</div>
 				<button type="submit" class="submit-button">적용</button>
