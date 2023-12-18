@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.cookie.model.member.Member;
 import com.example.cookie.model.member.MemberSignIn;
@@ -45,14 +47,17 @@ public class MemberController {
 	
 	// 회원가입 하기
 	@PostMapping("signup")
-	public String signUp(@Validated @ModelAttribute("member") MemberSignUp memberSignUp, BindingResult result, Model model) {
+	public String signUp(@Validated @ModelAttribute("member") MemberSignUp memberSignUp, BindingResult result, Model model,
+						@RequestParam(required = false) MultipartFile file) {
 		
 		log.info("member : {}", memberSignUp);
+		log.info("file : {}", file);
 		
 		
 		if(result.hasErrors()) {
 			return "user/signup";
 		}
+		memberSignUp.setSaved_filename(file.getOriginalFilename());
 		memberService.saveMember(MemberSignUp.toMember(memberSignUp));
 		return "redirect:/";
 		
@@ -108,7 +113,7 @@ public class MemberController {
 		model.addAttribute("signInMember",signinMember);
 		
 		List<RentPlace> rentPlace = memberService.findRentPlaces(signinMember.getMember_id());
-		log.info("rentPlace : {}", rentPlace);
+		// log.info("rentPlace : {}", rentPlace);
 		model.addAttribute("rentPlace", rentPlace);
 		
 		

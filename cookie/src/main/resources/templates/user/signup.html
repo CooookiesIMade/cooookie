@@ -13,6 +13,9 @@
 		color: red;
 		font-weight: bold;
 	}
+	.preview {
+		border-radius: 100%;
+	}
 </style>
 
 <script>
@@ -94,6 +97,29 @@
 		})
 		
 	});
+	
+	// 파일업로드 눌렀을때 실행되는 함수
+	function clickUpload() {
+		let myInput = $("#my-input");
+		myInput.click();
+
+		myInput.on("change", function (event) {
+			var file = event.target.files[0];
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				$("#preview").attr("src", e.target.result);
+				$("#preview").addClass('show3');
+				$(".delete").append(`<button class="delbtn" onclick="closeUpload()">X</button>`)
+			}
+			reader.readAsDataURL(file);
+		})
+	}
+	// 파일 닫기
+	function closeUpload() {
+		$(".preview").removeClass('show3');
+		$(".preview").addClass('hide')
+		$(".delete").remove();
+	}
 </script>
 
 
@@ -102,7 +128,7 @@
 <body>
 	<div th:replace="header"></div>
 	<div class="signup-div">
-		<form action="signup" method="post" th:object="${member}">
+		<form action="signup" method="post" th:object="${member}" enctype="multipart/form-data"
 			<div class="signup-container">
 				<img src="../images/cookie.png" alt="cookie" height="22px" width="22px" />
 				<h3 style="margin-top: -0.1px;margin-bottom: 50px;">Cooookie</h3>
@@ -151,6 +177,16 @@
 						<option th:value="ENTP">ENTP</option>
 					</select>
 				</div>
+				<div class="wrapper">
+					<div class="title">프로필 사진</div>
+				</div>
+					<label for="place_profile">
+						</label>
+							<button class="ibutton cen" onclick="clickUpload()" type="button">사진 업로드하기</button>
+						<input type="file" style="display: none;" id="my-input" name="file"/>
+						<img id="preview" class="preview">
+						<div class="delete">
+						</div>
 				<button type="submit" class="submit-button" onclick="">회원가입</button>
 				<a class="loginLink" href="/user/signin">로그인</a>
 			</div>

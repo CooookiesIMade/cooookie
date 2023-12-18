@@ -10,14 +10,16 @@
 			member_nick,
 			member_pho,
 			member_mbti,
-			member_date
+			member_date,
+			saved_filename
 		) values (
 			#{member_id},
 			#{member_pw},
 			#{member_nick},
 			#{member_pho},
 			#{member_mbti},
-			SYSDATE
+			SYSDATE,
+			#{saved_filename}
 		)
 	</insert>
 	

@@ -22,6 +22,7 @@ public class MemberSignUp {
 	private String member_pho;
 	@NotBlank(message = "MBTI를 입력해 주세요")
 	private String member_mbti;
+	private String saved_filename;
 	
 	
 	public static Member toMember(MemberSignUp memberSignUp) {
@@ -32,6 +33,7 @@ public class MemberSignUp {
 		member.setMember_nick(memberSignUp.getMember_nick());
 		member.setMember_pho(memberSignUp.getMember_pho());	
 		member.setMember_mbti(memberSignUp.getMember_mbti());
+		member.setSaved_filename(memberSignUp.getSaved_filename());
 		
 		return member;
 	}

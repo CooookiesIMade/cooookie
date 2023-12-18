@@ -20,7 +20,7 @@ section {
 	height: auto;
 }
 
-.product_container .product_imgbox img {
+.product_container .product_imgbox_person img {
 	margin-right: 80px;
 	margin-top: 40px;
 	display: block;
@@ -66,9 +66,18 @@ section {
 	margin-bottom: 20px;
 }
 
-.product_content {
+.product_content1 {
 	margin-bottom: 50px;
 	margin-left: 300px;
+}
+
+.product_content {
+	width: 600px;
+	margin: 10px;
+	color:#767f86;
+	font-size:14px;
+  line-height: 1.8;
+  text-transform: initial;
 }
 
 .form-group label {
@@ -271,16 +280,6 @@ input[type='datetime-local']:valid::before {
 .totalprice, .tomato {
 	color: tomato;
 }
-	.totaltime {
-		margin-right: 140px;
-		text-align: right;
-	}
-	.max-count {
-		font-weight: bold;
-		color: red;
-		margin-left: 3px;
-	}
-
 
 .category{
 	color: #a9a7a5;
@@ -298,6 +297,13 @@ input[type='datetime-local']:valid::before {
 	font-size:14px;
 	line-height:1.8;
 	width:900px;
-	
 }
 
+.placeImg{
+	margin: 20px;
+}
+
+.place_content{
+	margin:20px;
+	margin-bottom:40px;
+}

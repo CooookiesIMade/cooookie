@@ -148,7 +148,7 @@
 
 <body>
 	<div class="my-container" th:object="${signInMember}">
-		<img src="/images/user.png" alt="프로필사진" class="my-img" />
+		<img th:src="@{'/images/upload/' + ${signInMember.saved_filename}}" alt="프로필사진" class="my-img" />
 		<div class="nameIcon-container">
 			<span class="myNickName" th:text="${signInMember.member_nick}"></span>
 		</div>
