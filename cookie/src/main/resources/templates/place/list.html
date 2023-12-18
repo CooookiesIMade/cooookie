@@ -116,7 +116,7 @@
 				<div class="explore-content" >
 					<div class="row">
 						<div class=" col-md-4 col-sm-6" th:each="place : ${places}">
-							<div class="single-explore-item">
+							<div class="single-explore-item" th:onclick="|location.href='@{/place/detail(place_id=${place.place_id})}'|">
 								<div class="single-explore-img">
 									<img th:src="@{'/images/upload/' + ${place.saved_filename}}" alt="이미지임">
 									<div class="single-explore-img-info">
