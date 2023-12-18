@@ -3,6 +3,7 @@ package com.example.cookie.service;
 import java.util.List;
 
 
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,7 +45,6 @@ public class PersonService {
 
 
 	public List<SPerson> findPersons() {
-		// TODO Auto-generated method stub
 		return personMapper.findPersons();
 	}
 
@@ -56,4 +56,9 @@ public class PersonService {
 	public AttachedFile findFileByPersonId(Long person_id) {
 		return personMapper.findFileByPersonId(person_id);
 	}
+
+	public SPerson findPersonByPersonId(Long person_id) {
+		return personMapper.findPersonByPersonId(person_id);
+	}
+	
 }

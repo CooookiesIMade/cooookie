@@ -2,6 +2,7 @@ package com.example.cookie.controller;
 
 import java.net.MalformedURLException;
 
+
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
@@ -48,6 +49,7 @@ public class PersonController {
 	@GetMapping("register")
 	public String Register(@SessionAttribute(value = "signInMember", required = false) Member signInMember,Model model) {
 		model.addAttribute("personRegister", new PersonRegister());
+	// 	model.addAttribute("member_id", signInMember.getMember_id());
 		return "person/register";
 	}
 	
@@ -83,7 +85,10 @@ public class PersonController {
 	}
 	
 	@GetMapping("detail")
-	public String Detail(Model model) {
+	public String Detail(@RequestParam("person_id") Long person_id, Model model) {
+		
+		SPerson sPerson = personService.findPersonByPersonId(person_id);
+    model.addAttribute("sPerson", sPerson);
 		
 		return "person/detail";
 	}

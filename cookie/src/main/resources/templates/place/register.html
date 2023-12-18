@@ -5,7 +5,6 @@
 
 <head th:replace="~{head :: #head}"></head>
 
-<head th:replace="~{placeCategory :: #placeCategory}"></head>
 <link rel="stylesheet" href="/css/user.css" />
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -117,12 +116,12 @@
 						<label for="place_profile">
 							<button class="ibutton" onclick="clickUpload()" type="button">사진 업로드하기</button>
 						</label>
-						<input type="file" style="display: none;" id="my-input" name="file" accept="image/*" />
+						<input type="file" style="display: none;" id="my-input" name="file"/>
 						<img id="preview" class="preview">
 						<div class="delete">
-
 						</div>
 					</section>
+					
 					<section class="reg-box">
 						<p class="reg-title">금액 설정</p>
 						<section class="set-charge">

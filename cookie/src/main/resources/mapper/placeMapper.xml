@@ -65,6 +65,7 @@
 				#{file_size}
 			)
 	</insert>
+	
 	<select id="findFiles" resultType="placefile">
   		select * from place_attached_file
   	</select>

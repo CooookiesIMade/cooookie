@@ -44,7 +44,32 @@
     )
   </insert>
   
-   <select id="findPersons" resultType="person">
-    select * from sperson order by person_id desc
+  <select id="findPersons" resultType="person">
+   select
+	   p.person_id,
+	   m.member_id,
+	   p.person_name,
+	   p.person_content,
+	   p.person_category,
+	   p.saved_filename
+   from sperson p join member m on (p.member_id = m.member_id) 
+   order by person_id desc
+  </select>
+  
+  <select id="findPersonByPersonId" resultType="person">
+   select
+	   p.person_id,
+	   m.member_id,
+	   m.member_nick,
+	   p.person_name,
+	   p.person_content,
+	   p.person_category,
+	   p.saved_filename
+   from sperson p join member m on (p.member_id = m.member_id)
+   where p.person_id = #{person_id}
+ 	</select>
+ 	
+  <select id="findFileByAttachedFileId" resultType="file">
+		select * from attached_file where attachedFile_id = #{attachedFile_id}
   </select>
 </mapper>
