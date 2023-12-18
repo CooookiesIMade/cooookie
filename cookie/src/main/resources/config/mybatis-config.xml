@@ -11,6 +11,7 @@
 		<typeAlias type="com.example.cookie.model.file.PersonAttachedFile" alias="personfile"/>
 		<typeAlias type="com.example.cookie.model.sperson.SPerson" alias="person"/>
 		<typeAlias type="com.example.cookie.model.rent.RentPlace" alias="rentPlace"/>
+		<typeAlias type="com.example.cookie.model.review_pl.ReviewPlace" alias="reviewPlace"/>
 
 	</typeAliases>
 </configuration>

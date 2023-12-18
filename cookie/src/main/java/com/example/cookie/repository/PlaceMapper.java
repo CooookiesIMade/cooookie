@@ -3,8 +3,10 @@ package com.example.cookie.repository;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.example.cookie.model.file.PlaceAttachedFile;
+import com.example.cookie.model.rent.RentPlace;
 import com.example.cookie.model.rent.RentPlaceRegister;
 import com.example.cookie.model.splace.Splace;
 
@@ -34,4 +36,7 @@ public interface PlaceMapper {
 	
 	// 장소 예약하기 
 	void rentPlace(RentPlaceRegister rentPlaceRegister);
+	
+	// 장소 아이디와 멤버아이디로 찾기 
+	RentPlace findRentPlaceById(@Param("place_id")Long place_id ,@Param("member_id")String member_id);
 }

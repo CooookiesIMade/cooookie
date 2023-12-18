@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.cookie.model.member.Member;
+import com.example.cookie.model.rent.RentPlace;
 import com.example.cookie.model.rent.RentPlaceRegister;
 import com.example.cookie.model.splace.Splace;
 import com.example.cookie.model.splace.SplaceRegister;
@@ -92,11 +93,19 @@ public class PlaceController {
 							@ModelAttribute("data") RentPlaceRegister rentPlaceRegister, BindingResult result)	{
 		
 		log.info("rentPlace : {} ", rentPlaceRegister);
-		rentPlaceRegister.setMember_id(signInMember.getMember_id());
 		
-		placeService.rentPlace(rentPlaceRegister);
+		RentPlace findRentPlace = placeService.findRentPlaceById(rentPlaceRegister.getPlace_id(), signInMember.getMember_id());
 		
-		return "redirect:/place/list";
+		if(findRentPlace != null) {
+			result.reject("alreadyRent", "이미 예약된 장소입니다");
+			return "redirect:/place/detail";
+		} else {
+			rentPlaceRegister.setMember_id(signInMember.getMember_id());
+			
+			placeService.rentPlace(rentPlaceRegister);
+			return "redirect:/place/list";
+		}
+		
 	}
 	
 }

@@ -76,7 +76,14 @@
 						})
 					},
 					error : function(error){
-						console.log('Error ${error}')
+						Swal.fire({
+							title : '이미 예약된 장소입니다',
+							icon : 'error'
+						}).then((result)=>{
+							if(result.isConfirmed){
+								location.reload();
+							}
+						})
 					}
 				});
 			}
