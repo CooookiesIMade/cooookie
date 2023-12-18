@@ -1,35 +1,26 @@
 package com.example.cookie.controller;
 
-import java.net.MalformedURLException;
 
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.util.UriUtils;
 
-import com.example.cookie.model.file.AttachedFile;
 import com.example.cookie.model.member.Member;
 import com.example.cookie.model.sperson.PersonRegister;
 import com.example.cookie.model.sperson.SPerson;
 import com.example.cookie.service.PersonService;
-import com.example.cookie.util.FileService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -40,14 +31,15 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("person")
 public class PersonController {
 
-	private final PersonService personService;
-	private final FileService fileService;
+  private final PersonService personService;
+	
   @Value("${file.upload.path}")
   private String uploadPath;
 	
 	@GetMapping("register")
-	public String Register(@SessionAttribute(value = "signInMember", required = false) Member signInMember,Model model) {
+	public String Register(@SessionAttribute("signInMember") Member signinMember, Model model) {
 		model.addAttribute("personRegister", new PersonRegister());
+		model.addAttribute("member_id", signinMember.getMember_id());
 		return "person/register";
 	}
 	
@@ -57,7 +49,7 @@ public class PersonController {
 													BindingResult result,
 													@RequestParam(required = false) MultipartFile file) {
 		
-//		log.info("person : {}", personRegister);
+		log.info("person : {}", personRegister);
 		log.info("file: {}", file);
 		
 		if(result.hasErrors()) {

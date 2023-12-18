@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.cookie.model.file.PlaceAttachedFile;
+import com.example.cookie.model.rent.RentPlaceRegister;
 import com.example.cookie.model.splace.Splace;
 
 @Mapper
@@ -29,5 +30,8 @@ public interface PlaceMapper {
 	List<PlaceAttachedFile> findFiles();
 	
 	// 장소 카테고리로 공유장소 가져오기
-	Splace findPlaceByCategory(String place_category);
+	List<Splace> findPlaceByCategory(String place_category);
+	
+	// 장소 예약하기 
+	void rentPlace(RentPlaceRegister rentPlaceRegister);
 }

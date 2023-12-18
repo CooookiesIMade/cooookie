@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.cookie.model.file.AttachedFile;
 import com.example.cookie.model.file.PlaceAttachedFile;
+import com.example.cookie.model.rent.RentPlaceRegister;
 import com.example.cookie.model.splace.Splace;
 import com.example.cookie.repository.PlaceMapper;
 import com.example.cookie.util.FileService;
@@ -58,6 +59,12 @@ public class  PlaceService {
 		return placeMapper.findPlaceById(place_id);
 		
 	}
+	public List<Splace> findPlaceByCategory(String place_category){
+		return placeMapper.findPlaceByCategory(place_category);
+	}
 	
+	public void rentPlace(RentPlaceRegister rentPlaceRegister) {
+		placeMapper.rentPlace(rentPlaceRegister);
+	}
 
 }

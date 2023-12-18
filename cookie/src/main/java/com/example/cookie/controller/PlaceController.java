@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.cookie.model.file.PlaceAttachedFile;
 import com.example.cookie.model.member.Member;
+import com.example.cookie.model.rent.RentPlaceRegister;
 import com.example.cookie.model.splace.Splace;
 import com.example.cookie.model.splace.SplaceRegister;
 import com.example.cookie.service.PlaceService;
@@ -41,15 +41,26 @@ public class PlaceController {
 	@GetMapping("list")
 	public String list(Model model) {
 		List<Splace> findAllPlaces = placeService.findAllPlaces();
+		model.addAttribute("place", new Splace());
 		model.addAttribute("places", findAllPlaces);
 		return "place/list";
 	}
+	
+	@GetMapping("category")
+	public String category(Model model, @RequestParam("category") String place_category) {
+		log.info("category : {}" ,place_category);
+		List<Splace> places = placeService.findPlaceByCategory(place_category);
+		model.addAttribute("places", places);
+		
+		return "place/category";
+	}
+	
 	
 	@GetMapping("detail")
 	public String detail(Model model, @RequestParam("place_id") Long place_id) {
 		
 		Splace place = placeService.findPlaceById(place_id);
-		log.info("상세 place 정보 : {}" , place);
+		// log.info("상세 place 정보 : {}" , place);
 		
 		model.addAttribute("place", place);
 		
@@ -74,4 +85,18 @@ public class PlaceController {
 		
 		return "redirect:/place/list";
 	}
+	
+	
+	@PostMapping("rent")
+	public String rentPlace(@SessionAttribute("signInMember") Member signInMember, 
+							@ModelAttribute("data") RentPlaceRegister rentPlaceRegister, BindingResult result)	{
+		
+		log.info("rentPlace : {} ", rentPlaceRegister);
+		rentPlaceRegister.setMember_id(signInMember.getMember_id());
+		
+		placeService.rentPlace(rentPlaceRegister);
+		
+		return "redirect:/place/list";
+	}
+	
 }

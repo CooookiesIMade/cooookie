@@ -35,12 +35,36 @@
 	</select>
 	
 	<select id="findPlaceById" resultType="place">
-		select * from splace where place_id = #{place_id}
+		select * from splace where place_id = #{place_id} order by place_id desc
 	</select>
 	
+	<select id="findPlaceByCategory" resultType="place">
+		select * from splace where place_category = #{place_category} order by place_id desc
+	</select>
 	
-	
-	
+	<insert id="rentPlace">
+		<selectKey keyProperty="rentPlace_id" resultType="long" order="BEFORE">
+			select place_seq.nextval from dual
+		</selectKey>
+		insert into rentPlace(
+			rentPlace_id,
+			member_id,
+			place_id,
+			rentPlace_start,
+			rentPlace_end,
+			rentPlace_count,
+			rentPlace_price
+		) values(
+			#{rentPlace_id},
+			#{member_id},
+			#{place_id},
+			#{rentPlace_start},
+			#{rentPlace_end},
+			#{rentPlace_count},
+			#{rentPlace_price}
+		)
+		
+	</insert>
 	
 	
 	

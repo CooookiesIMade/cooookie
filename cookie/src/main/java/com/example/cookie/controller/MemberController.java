@@ -1,5 +1,7 @@
 package com.example.cookie.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,11 +14,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.example.cookie.model.member.Member;
 import com.example.cookie.model.member.MemberSignIn;
 import com.example.cookie.model.member.MemberSignUp;
 import com.example.cookie.model.member.MemberValidator;
+import com.example.cookie.model.rent.RentPlace;
 import com.example.cookie.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
@@ -95,6 +99,23 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+
+	
+	
+	@GetMapping("myrent")
+	public String myRent(@SessionAttribute("signInMember") Member signinMember, Model model) {
+		
+		model.addAttribute("signInMember",signinMember);
+		
+		List<RentPlace> rentPlace = memberService.findRentPlaces(signinMember.getMember_id());
+		log.info("rentPlace : {}", rentPlace);
+		model.addAttribute("rentPlace", rentPlace);
+		
+		
+		return "user/myrent";
+	}
+	
+	
 	@GetMapping("mypage")
     public String myPage(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -108,7 +129,7 @@ public class MemberController {
             return "redirect:/user/signin";
         }
     }
-
+	
     @RequestMapping(value = "update", method = {RequestMethod.GET, RequestMethod.POST})
     public String update(@Validated @ModelAttribute("updatedMember") Member updatedMember, BindingResult result, Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
