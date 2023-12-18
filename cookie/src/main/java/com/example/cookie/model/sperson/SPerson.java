@@ -11,4 +11,5 @@ public class SPerson {
 	private String person_content;
 	private String saved_filename;
 	private String person_category;
+	private String member_nick;
 }

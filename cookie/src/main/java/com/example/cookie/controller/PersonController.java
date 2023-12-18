@@ -40,6 +40,7 @@ public class PersonController {
 	public String Register(@SessionAttribute("signInMember") Member signinMember, Model model) {
 		model.addAttribute("personRegister", new PersonRegister());
 		model.addAttribute("member_id", signinMember.getMember_id());
+
 		return "person/register";
 	}
 	
@@ -75,7 +76,10 @@ public class PersonController {
 	}
 	
 	@GetMapping("detail")
-	public String Detail(Model model) {
+	public String Detail(@RequestParam("person_id") Long person_id, Model model) {
+		
+		SPerson sPerson = personService.findPersonByPersonId(person_id);
+    model.addAttribute("sPerson", sPerson);
 		
 		return "person/detail";
 	}

@@ -17,10 +17,13 @@ public interface PersonMapper {
 	void saveFile(PersonAttachedFile attachedFile);
 
 	List<SPerson> findPersons();
+	
+	SPerson findPersonByPersonId(Long person_id);
 
 	AttachedFile findFileByPersonId(Long person_id);
 
 	AttachedFile findFileByAttachedFileId(Long id);
 
 	void removeAttachedFile(Long attachedFile_id);
+
 }

@@ -87,14 +87,14 @@
 				<div class="explore-content">
 					<div class="row">
 						<div class=" col-md-4 col-sm-6" th:each="person, personStat: ${persons}">
-							<div class="single-testimonial-box">
+							<div class="single-testimonial-box" th:onclick="|location.href='@{/person/detail(person_id=${person.person_id})}'|">
 						<div class="testimonial-description">
 							<div class="testimonial-info">
 								<div class="testimonial-img">
 									<img class="personImg" th:src="@{'/images/upload/' + ${person.saved_filename}}" alt="이미지입니당">
 								</div><!--/.testimonial-img-->
 								<div class="testimonial-person">
-									<h1><a th:text="${person.person_name}" th:href="@{/person/detail}"></a></h1>
+									<h1><a th:text="${person.person_name}" ></a></h1>
 									<h4 th:text="${person.person_category}"></h4>
 									<div class="testimonial-person-star">
 										<i class="fa fa-star"></i>
