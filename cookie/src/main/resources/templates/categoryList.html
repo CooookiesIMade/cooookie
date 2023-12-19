@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head id="categoryList">
+
+<!--explore start -->
+		<section id="explore" class="explore">
+			<div class="container">
+				<div class="section-header">
+					<h2>장소</h2>
+				</div><!--/.section-header-->
+				<!--welcome-hero end -->
+		
+		<section id="list-topics" class="list-topics">
+			<div class="container">
+			<div class="list-topics-content">
+				<ul>
+					<li>
+						<button class="single-list-topics-content" th:onclick="location.href='/place/list'">
+							<div class="single-list-topics-icon">
+								<i class="fa-solid fa-house"></i>
+							</div>
+							<h2><a>전체</a></h2>
+						</button>
+					</li>
+					<li>										
+						<button class="single-list-topics-content" th:onclick="|location.href='@{/place/category(place_category=exercise)}'|">
+							<div class="single-list-topics-icon">
+								<i class="fa-solid fa-baseball-bat-ball"></i>
+							</div>
+							<h2><a>체육시설</a></h2>
+						</button>
+					</li>
+					<li>
+						<button class="single-list-topics-content" th:onclick="|location.href='@{/place/category(place_category=camping)}'|">
+							<div class="single-list-topics-icon">
+								<i class="fa-solid fa-campground"></i>
+							</div>
+							<h2><a>캠핑</a></h2>
+						</button>
+					</li>
+					<li>
+						<button class="single-list-topics-content" th:onclick="|location.href='@{/place/category(place_category=office)}'|">
+							<div class="single-list-topics-icon">
+								<i class="fa-solid fa-user-group"></i>
+							</div>
+							<h2><a>공유오피스</a></h2>
+						</button>
+					</li>
+					<li>
+						<button class="single-list-topics-content" th:onclick="|location.href='@{/place/category(place_category=carry)}'|">
+							<div class="single-list-topics-icon">
+								<i class="fa-solid fa-suitcase-rolling"></i>
+							</div>
+							<h2><a >짐보관</a></h2>
+						</button>
+					</li>
+					<li>
+						<button class="single-list-topics-content" th:onclick="|location.href='@{/place/category(place_category=guest)}'|">
+							<div class="single-list-topics-icon">
+								<i class="fa-solid fa-bed"></i>
+							</div>
+							<h2><a href="#">게스트하우스</a></h2>
+						</button>
+					</li>
+					<li>
+						<button class="single-list-topics-content" th:onclick="|location.href='@{/place/category(place_category=ptroom)}'|">
+							<div class="single-list-topics-icon">
+								<i class="fa-solid fa-hotel"></i>
+							</div>
+							<h2><a href="#">파티룸</a></h2>
+						</button>
+					</li>
+					<li>
+						<button class="single-list-topics-content" th:onclick="|location.href='@{/place/category(place_category=study)}'|">
+							<div class="single-list-topics-icon">
+							<i class="fa-solid fa-pen-to-square"></i>
+							</div>
+							<h2><a href="#">스터디룸</a></h2>
+						</button>
+					</li>
+					<li>
+						<button class="single-list-topics-content" th:onclick="|location.href='@{/place/category(place_category=pack)}'|">
+							<div class="single-list-topics-icon">
+							<i class="fa-solid fa-microphone"></i>
+							</div>
+							<h2><a href="#">공연장</a></h2>
+						</button>
+					</li>
+					<li>
+						<button class="single-list-topics-content" onclick="ready()">
+							<div class="single-list-topics-icon">
+							<i class="fa-solid fa-bars"></i>
+							</div>
+							<h2><a href="#">기타</a></h2>
+						</button>
+					</li>
+					<li>
+						<button class="single-list-topics-content red" onclick="location.href='/place/register'">
+							<div class="single-list-topics-icon">
+							<i class="fa-solid fa-plus"></i>
+							</div>
+							<h2><a href="/place/register">장소등록</a></h2>
+						</button>
+					</li>
+					
+				</ul>
+			</div>
+		</div><!--/.container-->
+
+	</section><!--/.list-topics-->
+	<!--list-topics end-->
+
+</head>
+</html>

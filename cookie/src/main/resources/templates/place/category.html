@@ -12,9 +12,9 @@
 	}
 </script>
 <body>
-	<head th:replace="header"></head>
-		<div th:replace="categoryList"></div>
-				<div class="explore-content" >
+<head th:replace="header"></head>
+<div th:replace="categoryList"></div>
+<div class="explore-content" >
 					<div class="row">
 						<div class=" col-md-4 col-sm-6" th:each="place : ${places}">
 							<div class="single-explore-item" th:onclick="|location.href='@{/place/detail(place_id=${place.place_id})}'|">
@@ -82,5 +82,8 @@
 					</div>
 				</div>
 			</div><!--/.container-->
+
+
+
 </body>
 </html>

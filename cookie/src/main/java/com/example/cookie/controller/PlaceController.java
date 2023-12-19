@@ -15,8 +15,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.cookie.model.member.Member;
 import com.example.cookie.model.rent.RentPlace;
 import com.example.cookie.model.rent.RentPlaceRegister;
+import com.example.cookie.model.review_pl.ReviewPlace;
 import com.example.cookie.model.splace.Splace;
 import com.example.cookie.model.splace.SplaceRegister;
+import com.example.cookie.repository.ReviewMapper;
 import com.example.cookie.service.PlaceService;
 
 import lombok.RequiredArgsConstructor;
@@ -29,6 +31,7 @@ import java.util.List;
 public class PlaceController {
 	
 	private final PlaceService placeService;
+	private final ReviewMapper reviewMapper;
 	@Value("${file.upload.path}")
 	private String uploadPath;
 
@@ -48,9 +51,10 @@ public class PlaceController {
 	}
 	
 	@GetMapping("category")
-	public String category(Model model, @RequestParam("category") String place_category) {
+	public String category(Model model, @RequestParam("place_category") String place_category) {
 		log.info("category : {}" ,place_category);
 		List<Splace> places = placeService.findPlaceByCategory(place_category);
+		log.info("places : {}" , places);
 		model.addAttribute("places", places);
 		
 		return "place/category";
@@ -62,8 +66,11 @@ public class PlaceController {
 		
 		Splace place = placeService.findPlaceById(place_id);
 		// log.info("상세 place 정보 : {}" , place);
+		List<ReviewPlace> allReviews = reviewMapper.findAllReview();
+		
 		
 		model.addAttribute("place", place);
+		model.addAttribute("reviews", allReviews);
 		
 		return "place/detail";
 	}

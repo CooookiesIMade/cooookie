@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.cookie.model.file.AttachedFile;
-import com.example.cookie.model.file.PersonAttachedFile;
 import com.example.cookie.model.member.Member;
 import com.example.cookie.model.rent.RentPlace;
 import com.example.cookie.repository.MemberMapper;
@@ -26,12 +25,14 @@ public class MemberService {
 	private final MemberMapper memberMapper;
 	private final FileService fileService;
 	@Value("${file.upload.path}")
-  private String uploadPath;	
+	private String uploadPath;	
+
 	
 	@Transactional
 	public void saveMember(Member member, MultipartFile file) {
 		memberMapper.saveMember(member);
 	   if(file != null && file.getSize() > 0) {
+
 	     	//첨부파일을 서버에 저장
 	     	AttachedFile attachedFile = fileService.saveFile(file);
 	     	//첨부파일 내용을 데이터베이스에 저장
@@ -47,19 +48,6 @@ public class MemberService {
 	public List<RentPlace> findRentPlaces(String member_id){
 		return memberMapper.findRentPlaces(member_id);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	@Transactional
     public void updateMember(String member_id, Member updatedMember) {

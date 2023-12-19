@@ -23,10 +23,41 @@
 		)
 	</insert>
 	
+	<select id="findReviewPlaceById" resultType="reviewPlace" parameterType="map">
+		select * from review_pl where place_id = #{place_id} and member_id = #{member_id}
+	</select>
+	
+	<select id="findReviewsById" resultType="reviewPlace" parameterType="map">
+		select 
+			r.review_id,
+			r.member_id,
+			s.place_id,
+			r.review_contents,
+			r.review_time,
+			s.place_name,
+			s.saved_filename
+		from 
+			review_pl r join splace s on(r.place_id = s.place_id)
+		where 
+			r.member_id = #{member_id}
+	</select>
+	
+	<select id="findAllReview" resultType="reviewPlace">
+		select 
+			r.review_id,
+			m.member_id,
+			r.place_id,
+			r.review_contents,
+			r.review_time,
+			m.member_nick,
+			m.saved_filename
+		from 
+			review_pl r join member m on(r.member_id = m.member_id)
+	</select>
 	
 	
-	
-	
-
+	<delete id="removeReview">
+		delete from review_pl where review_id = #{review_id}
+	</delete>
 	
 </mapper>
