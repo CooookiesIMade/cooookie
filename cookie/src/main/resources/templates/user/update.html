@@ -2,6 +2,7 @@
 <html>
 
 <head th:replace="~{header :: #header}"></head>
+
 <head th:replace="~{head :: #head}"></head>
 <link rel="stylesheet" href="/css/user.css" />
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -13,6 +14,10 @@
    [class^="fail-"] {
       color: red;
       font-weight: bold;
+   }
+      img {
+	   width: 22px;
+	   height: 22px;
    }
 </style>
 
@@ -34,7 +39,9 @@
             <!-- 비밀번호 -->
             <div class="wrapper">
                <div class="title">비밀번호</div>
-               <input th:name="member_pw" placeholder="4글자 이상 영문, 숫자, 특수문자를 사용하세요." type="password" />
+               <input th:name="member_pw" placeholder="4글자 이상 영문, 숫자, 특수문자를 사용하세요." type="password"
+                  oninput="checkPasswordStrength(this.value)" />
+               <p id="password-strength" class="fail-password-strength hide">비밀번호는 숫자, 영문, 특수문자를 모두 포함해야 합니다.</p>
             </div>
 
             <!-- 닉네임 -->
@@ -53,31 +60,81 @@
             <!-- MBTI -->
             <div class="wrapper">
                <div class="title">MBTI</div>
-               <select th:name="member_mbti" class="Select">
-                  <option th:value="none">없음</option>
-                  <option th:value="ISTJ">ISTJ</option>
-                  <option th:value="ISFJ">ISFJ</option>
-                  <option th:value="INFJ">INFJ</option>
-                  <option th:value="INTJ">INTJ</option>
-                  <option th:value="ISTP">ISTP</option>
-                  <option th:value="ISFP">ISFP</option>
-                  <option th:value="INFP">INFP</option>
-                  <option th:value="ISTJ">INTP</option>
-                  <option th:value="ESTJ">ESTJ</option>
-                  <option th:value="ESFJ">ESFJ</option>
-                  <option th:value="ENFJ">ENFJ</option>
-                  <option th:value="ENTJ">ENTJ</option>
-                  <option th:value="ESTP">ESTP</option>
-                  <option th:value="ESFP">ESFP</option>
-                  <option th:value="ENFP">ENFP</option>
-                  <option th:value="ENTP">ENTP</option>
+               <select th:name="member_mbti" class="Select" th:field="*{member_mbti}">
+                  <option th:value="none" th:selected="${member_mbti == 'none'}">없음</option>
+                  <option th:value="ISTJ" th:selected="${member_mbti == 'ISTJ'}">ISTJ</option>
+                  <option th:value="ISFJ" th:selected="${member_mbti == 'ISFJ'}">ISFJ</option>
+                  <option th:value="INFJ" th:selected="${member_mbti == 'INFJ'}">INFJ</option>
+                  <option th:value="INTJ" th:selected="${member_mbti == 'INTJ'}">INTJ</option>
+                  <option th:value="ISTP" th:selected="${member_mbti == 'ISTP'}">ISTP</option>
+                  <option th:value="ISFP" th:selected="${member_mbti == 'ISFP'}">ISFP</option>
+                  <option th:value="INFP" th:selected="${member_mbti == 'INFP'}">INFP</option>
+                  <option th:value="ESTJ" th:selected="${member_mbti == 'ESTJ'}">ESTJ</option>
+                  <option th:value="ENFJ" th:selected="${member_mbti == 'ENFJ'}">ENFJ</option>
+                  <option th:value="ENTJ" th:selected="${member_mbti == 'ENTJ'}">ENTJ</option>
+                  <option th:value="ESTP" th:selected="${member_mbti == 'ESTP'}">ESTP</option>
+                  <option th:value="ESFP" th:selected="${member_mbti == 'ESFP'}">ESFP</option>
+                  <option th:value="ENFP" th:selected="${member_mbti == 'ENFP'}">ENFP</option>
+                  <option th:value="ENTP" th:selected="${member_mbti == 'ENTP'}">ENTP</option>
                </select>
             </div>
+
             <button type="submit" class="submit-button">적용</button>
          </div>
 
       </form>
    </div>
+
+   <script>
+    function checkPasswordStrength(password) {
+    var strengthMessage = document.getElementById("password-strength");
+    var regex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':",./<>?\\|]).*$/;
+
+    if (regex.test(password)) {
+        strengthMessage.classList.add("hide");
+        document.getElementById("updateForm").removeEventListener("submit", preventFormSubmission);
+    } else {
+        strengthMessage.classList.remove("hide");
+        document.getElementById("updateForm").addEventListener("submit", preventFormSubmission);
+    }
+}
+
+function preventFormSubmission(event) {
+    event.preventDefault(); // 폼 제출을 막음
+}
+
+    function submitForm() {
+    var password = document.getElementById("password").value;
+
+    // 비밀번호 유효성 검사
+    var regex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':",./<>?\\|]).*$/;
+    if (!regex.test(password)) {
+        alert("비밀번호가 유효성 조건을 만족하지 않습니다.");
+        return;
+    }
+
+    // 서버로 전송할 데이터 생성
+    var formData = new FormData();
+    formData.append("password", password);
+
+    // 서버로 데이터 전송
+    fetch('/user/update', {
+        method: 'POST',
+        body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+        // 서버로부터의 응답 처리 (예: 성공 여부에 따라 메시지 표시)
+        alert(data.message);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
+</script>
+
+
 </body>
 
 </html>

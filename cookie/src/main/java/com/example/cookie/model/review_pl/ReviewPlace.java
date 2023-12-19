@@ -18,6 +18,6 @@ public class ReviewPlace {
 	private String place_name;
 	private String saved_filename;
 	private String place_address;
-	
+	private String member_nick;
 	
 }

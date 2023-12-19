@@ -3,12 +3,18 @@
 <head th:replace="~{header :: #header}"></head>
 <head th:replace="~{head :: #head}"></head>
 <link rel="stylesheet" href="/css/user.css"/>
+<style>
+	img {
+		width: 22px;
+		height: 22px;
+	}
+</style>
 <body>
 	<div th:replace="header"></div>
 	<div class="signin-div">
 		<form action="" method="post" th:object="${signin}">
 			<div class="signin-container">
-				<img src="../images/cookie.png" alt="cookie" height="22px" width="22px" />
+				<img src="../images/cookie.png" alt="cookie"/>
 				<h3 style="margin-top: -0.1px;margin-bottom: 50px">Cooookie</h3>
 				<div class="wrapper">
 					<div class="title">이메일</div>

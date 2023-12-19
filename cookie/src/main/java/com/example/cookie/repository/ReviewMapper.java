@@ -19,6 +19,9 @@ public interface ReviewMapper {
 	// 아이디로 작성한 리뷰들 가져오기 
 	List<ReviewPlace> findReviewsById(@Param("member_id")String member_id);
 	
+	// 전체 리뷰 가져오기
+	List<ReviewPlace> findAllReview();
+	
 	// 리뷰 삭제
 	void removeReview(Long review_id);
 	

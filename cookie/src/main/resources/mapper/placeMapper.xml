@@ -35,7 +35,22 @@
 	</select>
 	
 	<select id="findPlaceById" resultType="place">
-		select * from splace where place_id = #{place_id} order by place_id desc
+		select 
+			s.place_id,
+			m.member_id,
+			s.place_name,
+			s.place_address,
+			s.place_content,
+			s.place_category,
+			s.place_count,
+			s.place_price,
+			m.member_pho,
+			s.saved_filename
+			
+		 from 
+		 	splace s join member m on(s.member_id = m.member_id)
+		 where 
+		 	place_id = #{place_id} order by place_id desc
 	</select>
 
 	
