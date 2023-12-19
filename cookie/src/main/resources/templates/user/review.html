@@ -7,36 +7,41 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <script th:inline="javascript">
-	function removeReview(review_id){
-		console.log(review_id)
-		Swal.fire({
-			title : '작성한 리뷰 삭제하시겠습니까?',
-			icon: 'warning',
-			showCancelButton: true,
-			confirmButtonColor: '#3085d6',
-			cancelButtonColor: '#d33',
-			confirmButtonText: '삭제하기 ',
-			cancelButtonText: '취소하기'
-		}).then((result) => {
-			if(result.isConfirmed){
-				const url = "/review/delete?review_id=" + review_id;
-				$.ajax({
-					url : url,
-					type : "GET",
-					success : function(result){
-						Swal.fire(
-							'삭제완료'
-						).then((result)=>{
-							if(result.isConfirmed){
-								location.reload();
-							}
-						})
-					}
-				})
-			}
-		})
-	}
+    function removeReview(review_id) {
+        console.log(review_id);
+        Swal.fire({
+            title: '작성한 리뷰 삭제하시겠습니까?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '삭제하기',
+            cancelButtonText: '취소하기'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const url = "/review/delete?review_id=" + review_id;
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    success: function (result) {
+                        Swal.fire(
+                            '삭제완료'
+                        ).then((result) => {
+                            if (result.isConfirmed) {
+                                // 삭제가 완료된 후 리다이렉트
+                                window.location.href = "/review/place";
+                            }
+                        });
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            }
+        });
+    }
 </script>
+
 
 
 
@@ -62,7 +67,7 @@
 			<span><i class="fa-regular fa-heart"></i>
 				<p>관심장소</p>
 			</span>
-			<span th:onclick="loaction.href='/review/place'"><i class="fa-solid fa-bars"></i>
+			<span th:onclick="location.href='/review/place'"><i class="fa-solid fa-bars"></i>
 				<p>리뷰내역</p>
 			</span>
 			<span th:onclick="location.href='/'"><i class="fa-solid fa-house"></i>

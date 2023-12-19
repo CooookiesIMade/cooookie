@@ -2,6 +2,8 @@ package com.example.cookie.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -44,31 +46,29 @@ public class ReviewController {
 	
 	
 	@PostMapping("place")
-	public String placeReview(@SessionAttribute("signInMember") Member signInMember,
-							  @ModelAttribute("data") ReviewPlace reviewPlace, BindingResult result) {
-		
-		// log.info("reviewPlace : {}" ,reviewPlace);
-		ReviewPlace findReview = reviewMapper.findReviewPlaceById(reviewPlace.getPlace_id() , signInMember.getMember_id());
-		
-		if(findReview != null) {
-			result.reject("alreadyReview", "이미 리뷰가 있습니다");
-			return "redirect:/user/myrent";
-		} else {
-			reviewPlace.setMember_id(signInMember.getMember_id());			
-			reviewMapper.savePlaceReview(reviewPlace);
-			return "/user/review";
-		}
+	public ResponseEntity<String> placeReview(@SessionAttribute("signInMember") Member signInMember,
+	                                          @ModelAttribute("data") ReviewPlace reviewPlace, BindingResult result) {
+
+	    ReviewPlace findReview = reviewMapper.findReviewPlaceById(reviewPlace.getPlace_id(), signInMember.getMember_id());
+
+	    if (findReview != null) {
+	        return ResponseEntity.status(HttpStatus.CONFLICT).body("이미 작성한 리뷰가 있습니다");
+	    } else {
+	        reviewPlace.setMember_id(signInMember.getMember_id());
+	        reviewMapper.savePlaceReview(reviewPlace);
+	        return ResponseEntity.ok("리뷰 등록되었습니다");
+	    }
 	}
+
 		
 	@GetMapping("delete")
-	public String deleteReview(@SessionAttribute("signInMember") Member signInMember , 
-												@RequestParam Long review_id) {
-		
-		
-		reviewMapper.removeReview(review_id);
-		
-		return "redirect:/user/review";
-	
+	public ResponseEntity<String> deleteReview(@SessionAttribute("signInMember") Member signInMember,
+	                                          @RequestParam Long review_id) {
+
+	    reviewMapper.removeReview(review_id);
+
+	    return ResponseEntity.ok("리뷰 삭제가 완료되었습니다");
 	}
+
 	
 }
