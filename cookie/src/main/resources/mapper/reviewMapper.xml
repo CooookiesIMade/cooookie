@@ -38,7 +38,7 @@
 		s.saved_filename
 		from review_pl r join splace s on(r.place_id = s.place_id)
 		where r.member_id = #{member_id}
-	</select>	
+	</select>
 	
 	<delete id="removeReview">
 		delete from review_pl where review_id = #{review_id}
