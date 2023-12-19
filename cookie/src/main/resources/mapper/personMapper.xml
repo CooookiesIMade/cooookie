@@ -14,14 +14,16 @@
 			person_name,
 			person_content,
 			person_category,
-			saved_filename
+			saved_filename,
+			member_mbti
 		) values (
 			#{person_id},
 			#{member_id},
 			#{person_name},
 			#{person_content},
 			#{person_category},
-			#{saved_filename}
+			#{saved_filename},
+			#{member_mbti}
 		)
 	</insert>
 	
@@ -51,7 +53,8 @@
 	   p.person_name,
 	   p.person_content,
 	   p.person_category,
-	   p.saved_filename
+	   p.saved_filename,
+	   m.member_mbti
    from sperson p join member m on (p.member_id = m.member_id) 
    order by person_id desc
   </select>
@@ -64,7 +67,8 @@
 	   p.person_name,
 	   p.person_content,
 	   p.person_category,
-	   p.saved_filename
+	   p.saved_filename,
+	   m.member_mbti
    from sperson p join member m on (p.member_id = m.member_id)
    where p.person_id = #{person_id}
  	</select>
@@ -72,4 +76,26 @@
   <select id="findFileByAttachedFileId" resultType="file">
 		select * from attached_file where attachedFile_id = #{attachedFile_id}
   </select>
+  
+  	<insert id="rentPerson">
+		<selectKey keyProperty="rentPerson_id" resultType="long" order="BEFORE">
+			select seq_splace.nextval from dual
+		</selectKey>
+		insert into rentPerson(
+			rentPerson_id,
+			member_id,
+			person_id,
+			rentPerson_time
+		) values(
+			#{rentPerson_id},
+			#{member_id},
+			#{person_id},
+			#{rentPerson_time}
+		)
+		
+	</insert>
+	
+	<select id="findRentByPersonId" resultType="rentPerson" parameterType="map">
+		select * from rentPerson where person_id = #{person_id} and member_id = #{member_id}
+	</select>
 </mapper>

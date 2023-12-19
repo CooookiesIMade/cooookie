@@ -60,9 +60,30 @@
 						<section class="reg-box">
 							<p class="reg-title">카테고리</p>
 							<div th:replace="personCategory"></div>
-							
 						</section>
 
+						<section class="reg-box">
+							<p class="reg-title">MBTI</p>
+								<select th:field="*{member_mbti}" class="Select-mbti">
+									<option th:value="none">없음</option>
+									<option th:value="ISTJ">ISTJ</option>
+									<option th:value="ISFJ">ISFJ</option>
+									<option th:value="INFJ">INFJ</option>
+									<option th:value="INTJ">INTJ</option>
+									<option th:value="ISTP">ISTP</option>
+									<option th:value="ISFP">ISFP</option>
+									<option th:value="INFP">INFP</option>
+									<option th:value="ESTJ">ESTJ</option>
+									<option th:value="ESFJ">ESFJ</option>
+									<option th:value="ENFJ">ENFJ</option>
+									<option th:value="ENTJ">ENTJ</option>
+									<option th:value="ESTP">ESTP</option>
+									<option th:value="ESFP">ESFP</option>
+									<option th:value="ENFP">ENFP</option>
+									<option th:value="ENTP">ENTP</option>
+								</select>
+						</section>
+						
 						<section class="reg-box">
 							<p class="reg-title">상세정보</p>
 							<textarea th:field="*{person_content}"></textarea>

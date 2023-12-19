@@ -11,6 +11,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.cookie.model.file.AttachedFile;
 import com.example.cookie.model.file.PersonAttachedFile;
+import com.example.cookie.model.rent.RentPerson;
+import com.example.cookie.model.rent.RentPlaceRegister;
 import com.example.cookie.model.sperson.SPerson;
 import com.example.cookie.repository.PersonMapper;
 import com.example.cookie.util.FileService;
@@ -59,6 +61,14 @@ public class PersonService {
 
 	public SPerson findPersonByPersonId(Long person_id) {
 		return personMapper.findPersonByPersonId(person_id);
+	}
+
+	public void rentPerson(RentPerson rentPerson) {
+		personMapper.rentPerson(rentPerson);
+	}
+	
+	public RentPerson findRentPersonById(Long person_id, String member_id) {
+		return personMapper.findRentByPersonId(person_id,member_id);
 	}
 	
 }

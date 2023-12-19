@@ -12,4 +12,5 @@ public class SPerson {
 	private String saved_filename;
 	private String person_category;
 	private String member_nick;
+	private String member_mbti;
 }

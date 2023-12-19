@@ -29,7 +29,7 @@ section {
 
 /*product_detail*/
 .product_container .product_detail {
-	margin-top:40px;
+	margin-top:50px;
 	width: 400px;
 	height: auto;
 }
@@ -289,14 +289,21 @@ input[type='datetime-local']:valid::before {
 }
 
 .detailInfo{
-	margin-bottom:20px;
+	margin-bottom:50px;
+	font-size:20px;
+	font-weight:bold;
+}
+
+.detailInfo-title{
+	color:black;
+	font-size:initial;
 }
 
 .detail_content{
 	color:#767f86;
-	font-size:14px;
+	font-size:16px;
 	line-height:1.8;
-	width:900px;
+	width:800px;
 }
 
 .placeImg{

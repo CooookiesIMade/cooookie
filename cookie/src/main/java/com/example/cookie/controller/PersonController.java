@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.cookie.model.member.Member;
+import com.example.cookie.model.rent.RentPerson;
+import com.example.cookie.model.rent.RentPlace;
+import com.example.cookie.model.rent.RentPlaceRegister;
 import com.example.cookie.model.sperson.PersonRegister;
 import com.example.cookie.model.sperson.SPerson;
 import com.example.cookie.service.PersonService;
@@ -82,5 +85,24 @@ public class PersonController {
     model.addAttribute("sPerson", sPerson);
 		
 		return "person/detail";
+	}
+	
+	@PostMapping("rent")
+	public String rentPerson(@SessionAttribute("signInMember") Member signInMember, 
+													@ModelAttribute("data") RentPerson rentPerson, BindingResult result)	{
+		
+		log.info("rentPerson : {} ", rentPerson);
+		
+		RentPerson findRentPerson = personService.findRentPersonById(rentPerson.getPerson_id(), signInMember.getMember_id());
+		
+		if(findRentPerson != null) {
+			result.reject("alreadyRent", "이미 예약된 장소입니다");
+			return "redirect:/person/detail";
+		} else {
+			rentPerson.setMember_id(signInMember.getMember_id());
+			
+			personService.rentPerson(rentPerson);
+			return "redirect:/person/list";
+		}
 	}
 }

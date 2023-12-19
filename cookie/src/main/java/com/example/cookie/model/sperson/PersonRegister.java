@@ -16,6 +16,7 @@ public class PersonRegister {
 	@NotEmpty(message="상세정보를 입력해주세요")
 	private String person_content;
 	private String saved_filename;
+	private String member_mbti;
 	
 	public static SPerson toSPerson(PersonRegister personRegister) {
 		SPerson sPerson = new SPerson();
@@ -24,6 +25,7 @@ public class PersonRegister {
 		sPerson.setPerson_category(personRegister.getPerson_category());
 		sPerson.setPerson_content(personRegister.getPerson_content());
 		sPerson.setSaved_filename(personRegister.getSaved_filename());
+		sPerson.setMember_mbti(personRegister.getMember_mbti());
 		return sPerson;
 	}
 }

@@ -48,16 +48,22 @@
 			rentPlace_id desc
 	</select>
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+<insert id="saveFile" parameterType="file">
+<selectKey keyProperty="attachedfile_id" resultType="long" order="BEFORE">
+	select seq_sperson.nextval from dual
+</selectKey>
+	insert into attached_file(
+		attachedfile_id,
+		original_filename,
+		saved_filename,
+		file_size
+	) values(
+		#{attachedfile_id},
+		#{original_filename},
+		#{saved_filename},
+		#{file_size}
+	)
+</insert>	
 	
 	<!-- 저장된 멤버 업데이트 -->
     <update id="updateMember" parameterType="com.example.cookie.model.member.Member">

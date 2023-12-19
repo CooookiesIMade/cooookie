@@ -2,12 +2,17 @@ package com.example.cookie.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.example.cookie.model.file.AttachedFile;
+import com.example.cookie.model.file.PersonAttachedFile;
 import com.example.cookie.model.member.Member;
 import com.example.cookie.model.rent.RentPlace;
 import com.example.cookie.repository.MemberMapper;
+import com.example.cookie.util.FileService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,9 +24,19 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberService {
 
 	private final MemberMapper memberMapper;
+	private final FileService fileService;
+	@Value("${file.upload.path}")
+  private String uploadPath;	
 	
-	public void saveMember(Member member) {
+	@Transactional
+	public void saveMember(Member member, MultipartFile file) {
 		memberMapper.saveMember(member);
+	   if(file != null && file.getSize() > 0) {
+	     	//첨부파일을 서버에 저장
+	     	AttachedFile attachedFile = fileService.saveFile(file);
+	     	//첨부파일 내용을 데이터베이스에 저장
+	     	memberMapper.saveFile(attachedFile);
+		   }
 	}
 
 	public Member findMember(String member_id) {

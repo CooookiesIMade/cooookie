@@ -150,8 +150,12 @@
 
 <body>
 	<div class="my-container" th:object="${signInMember}">
-		<img th:src="@{'/images/upload/' + ${signInMember.saved_filename}}" alt="프로필사진" class="my-img" />
-		<div class="nameIcon-container">
+		<th:block th:if="${signInMember.saved_filename != null}">
+		<img th:src="@{'/images/upload/' + ${signInMember.saved_filename}}" alt="프로필사진" class="my-img" />			
+		</th:block>
+		<th:block th:if="${signInMember.saved_filename == null}">
+<img src="/images/upload/user.png" alt="프로필 사진" class="my-img">
+</th:block>		<div class="nameIcon-container">
 			<span class="myNickName" th:text="${signInMember.member_nick}"></span>
 		</div>
 		<span class="myMBTI" th:text="${signInMember.member_mbti}"></span>
@@ -176,7 +180,7 @@
 			<p class="place-h" th:text="${rplace.place_name}"></p>
 		<div class="col-md-8">
 			<span class="place-addr bold" th:text="${rplace.place_address}">주소</span>
-			<div class="place-addr" th:text="${rplace.rentPlace_start} + ' ~ ' + ${rplace.rentPlace_end}"></div>
+			<div class="place-addr" th:text="${#dates.format(rplace.rentPlace_start, 'yyyy-MM-dd HH:mm')} + ' ~ ' + ${#dates.format(rplace.rentPlace_end,'yyyy-MM-dd HH:mm')}"></div>
 			<div class="re-btn" onclick="reviewModal()">리뷰쓰기</div>
 		</div>
 			<div class="col-md-4">
