@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<script src="https://kit.fontawesome.com/5e5e7712e7.js" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link href="/css/user.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script th:inline="javascript">
+	function removeReview(review_id){
+		console.log(review_id)
+		Swal.fire({
+			title : '작성한 리뷰 삭제하시겠습니까?',
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: '삭제하기 ',
+			cancelButtonText: '취소하기'
+		}).then((result) => {
+			if(result.isConfirmed){
+				const url = "/review/delete?review_id=" + review_id;
+				$.ajax({
+					url : url,
+					type : "GET",
+					success : function(result){
+						Swal.fire(
+							'삭제완료'
+						).then((result)=>{
+							if(result.isConfirmed){
+								location.reload();
+							}
+						})
+					}
+				})
+			}
+		})
+	}
+</script>
+
+
+
+<body>
+	<div class="my-container" th:object="${signInMember}">
+		<th:block th:if="${signInMember.saved_filename != null}">
+		<img th:src="@{'/images/upload/' + ${signInMember.saved_filename}}" alt="프로필사진" class="my-img" />			
+		</th:block>
+		<th:block th:if="${signInMember.saved_filename == null}">
+		<img src="/images/upload/user.png" alt="프로필 사진" class="my-img">
+		</th:block>
+		<div class="nameIcon-container">
+			<span class="myNickName" th:text="${signInMember.member_nick}"></span>
+		</div>
+		<span class="myMBTI" th:text="${signInMember.member_mbti}"></span>
+		<section class="content-category">
+			<span><i class="fa-solid fa-dollar-sign"></i></i>
+				<p>등록내역</p>
+			</span>
+			<span th:onclick="location.href='/user/myrent'"><i class="fa-regular fa-clock"></i>
+				<p>예약내역</p>
+			</span>
+			<span><i class="fa-regular fa-heart"></i>
+				<p>관심장소</p>
+			</span>
+			<span th:onclick="loaction.href='/review/place'"><i class="fa-solid fa-bars"></i>
+				<p>리뷰내역</p>
+			</span>
+			<span th:onclick="location.href='/'"><i class="fa-solid fa-house"></i>
+				<p>홈으로</p>
+			</span>
+		</section>
+		<div class="row body-container" th:each="review : ${reviews}">
+			<p class="place-h" th:text="${review.place_name}"></p>
+		<div class="col-md-8">
+			<span class="place-addr bold" th:text="${review.place_address}">주소</span>
+			<div class="place-addr" th:text="${#dates.format(review.review_time ,'yyyy-MM-dd HH:mm')}"></div>
+			<div th:text="${review.review_contents}"></div>
+			<div class="re-btn" th:onclick="removeReview(this.getAttribute('id'))" th:id="${review.review_id}">리뷰삭제</div>
+		</div>
+			<div class="col-md-4">
+			<img th:src="@{'/images/upload/' + ${review.saved_filename}}" alt="이미지" width="100%" height="100px"/>				
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

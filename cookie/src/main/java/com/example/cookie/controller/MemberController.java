@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.cookie.model.member.Member;
 import com.example.cookie.model.member.MemberSignIn;
@@ -35,7 +38,9 @@ public class MemberController {
 	private final MemberService memberService;
 	
 	private final MemberValidator memberValidator;
-
+	
+	@Value("${file.upload.path}")
+	private String uploadPath;
 	// 회원가입 페이지 이동
 	@GetMapping("signup")
 	public String signUp(Model model) {
@@ -45,15 +50,18 @@ public class MemberController {
 	
 	// 회원가입 하기
 	@PostMapping("signup")
-	public String signUp(@Validated @ModelAttribute("member") MemberSignUp memberSignUp, BindingResult result, Model model) {
+	public String signUp(@Validated @ModelAttribute("member") MemberSignUp memberSignUp, BindingResult result, Model model,
+						@RequestParam(required = false) MultipartFile file) {
 		
 		log.info("member : {}", memberSignUp);
+		log.info("file : {}", file);
 		
 		
 		if(result.hasErrors()) {
 			return "user/signup";
 		}
-		memberService.saveMember(MemberSignUp.toMember(memberSignUp));
+		memberSignUp.setSaved_filename(file.getOriginalFilename());
+		memberService.saveMember(MemberSignUp.toMember(memberSignUp), file);
 		return "redirect:/";
 		
 	}
@@ -99,16 +107,13 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-
-	
-	
 	@GetMapping("myrent")
 	public String myRent(@SessionAttribute("signInMember") Member signinMember, Model model) {
 		
 		model.addAttribute("signInMember",signinMember);
 		
 		List<RentPlace> rentPlace = memberService.findRentPlaces(signinMember.getMember_id());
-		log.info("rentPlace : {}", rentPlace);
+		// log.info("rentPlace : {}", rentPlace);
 		model.addAttribute("rentPlace", rentPlace);
 		
 		

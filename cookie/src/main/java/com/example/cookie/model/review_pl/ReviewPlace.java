@@ -1,8 +1,9 @@
 package com.example.cookie.model.review_pl;
 
-import java.time.LocalDateTime;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import java.util.Date;
+
+
 
 import lombok.Data;
 
@@ -13,7 +14,10 @@ public class ReviewPlace {
 	private String member_id;
 	private Long place_id;
 	private String review_contents;
-	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
-	private LocalDateTime review_time;
+	private Date review_time;
+	private String place_name;
+	private String saved_filename;
+	private String place_address;
+	
 	
 }

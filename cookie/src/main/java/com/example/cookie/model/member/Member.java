@@ -13,6 +13,6 @@ public class Member {
 	private String member_pho;
 	private String member_mbti;
 	private LocalDateTime member_new;
-	private String member_profile;
+	private String saved_filename;
 	
 }

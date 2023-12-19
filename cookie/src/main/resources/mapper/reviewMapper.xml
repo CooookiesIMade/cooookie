@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -29,4 +30,52 @@
 	
 
 	
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.cookie.repository.ReviewMapper">
+	
+	<insert id="savePlaceReview">
+		<selectKey keyProperty="review_id" resultType="long" order="BEFORE">
+			select seq_review.nextval from dual
+		</selectKey>
+		insert into review_pl(
+			review_id,
+			member_id,
+			place_id,
+			review_contents,
+			review_time
+		) values(
+			#{review_id},
+			#{member_id},
+			#{place_id},
+			#{review_contents},
+			SYSDATE
+		)
+	</insert>
+	
+	<select id="findReviewPlaceById" resultType="reviewPlace" parameterType="map">
+		select * from review_pl where place_id = #{place_id} and member_id = #{member_id}
+	</select>
+	
+	<select id="findReviewsById" resultType="reviewPlace" parameterType="map">
+		select 
+		r.review_id,
+		r.member_id,
+		s.place_id,
+		r.review_contents,
+		r.review_time,
+		s.place_name,
+		s.saved_filename
+		from review_pl r join splace s on(r.place_id = s.place_id)
+		where r.member_id = #{member_id}
+	</select>
+	
+	<delete id="removeReview">
+		delete from review_pl where review_id = #{review_id}
+	</delete>
+	
+>>>>>>> branch 'Review' of https://github.com/CooookiesIMade/cooookie.git
 </mapper>
