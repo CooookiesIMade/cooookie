@@ -32,7 +32,29 @@
 			$(".totalprice").text(totalPrice);
 			$(".totaltime").text(rentHour + '시간');
 		});
-	});		
+		
+		let flag = false;
+		$('.like-btn').on('click', function(){
+		let noheart = $('.no');
+		let html = `<i class="fa-regular fa-heart" style="color: #ec091f;"></i>`
+		let html2 = `<i class="fa-regular fa-heart no"></i>`
+		if(flag == false){
+			$('.like-btn').html(html)
+			flag = true;
+		} else if(flag == true) {
+			$('.like-btn').html(html2)
+			flag = false;
+		}
+		
+		})
+		
+		function openChat(){
+			
+		}
+		
+		
+		
+});		
 	
 	let max_per = /*[[${place.place_count}]]*/'';	
 	let place_id = /*[[${place.place_id}]]*/'';	
@@ -41,6 +63,34 @@
 		if(el.value <= max_per){
 			return el.value;
 		} else alert("최대수용인원을 넘을수 없음")
+	}
+	
+	
+	function chatHandler(){
+		const place_id = /*[[${place.place_id}]]*/'';
+		const host_name = /*[[${place.member_nick}]]*/'';
+		const sender = /*[[${session.signInMember.member_nick}]]*/'';
+		const roomName = /*[[${place.place_name}]]*/'';
+		const url = '/chat/createRoom'
+		const url2 = '/chat/chatRoom?roomId=' + place_id 
+		$.ajax({
+			url : url,
+			method : 'POST',
+			data : {roomId : place_id, roomName : roomName, host_name : host_name , sender : sender},
+			success : function(result){	
+				$.ajax({
+					url : url2,
+					method : 'GET',				
+				}).then(()=>{
+					window.open('/chat/chatRoom?roomId=' + place_id, '',"width=700px,height=600px,top=200px,left=200px;" )
+					
+				})
+			},
+			error : function(err){
+				console.log(err);
+			}
+			
+		})
 	}
 	
 	
@@ -88,7 +138,13 @@
 				});
 			}
 		})
+		
+	
+		
 }
+	
+	
+
 </script>
 
 <body>
@@ -119,10 +175,11 @@
 						</div>
 						<div class="review-infocontainer">
 							<div th:text="${review.review_contents}" style="color: black; font-size: larger; font-weight: bolder;"></div>
+							<div style="font-size:20px; margin-left:11px; justify-content: center; margin-top: -3px;" class="like-btn"><i class="fa-regular fa-heart no"></i></div>
 						</div>
 					</section>
 				</section>
-				</div>
+				</div>	
 				
 
 				<script th:inline="javascript">					
@@ -164,7 +221,7 @@
 							map.setCenter(coords);
 						};
 					});
-		
+				
 				</script>
 			</div>
 			<div class="sticky-parent">
@@ -211,14 +268,14 @@
 						</table>
 						<div class="totalprice_box">
 							<span class="totaltime"></span>
-							<span class="tomato">₩</span><span class="totalprice" value="40000"></span>
+							<span class="tomato">₩</span><span class="totalprice" th:value="${place.place_price}"></span>
 						</div>
 						<div class="formbtn_box">
 							<button class="buynowbtn formbtn" id="reservation" onclick="rentHandler()" type="button">예약하기</button>
 						</div>
 					</form>
 					<div class="sns_talk">
-						<button class="naver_talk">대여자에게 <b>톡톡</b> 문의하세요!</button>
+						<button class="naver_talk" onclick="chatHandler()">대여자에게 <b>톡톡</b> 문의하세요!</button>
 					</div>
 				</div>
 			</div>

@@ -12,13 +12,17 @@ import lombok.Data;
 public class ChatRoom {
 
 	private String roomId;
-	private String name;
+	private String roomName;
+	private String host_name;
+	private String sender;
 	// 방 한개마다 여러사용자들을 set형태로 가지고 있게
 	private Set<WebSocketSession> sessions = new HashSet<>();
 	
 	@Builder
-	public ChatRoom(String roomId, String name) {
+	public ChatRoom(String roomId, String roomName, String host_name, String sender) {
 		this.roomId = roomId;
-		this.name = name;
+		this.roomName = roomName;
+		this.host_name = host_name;
+		this.sender = sender;
 	}
 }

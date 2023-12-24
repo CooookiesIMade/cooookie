@@ -20,6 +20,7 @@ public class SplaceRegister {
 	private String place_content;
 	private Long place_price;
 	private String saved_filename;
+	private String member_nick;
 	
 	
 	public static Splace toPlace(SplaceRegister splaceRegister) {
@@ -34,6 +35,7 @@ public class SplaceRegister {
 		splace.setPlace_content(splaceRegister.getPlace_content());
 		splace.setPlace_price(splaceRegister.getPlace_price());
 		splace.setSaved_filename(splaceRegister.getSaved_filename());
+		splace.setMember_nick(splaceRegister.getMember_nick());
 		
 		return splace;
 	}

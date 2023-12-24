@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"/>
  <link rel="stylesheet" href="/css/chat.css">
 <body>
 <input type="text" placeholder="보낼 메세지를 입력하세요." class="content">
@@ -17,11 +18,9 @@
 
 
 <script th:inline="javascript">
-		let room = /*[[${room}]]*/'';
-		let sender = /*[[${session.signInMember.member_nick}]]*/'';
+		let sender = /*[[${session.signInMember.member_id}]]*/'';
 		let user = /*[[${room.sender}]]*/'';
 		let host = /*[[${room.host_name}]]*/'';
-		console.log(room)
 		console.log(sender);
 		console.log(user);
 		console.log(host)
@@ -56,22 +55,18 @@
 
 
         //메세지 보내기 버튼 눌렀을 떄..
-       function sendMsg() {
-        let content = document.querySelector('.content').value;
-        var talkMsg = {"type": "TALK", "roomId": /*[[${room.roomId}]]*/'', "sender": sender, "msg": content};
-        if (socket.readyState === WebSocket.OPEN) {
-            socket.send(JSON.stringify(talkMsg));
-        } else {
-            console.log('WebSocket 연결이 열리지 않았습니다.');
+        function sendMsg() {
+            let content=document.querySelector('.content').value;
+             var talkMsg={"type" : "TALK","roomId":/*[[${room.roomId}]]*/'',"sender":sender,"msg":content};
+        	   socket.send(JSON.stringify(talkMsg));
         }
-    }
 
-    function quit() {
-        var quitMsg = {"type": "QUIT", "roomId": /*[[${room.roomId}]]*/'', "sender": sender, "msg": ""};
-        socket.send(JSON.stringify(quitMsg));
-        socket.close();
-        window.close();
-    }
+        function quit(){
+             var quitMsg={"type" : "QUIT","roomId":/*[[${room.roomId}]]*/'',"sender":sender,"msg":""};
+           socket.send(JSON.stringify(quitMsg));
+            socket.close();
+            location.href='/place/list';
+        }
 
 </script>
 

@@ -45,7 +45,8 @@
 			s.place_count,
 			s.place_price,
 			m.member_pho,
-			s.saved_filename
+			s.saved_filename,
+			m.member_nick
 			
 		 from 
 		 	splace s join member m on(s.member_id = m.member_id)

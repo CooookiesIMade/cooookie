@@ -29,7 +29,7 @@
                      '리뷰 등록되었습니다'
                   ).then((result)=>{
                      if(result.isConfirmed){
-                        location.href='/user/myrent'
+                        location.href='/review/place'
                      } 
                   })
                },
@@ -49,6 +49,8 @@
    }
    
 </script>
+
+	
 
 <body>
    <div class="my-container" th:object="${signInMember}">
@@ -79,6 +81,7 @@
             <p>홈으로</p>
          </span>
       </section>
+      
       <div class="row body-container" th:each="rplace : ${rentPlace}">
          <p class="place-h" th:text="${rplace.place_name}"></p>
       <div class="col-md-8">

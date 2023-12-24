@@ -42,7 +42,7 @@
 			r.member_id = #{member_id}
 	</select>
 	
-	<select id="findAllReview" resultType="reviewPlace">
+	<select id="findReviewByPlaceId" resultType="reviewPlace">
 		select 
 			r.review_id,
 			m.member_id,
@@ -53,6 +53,7 @@
 			m.saved_filename
 		from 
 			review_pl r join member m on(r.member_id = m.member_id)
+		where r.place_id = #{place_id}
 	</select>
 	
 	

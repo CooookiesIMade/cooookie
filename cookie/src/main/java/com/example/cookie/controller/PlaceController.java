@@ -66,7 +66,7 @@ public class PlaceController {
 		
 		Splace place = placeService.findPlaceById(place_id);
 		// log.info("상세 place 정보 : {}" , place);
-		List<ReviewPlace> allReviews = reviewMapper.findAllReview();
+		List<ReviewPlace> allReviews = reviewMapper.findReviewByPlaceId(place_id);
 		
 		
 		model.addAttribute("place", place);

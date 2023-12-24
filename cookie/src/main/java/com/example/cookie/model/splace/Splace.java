@@ -15,5 +15,6 @@ public class Splace {
 	private String place_content;
 	private Long place_price;
 	private String member_pho;
+	private String member_nick;
 	private String saved_filename;
 }

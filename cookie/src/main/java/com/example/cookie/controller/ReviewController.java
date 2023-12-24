@@ -36,6 +36,10 @@ public class ReviewController {
       
       List<ReviewPlace> reviews = reviewMapper.findReviewsById(signinMember.getMember_id());
       
+      
+      
+      
+      
       model.addAttribute("reviews", reviews);
       // log.info("reviews : {} ", reviews);
       

@@ -37,13 +37,13 @@ public class ChatService {
         return chatRooms.get(roomId);
     }
 
-    public ChatRoom createRoom(String name) {
-        String randomId = UUID.randomUUID().toString();
+    public ChatRoom createRoom(ChatRoom room) {
         ChatRoom chatRoom = ChatRoom.builder()
-        		.roomId(randomId)
-        		.name(name)
+        		.roomId(room.getRoomId())
+        		.roomName(room.getRoomName())
+        		.host_name(room.getHost_name())
         		.build();
-        chatRooms.put(randomId, chatRoom);
+        chatRooms.put(room.getRoomId(), chatRoom);
         return chatRoom;
     }
 }
