@@ -3,17 +3,38 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script th:inline="javascript">
+	let roomId = /*[[${roomId}]]*/'';
+	function chatHandler(){
+	let chat_name = $('input[name=name]').val()
+		console.log(chat_name , roomId)
+		$.ajax({
+			url : '/chat/createRoom',
+			method : 'POST',
+			data : {name : chat_name, roomId : roomId}
+		}).then(()=>{
+			$.ajax({
+				url : '/chat/chatRoom?roomId=' + roomId,
+				method : 'GET',
+				success : function(){
+					window.open('/chat/chatRoom?roomId=' + roomId, '',"width=700px,height=600px,top=200px,left=200px;")
+				}	
+			})
+		})
+	}
+</script>
 <body>
 
-<form action="/chat/createRoom" method="post">
-    <input type="text" name="name" placeholder="채팅방 이름">
-    <button type="submit" >방 만들기</button>
-</form>
+<!--<form action="/chat/chatRoom?roomId=" method="post">
+</form> --> 
+    <input type="text" name="name" placeholder="문의하기" id="inp">
+    <button  onclick="chatHandler()" >문의하기</button>
 
 <table>
     <tr th:each="room : ${roomList}" >
         <td>
-            <a th:href="@{chatRoom(roomId=${room.roomId} )}"
+            <a th:href="@{chatRoom(roomId=${room.roomId})}"
                th:text="${room.name}"></a>
         </td>
     </tr>

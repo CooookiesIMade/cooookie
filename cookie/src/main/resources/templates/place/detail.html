@@ -43,6 +43,24 @@
 		} else alert("최대수용인원을 넘을수 없음")
 	}
 	
+	function chatHandler(){
+		const place_id = /*[[${place.place_id}]]*/'';
+		const chat_name = /*[[${place.place_name}]]*/'';
+		const url = '/chat/chatList?roomId=' + place_id
+		
+		$.ajax({
+			url : url,
+			method : 'GET',
+			success : function(result){	
+				window.open('/chat/chatList?roomId=' + place_id, '',"width=700px,height=600px,top=200px,left=200px;" )
+			},
+			error : function(err){
+				console.log(err);
+			}
+			
+		})
+	}
+	
 	
 	function rentHandler(){
 		let start = new Date($(".first-date").val());
@@ -218,7 +236,7 @@
 						</div>
 					</form>
 					<div class="sns_talk">
-						<button class="naver_talk">대여자에게 <b>톡톡</b> 문의하세요!</button>
+						<button class="naver_talk" onclick="chatHandler()">대여자에게 <b>톡톡</b> 문의하세요!</button>
 					</div>
 				</div>
 			</div>
