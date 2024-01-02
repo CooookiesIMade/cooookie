@@ -9,7 +9,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.cookie.model.file.AttachedFile;
 import com.example.cookie.model.member.Member;
+import com.example.cookie.model.rent.RentPerson;
 import com.example.cookie.model.rent.RentPlace;
+import com.example.cookie.model.sperson.SPerson;
+import com.example.cookie.model.splace.Splace;
 import com.example.cookie.repository.MemberMapper;
 import com.example.cookie.util.FileService;
 
@@ -49,6 +52,10 @@ public class MemberService {
 		return memberMapper.findRentPlaces(member_id);
 	}
 	
+	public List<RentPerson> findRentPerson(String member_id){
+		return memberMapper.findRentPerson(member_id);
+	}
+	
 	@Transactional
     public void updateMember(String member_id, Member updatedMember) {
         Member currentMember = memberMapper.findMember(member_id);
@@ -66,4 +73,15 @@ public class MemberService {
         }
         
     }
+
+	public List<Splace> findRegisterPlaces(String member_id) {
+		return memberMapper.findRegisterPlaces(member_id);
+
+	}
+
+	public List<SPerson> findRegisterPerson(String member_id) {
+		return memberMapper.findRegisterPerson(member_id);
+	}
+	
+	
 }

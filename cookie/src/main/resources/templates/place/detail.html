@@ -32,16 +32,69 @@
 			$(".totalprice").text(totalPrice);
 			$(".totaltime").text(rentHour + '시간');
 		});
+		
+		let flag = false;
+		$('.like-btn').on('click', function(){
+		let noheart = $('.no');
+		let html = `<i class="fa-regular fa-heart" style="color: #ec091f;"></i>`
+		let html2 = `<i class="fa-regular fa-heart no"></i>`
+		if(flag == false){
+			$('.like-btn').html(html)
+			flag = true;
+		} else if(flag == true) {
+			$('.like-btn').html(html2)
+			flag = false;
+		}
+		
+		})
+		
+		
+		
 	});		
+	
+	
+	
+	
 	
 	let max_per = /*[[${place.place_count}]]*/'';	
 	let place_id = /*[[${place.place_id}]]*/'';	
 	
+
+	
+	
+	
+	
+	// 필요없는 함수(경험)
 	function handleOnInput(el){
-		if(el.value <= max_per){
-			return el.value;
-		} else alert("최대수용인원을 넘을수 없음")
+		let count = $(".place_count").val();
+		if(el.value > max_per){
+			console.log(count);
+			alert("최대수용인원을 넘을수 없음")
+			return count - 1;
+		} 
+		return;
 	}
+	
+	function chatHandler(){
+		const place_id = /*[[${place.place_id}]]*/'';
+		const chat_name = /*[[${place.place_name}]]*/'';
+		const url = '/chat/chatList?roomId=' + place_id
+		
+		$.ajax({
+			url : url,
+			method : 'GET',
+			success : function(result){	
+				window.open('/chat/chatList?roomId=' + place_id, '',"width=700px,height=600px,top=200px,left=200px;" )
+			},
+			error : function(err){
+				console.log(err);
+			}
+			
+		})
+	}
+	
+	
+	
 	
 	
 	function rentHandler(){
@@ -110,7 +163,7 @@
 				<p th:text="${place.member_pho}"></p>
 				<p style="border-bottom: 1px solid lightgray; margin-top: 13px;"></span>
 				<h4 style="margin-top: 20px; margin-bottom: 12px;">리뷰</h4>
-				<section class="review-container" th:each="review : ${reviews}">
+			<section class="review-container" th:each="review : ${reviews}">
 					<img th:src="@{'/images/upload/' + ${review.saved_filename}}" alt="프로필사진" class="user-img">
 					<section style="width: 100%;">
 						<div class="review-infocontainer">
@@ -118,7 +171,8 @@
 							<p th:text="${#dates.format(review.review_time, 'yyyy-MM-dd HH:mm')}" style="margin-left: 20px;"></p>
 						</div>
 						<div class="review-infocontainer">
-							<div th:text="${review.review_contents}" style="color: black; font-size: larger; font-weight: bolder;"></div>
+							<div th:text="${review.review_contents}" style="color: black; font-size: larger; font-weight: bolder; width:600px;"></div>
+							<div style="font-size:20px; margin-left:11px; justify-content: center; margin-top: -3px;" class="like-btn"><i class="fa-regular fa-heart no"></i></div>
 						</div>
 					</section>
 				</section>
@@ -189,7 +243,7 @@
 						<div class="form-group">
 							<label>최대 수용 인원<span th:text="'('+ ${place.place_count} + '명)'" class="max-count"></span></label>
 							<span>
-								<input type="number" value="1" oninput="handleOnInput(this)" class="place_count">
+								<input type="number" value="1" oninput="handleOnInput(this)" class="place_count" th:max="${place.place_count}">
 							</span>
 						</div>
 					</div>
@@ -218,7 +272,7 @@
 						</div>
 					</form>
 					<div class="sns_talk">
-						<button class="naver_talk">대여자에게 <b>톡톡</b> 문의하세요!</button>
+						<button class="naver_talk" onclick="chatHandler()">호스트대여자에게 <b>톡톡</b> 문의하세요!</button>
 					</div>
 				</div>
 			</div>

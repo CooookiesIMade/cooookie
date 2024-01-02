@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.cookie.model.member.Member;
 import com.example.cookie.model.rent.RentPlace;
 import com.example.cookie.model.rent.RentPlaceRegister;
-import com.example.cookie.model.review_pl.ReviewPlace;
+import com.example.cookie.model.review.ReviewPlace;
 import com.example.cookie.model.splace.Splace;
 import com.example.cookie.model.splace.SplaceRegister;
 import com.example.cookie.repository.ReviewMapper;
@@ -66,7 +66,7 @@ public class PlaceController {
 		
 		Splace place = placeService.findPlaceById(place_id);
 		// log.info("상세 place 정보 : {}" , place);
-		List<ReviewPlace> allReviews = reviewMapper.findAllReview();
+		List<ReviewPlace> allReviews = reviewMapper.findReviewByPlaceId(place_id);
 		
 		
 		model.addAttribute("place", place);

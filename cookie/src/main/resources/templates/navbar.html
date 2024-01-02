@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head id="navbar">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script th:inline="javascript">
+$(document).ready(function () {
+	let url = window.location.href;
+	let reg = $(".sign");
+	let res = $(".clock");
+	let rev = $(".bars");
+		if(url === "http://localhost:9001/user/myregister"){
+			reg.addClass('active');
+		} else if(url === "http://localhost:9001/user/myrent"){
+			res.addClass('active');
+		} else if(url === "http://localhost:9001/review/place"){
+			rev.addClass('active');
+		}
+	
+})
+</script>
+<style>
+.active {
+	font-weight : bold;
+	color : tomato;
+}
+</style>
+
+<th:block th:if="${signInMember.saved_filename != null}">
+			<img th:src="@{'/images/upload/' + ${signInMember.saved_filename}}"
+				alt="프로필사진" class="my-img" />
+		</th:block>
+		<th:block th:if="${signInMember.saved_filename == null}">
+			<img src="/images/upload/user.png" alt="프로필 사진" class="my-img">
+		</th:block>
+		<div class="nameIcon-container">
+			<span class="myNickName" th:text="${signInMember.member_nick}"></span>
+		</div>
+		<span class="myMBTI" th:text="${signInMember.member_mbti}"></span>
+		<section class="content-category">
+			<span th:onclick="location.href='/user/myregister'" class="sign"> 
+				<i class="fa-solid fa-dollar-sign"></i>
+				<p>등록내역</p>
+			</span> 
+			<span th:onclick="location.href='/user/myrent'" class="clock">
+				<i class="fa-regular fa-clock"></i>
+				<p>예약내역</p>
+			</span>
+			<span>
+				<i class="fa-regular fa-heart"></i>
+				<p>관심장소</p>
+			</span>
+			<span th:onclick="location.href='/user/review'" class="bars">
+				<i class="fa-solid fa-bars"></i>
+				<p>리뷰내역</p>
+			</span>
+			<span th:onclick="location.href='/'">
+				<i class="fa-solid fa-house"></i>
+				<p>홈으로</p>
+			</span>
+		</section>
+
+</head>
+
+</html>

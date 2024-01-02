@@ -4,6 +4,7 @@ import java.util.List;
 
 
 
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -69,6 +70,11 @@ public class PersonService {
 	
 	public RentPerson findRentPersonById(Long person_id, String member_id) {
 		return personMapper.findRentByPersonId(person_id,member_id);
+	}
+
+
+	public List<SPerson> findPersonByCategory(String person_category) {
+		return personMapper.findPersonByCategory(person_category);
 	}
 	
 }

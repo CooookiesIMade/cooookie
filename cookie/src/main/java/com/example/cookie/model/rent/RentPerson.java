@@ -13,4 +13,8 @@ public class RentPerson {
 	private String person_name;
 	private Date rentPerson_time;
 	private String saved_filename;
+	private String member_mbti;
+	private String member_nick;
+	private String person_category;
+	private String person_content;
 }

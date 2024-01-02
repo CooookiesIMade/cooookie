@@ -21,8 +21,11 @@ import com.example.cookie.model.member.Member;
 import com.example.cookie.model.rent.RentPerson;
 import com.example.cookie.model.rent.RentPlace;
 import com.example.cookie.model.rent.RentPlaceRegister;
+import com.example.cookie.model.review.ReviewPerson;
 import com.example.cookie.model.sperson.PersonRegister;
 import com.example.cookie.model.sperson.SPerson;
+import com.example.cookie.model.splace.Splace;
+import com.example.cookie.repository.ReviewMapper;
 import com.example.cookie.service.PersonService;
 
 import lombok.RequiredArgsConstructor;
@@ -35,7 +38,7 @@ import lombok.extern.slf4j.Slf4j;
 public class PersonController {
 
   private final PersonService personService;
-	
+  private final ReviewMapper reviewMapper;
   @Value("${file.upload.path}")
   private String uploadPath;
 	
@@ -78,12 +81,24 @@ public class PersonController {
 		return "person/list";
 	}
 	
+	@GetMapping("category")
+	public String category(Model model, @RequestParam("person_category") String person_category) {
+		log.info("category : {}" ,person_category);
+		List<SPerson> persons = personService.findPersonByCategory(person_category);
+		log.info("persons : {}" , persons);
+		model.addAttribute("persons", persons);
+		
+		return "person/list";
+	}
+	
 	@GetMapping("detail")
 	public String Detail(@RequestParam("person_id") Long person_id, Model model) {
 		
 		SPerson sPerson = personService.findPersonByPersonId(person_id);
+		List<ReviewPerson> reviewPerson = reviewMapper.findReviewByPersonId(person_id);
     model.addAttribute("sPerson", sPerson);
-		
+    model.addAttribute("reviewPerson", reviewPerson);
+		log.info("reviewPerson : {}", reviewPerson);
 		return "person/detail";
 	}
 	

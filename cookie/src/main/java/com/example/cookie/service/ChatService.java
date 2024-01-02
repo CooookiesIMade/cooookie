@@ -16,15 +16,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
-@Slf4j
 public class ChatService {
 
-	private final ObjectMapper objectMapper;
-	private Map<String, ChatRoom> chatRooms; // DB연동되면 방을 DB에저장하고 db 없을때는 Map형태로 방을 저장
-	
-	@PostConstruct
+    private final ObjectMapper objectMapper;
+    private Map<Long, ChatRoom> chatRooms;
+
+    @PostConstruct
     private void init() {
         chatRooms = new LinkedHashMap<>();
     }
@@ -33,17 +33,17 @@ public class ChatService {
         return new ArrayList<>(chatRooms.values());
     }
 
-    public ChatRoom findRoomById(String roomId) {
+    public ChatRoom findRoomById(Long roomId) {
         return chatRooms.get(roomId);
     }
 
-    public ChatRoom createRoom(String name) {
+    public ChatRoom createRoom(String name, Long roomId) {
         String randomId = UUID.randomUUID().toString();
         ChatRoom chatRoom = ChatRoom.builder()
-        		.roomId(randomId)
-        		.name(name)
-        		.build();
-        chatRooms.put(randomId, chatRoom);
+                .roomId(roomId)
+                .name(name)
+                .build();
+        chatRooms.put(roomId, chatRoom);
         return chatRoom;
     }
 }

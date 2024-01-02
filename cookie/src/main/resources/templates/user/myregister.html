@@ -1,187 +1,154 @@
+
 <!DOCTYPE html>
 <html>
-<script src="https://kit.fontawesome.com/5e5e7712e7.js" crossorigin="anonymous"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<head th:replace="~{navbar :: #navbar}"></head>
+<script src="https://kit.fontawesome.com/5e5e7712e7.js"
+	crossorigin="anonymous"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+	crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link href="/css/user.css" rel="stylesheet">
+
 <style>
-.my-container {
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-	border-radius: 20px;
-	width: 840px;
-	box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 15px;
-	background-color: #ffffff;
-	padding: 20px;
-	box-sizing: border-box;
-	margin: 0 auto;
-	margin-top: 140px;
-	margin-bottom: 60px;
-
-	@media (max-width: 840px) {
-		width: 480px;
-	}
+.show {
+	display : flex;
 }
-.my-img {
-	width: 64px;
-	height: 64px;
-	overflow: hidden;
-	border-radius: 35px;
-	margin-bottom: 8px;
-	border: 2px solid rgba(255, 255, 255, 0);
-
-	:hover {
-		cursor: pointer;
-		border: 2px solid #ffda77;
-	}
+.hide {
+	display : none;
+}
+.togglebtn {
+	display: inline-block;
+	width: 140px;
+	height: 30px;
+	position: relative;
+	margin: 20px;
+	margin-bottom: 30px;
 }
 
-.nameIcon-container {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: row;
-	margin-bottom: 6px;
-
-	& svg {
-		color: #ffda77;
-		margin-left: 8px;
-		cursor: pointer;
-	}
+.togglebtn input[type="checkbox"] {
+	display: none;
 }
 
-.myNickName {
-	font-size: 1.3rem;
-	font-weight: 700;
-}
-
-.myMBTI {
-	font-size: 1rem;
-	font-weight: 500;
-}
-
-.content-category {
-	display: flex;
-	justify-content: space-between;
-}
-
-.content-category>span {
-	width: 100px;
-	margin: 10px;
-	text-align: center;
-	font-size: 15px;
-}
-
-.content-category>span:hover {
-	color: tomato;
-}
-
-.content-category>span>p {
-	margin-top: 8%;
-}
-
-.body-container {
-	width: 80%;
-}
-
-.place-h {
-	font-weight: 500;
-	font-size: 18px;
-	margin-bottom: 6px;
-	color: #1b1c1e;
+label {
+	display: block;
+	position: relative;
+	width: 160px;
+	height: 30px;
+	background: #d3d3d3;
+	border-radius: 60px;
+	transition: background 0.4s;
 	cursor: pointer;
-	border-bottom: 0.5px solid gray;
-
-	@media (max-width: 840px) {
-		font-size: 1rem;
-	}
 }
-.place-title {
-	font-weight: 500;
+
+label::after {
+	content: "";
+	position: absolute;
+	left: 1.5px;
+	top: 50%;
+	width: 80px;
+	height: 27.5px;
+	border-radius: 60px;
+	background-color: #fff;
+	transform: translateY(-50%);
+	box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.1);
+	transition: all 0.4s;
+}
+
+label::before {
+	content: "공간";
 	font-size: 18px;
-	margin-bottom: 6px;
-	color: #1b1c1e;
-	cursor: pointer;
-
-	@media (max-width: 840px) {
-		font-size: 1rem;
-	}
+	font-family: Arial, Helvetica, sans-serif;
+	position: absolute;
+	right: 25px;
+	top: 50%;
+	transform: translateY(-50%);
+	transition: all 0.4s;
 }
-.place-addr {
-	font-size: 13px;
-	color: #666666;
-	}
-	.bold {
-		font-weight: bolder;
-		font-size:medium;
-	}
-.re-btn {
-	font-size: 1rem;
-	color: #eb7470;
-	margin-top: 5px;
 
-  @media (max-width: 840px) {
-    font-size: 14px;
-  }
-  :hover {
-    cursor: pointer;
-    font-weight: bold;
-  }
-  & svg :hover {
-    cursor: pointer;
-  }
-	}
-		
+.togglebtn input[type="checkbox"]:checked+label {
+	background: rgba(109, 104, 107)
+}
+
+.togglebtn input[type="checkbox"]:checked+label::after {
+	left: calc(100% - 81.5px);
+}
+
+.togglebtn input[type="checkbox"]:checked+label::before {
+	content: "사람";
+	color: #fff;
+	left: 25px;
+}
+div:where(.swal2-container) div:where(.swal2-popup) {
+	padding : 1.25em 1.25em 1.5em;
+}
+.swal2-textarea{
+margin-top: 20px;
+}
 </style>
+
 <script th:inline="javascript">
-	function reviewModal(){
-		Swal.fire({
-			input : "textarea",
-			inputLabel : "리뷰쓰기",
-			inputPlaceholder : "리뷰는 이용자들에게 도움이 됩니다",
-			confirmButtonText : '등록하기',
-			showCancelButton: true,
-			cancelButtonText : '취소하기'
-		})
+
+	let check = true;
+	function switchCheck(){		
+		if(check){
+			$("#pl-container").removeClass('show');
+			$("#pl-container").addClass('hide');
+			$("#pe-container").removeClass('hide');
+			$("#pe-container").addClass('show')
+			check = false; 
+		} else {
+			$("#pl-container").removeClass('hide');
+			$("#pl-container").addClass('show');
+			$("#pe-container").addClass('hide');
+			$("#pe-container").removeClass('show')
+			check = true;
+		}
+		
 	}
 </script>
 
 <body>
 	<div class="my-container" th:object="${signInMember}">
-		<img src="/images/user.png" alt="프로필사진" class="my-img" />
-		<div class="nameIcon-container">
-			<span class="myNickName" th:text="${signInMember.member_nick}"></span>
-		</div>
-		<span class="myMBTI" th:text="${signInMember.member_mbti}"></span>
-		<section class="content-category">
-			<span><i class="fa-solid fa-dollar-sign"></i></i>
-				<p>등록내역</p>
-			</span>
-			<span th:onclick="location.href='/user/myrent'"><i class="fa-regular fa-clock"></i>
-				<p>예약내역</p>
-			</span>
-			<span><i class="fa-regular fa-heart"></i>
-				<p>관심장소</p>
-			</span>
-			<span><i class="fa-solid fa-bars"></i>
-				<p>리뷰내역</p>
-			</span>
-			<span th:onclick="location.href='/'"><i class="fa-solid fa-house"></i>
-				<p>홈으로</p>
-			</span>
-		</section>
-		<div class="row body-container" th:each="rplace : ${rentPlace}">
-			<p class="place-h" th:text="${rplace.place_name}"></p>
-		<div class="col-md-8">
-			<span class="place-addr bold" th:text="${rplace.place_address}">주소</span>
-			<div class="place-addr" th:text="${rplace.rentPlace_start} + ' ~ ' + ${rplace.rentPlace_end}"></div>
-			<div class="re-btn" onclick="reviewModal()">리뷰쓰기</div>
-		</div>
-			<div class="col-md-4">
-			<img th:src="@{'/images/upload/' + ${rplace.saved_filename}}" alt="이미지" width="100%" height="100px"/>				
-			</div>
-		</div>
-	</div>
+		<div th:replace="navbar"></div>
 
+
+		<div class="togglebtn">
+			<input type="checkbox" id="chk1" /> 
+			<label for="chk1" onclick="switchCheck()" id="chk2"></label>
+		</div>
+		
+		<!-- 공간 등록내역 출력 -->
+		<div class="row body-container"  id="pl-container">
+			<th:block th:each="Splace : ${Splace}">
+	         <a class="place-h" th:text="${Splace.place_name}" th:href="@{/place/detail(place_id=${Splace.place_id})}" style="text-decoration: none;"></a>
+		      <div class="col-md-8">
+		         <div th:text="${Splace.place_address}" class="place-addr bold">주소</div>
+		         <div	th:text="'최대인원: ' + ${Splace.place_count} + '명 ' + ' | ' + '가격: ' + ${Splace.place_price} + ' 원 / 시간'">최대인원</div>
+		      </div>
+		         <div class="col-md-4">
+		         <img th:src="@{'/images/upload/' + ${Splace.saved_filename}}" alt="이미지" width="100%" height="100px"/>            
+		         </div>
+		   </th:block>
+		      </div>
+
+
+		<!-- 사람 등록내역 출력 -->
+		<div class="row body-container hide"  id="pe-container" th:each="SPerson : ${SPerson}">
+	         <p class="place-h" th:text="'제목: ' + ${SPerson.person_name}"></p>
+		      <div class="col-md-8">
+		      	<div th:text="'카테고리: ' + ${SPerson.person_category}" class="place-addr bold"></div>
+		      	<div th:text="'MBTI: ' + ${SPerson.member_mbti}" class="place-addr bold"></div>
+		      	<p th:utext="'상세내용: ' + '&nbsp;'+ ${SPerson.person_content}" style="color:#666666;"></p>
+		      </div>
+		         <div class="col-md-4">
+		         <img th:src="@{'/images/upload/' + ${SPerson.saved_filename}}" alt="이미지" width="100%" height=""/>            
+		         </div>
+		      </div>
+	</div>
 </body>
 </html>

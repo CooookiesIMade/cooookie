@@ -68,9 +68,12 @@
 	   p.person_content,
 	   p.person_category,
 	   p.saved_filename,
+	   m.member_pho,
 	   m.member_mbti
-   from sperson p join member m on (p.member_id = m.member_id)
-   where p.person_id = #{person_id}
+   from 
+   sperson p join member m on (p.member_id = m.member_id)
+   where
+   p.person_id = #{person_id} order by person_id desc
  	</select>
  	
   <select id="findFileByAttachedFileId" resultType="file">
@@ -97,5 +100,11 @@
 	
 	<select id="findRentByPersonId" resultType="rentPerson" parameterType="map">
 		select * from rentPerson where person_id = #{person_id} and member_id = #{member_id}
+	</select>
+	
+	<select id="findPersonByCategory" resultType="person">
+		select * from sperson where 
+		person_category LIKE '%' || #{person_category} || '%'
+		order by person_id desc
 	</select>
 </mapper>

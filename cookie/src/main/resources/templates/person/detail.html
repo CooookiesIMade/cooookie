@@ -36,6 +36,21 @@
 			let endDate = new Date(end.val());
 			let rentHour = (endDate - startDate) / (1000 * 60 * 60);
 		});
+		
+		let flag = false;
+		$('.like-btn').on('click', function(){
+		let noheart = $('.no');
+		let html = `<i class="fa-regular fa-heart" style="color: #ec091f;"></i>`
+		let html2 = `<i class="fa-regular fa-heart no"></i>`
+		if(flag == false){
+			$('.like-btn').html(html)
+			flag = true;
+		} else if(flag == true) {
+			$('.like-btn').html(html2)
+			flag = false;
+		}
+		
+		})
 
 	});
 	
@@ -82,6 +97,8 @@
 				});
 			}
 		})
+		
+
 }
 </script>
 <style>
@@ -137,6 +154,24 @@
 			<p class="category" th:text="${sPerson.member_mbti}">
 			</div>
 			<p class="detail_content" th:text="${sPerson.person_content}"></p>
+			<h4 style="margin-top: 15px; margin-bottom: 12px;">호스트연락처</h4>
+			<p th:text="${sPerson.member_pho}"></p>
+			
+			<p style="border-bottom: 1px solid lightgray; margin-top: 13px;"></span>
+			<h4 style="margin-top: 20px; margin-bottom: 12px;">리뷰</h4>
+			<section class="review-container" th:each="review : ${reviewPerson}">
+				<img th:src="@{'/images/upload/' + ${review.saved_filename}}" alt="프로필사진" class="user-img">
+					<section style="width: 100%;">
+						<div class="review-infocontainer">
+							<h4 th:text="${review.member_nick}"></h4>
+							<p th:text="${#dates.format(review.review_time, 'yyyy-MM-dd HH:mm')}" style="margin-left: 20px;"></p>
+						</div>
+						<div class="review-infocontainer">
+						<div th:text="${review.review_contents}" style="color: black; font-size: larger; font-weight: bolder;"></div>
+						<div style="font-size:20px; margin-left:11px; justify-content: center; margin-top: -3px;" class="like-btn"><i class="fa-regular fa-heart no"></i></div>
+						</div>
+					</section>
+			</section>
 			<div class="blank"></div>
 		</div>
 </body>

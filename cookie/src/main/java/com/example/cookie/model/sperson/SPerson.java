@@ -13,4 +13,5 @@ public class SPerson {
 	private String person_category;
 	private String member_nick;
 	private String member_mbti;
+	private String member_pho;
 }

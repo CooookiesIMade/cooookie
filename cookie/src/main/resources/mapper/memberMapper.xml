@@ -47,6 +47,67 @@
 		order by
 			rentPlace_id desc
 	</select>
+
+	<select id="findRentPerson" resultType="rentPerson">
+		select 
+			r.rentPerson_id,
+			r.member_id,
+			s.person_name,
+			r.person_id,
+			s.member_mbti,
+			r.rentPerson_time,
+			s.saved_filename,
+			s.member_nick,
+			s.person_category,
+			s.person_content
+		 from 
+		 	rentPerson r join sperson s
+		 	on (r.person_id = s.person_id)
+		where 
+			r.member_id = #{member_id}
+		order by
+			rentPerson_id desc
+	</select>
+	
+ 	<select id="findRegisterPlaces" resultType="place">
+		select 
+			place_id,
+			member_id,
+			place_name,
+			place_count,
+			place_address,
+			place_category,
+			place_price,
+			saved_filename
+		 from 
+		 	splace
+		where 
+			member_id = #{member_id}
+		order by
+			place_id desc
+	</select>
+	
+ 	<select id="findRegisterPerson" resultType="person">
+		select 
+			p.person_id,
+			m.member_id,
+			p.person_name,
+			p.person_category,
+			m.member_mbti,
+			p.person_content,
+			p.saved_filename
+		 from sperson p join member m on (p.member_id = m.member_id) 
+		where 
+			m.member_id = #{member_id}
+		order by
+			p.person_id desc
+	</select>
+	
+	
+	
+	
+	
+	
 	
 <insert id="saveFile" parameterType="file">
 <selectKey keyProperty="attachedfile_id" resultType="long" order="BEFORE">

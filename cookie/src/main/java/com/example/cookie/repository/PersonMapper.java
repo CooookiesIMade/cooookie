@@ -11,6 +11,7 @@ import com.example.cookie.model.file.PersonAttachedFile;
 import com.example.cookie.model.rent.RentPerson;
 import com.example.cookie.model.rent.RentPlaceRegister;
 import com.example.cookie.model.sperson.SPerson;
+import com.example.cookie.model.splace.Splace;
 
 @Mapper
 public interface PersonMapper {
@@ -32,5 +33,7 @@ public interface PersonMapper {
 	RentPerson findRentByPersonId(@Param("person_id")Long person_id, @Param("member_id")String member_id);
 	
 	void rentPerson(RentPerson rentPerson);
+	
+	List<SPerson> findPersonByCategory(String person_category);
 
 }

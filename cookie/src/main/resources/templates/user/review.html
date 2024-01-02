@@ -5,7 +5,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link href="/css/user.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
+<head th:replace="~{navbar :: #navbar}"></head>
 <script th:inline="javascript">
     function removeReview(review_id) {
         console.log(review_id);
@@ -40,41 +40,115 @@
             }
         });
     }
+    
+  let check = true;
+	function switchCheck(){		
+		if(check){
+			$("#pl-container").removeClass('show');
+			$("#pl-container").addClass('hide');
+			$("#pe-container").removeClass('hide');
+			$("#pe-container").addClass('show')
+			check = false; 
+		} else {
+			$("#pl-container").removeClass('hide');
+			$("#pl-container").addClass('show');
+			$("#pe-container").addClass('hide');
+			$("#pe-container").removeClass('show')
+			check = true;
+		}
+		
+	}
 </script>
 
+<style>
+.show {
+	display : flex;
+}
+.hide {
+	display : none;
+}
+.togglebtn {
+	display: inline-block;
+	width: 140px;
+	height: 30px;
+	position: relative;
+	margin: 20px;
+	margin-bottom: 30px;
+}
 
+.togglebtn input[type="checkbox"] {
+	display: none;
+}
 
+label {
+	display: block;
+	position: relative;
+	width: 160px;
+	height: 30px;
+	background: #d3d3d3;
+	border-radius: 60px;
+	transition: background 0.4s;
+	cursor: pointer;
+}
+
+label::after {
+	content: "";
+	position: absolute;
+	left: 1.5px;
+	top: 50%;
+	width: 80px;
+	height: 27.5px;
+	border-radius: 60px;
+	background-color: #fff;
+	transform: translateY(-50%);
+	box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.1);
+	transition: all 0.4s;
+}
+
+label::before {
+	content: "공간";
+	font-size: 18px;
+	font-family: Arial, Helvetica, sans-serif;
+	position: absolute;
+	right: 25px;
+	top: 50%;
+	transform: translateY(-50%);
+	transition: all 0.4s;
+}
+
+.togglebtn input[type="checkbox"]:checked+label {
+	background: rgba(109, 104, 107)
+}
+
+.togglebtn input[type="checkbox"]:checked+label::after {
+	left: calc(100% - 81.5px);
+}
+
+.togglebtn input[type="checkbox"]:checked+label::before {
+	content: "사람";
+	color: #fff;
+	left: 25px;
+}
+div:where(.swal2-container) div:where(.swal2-popup) {
+	padding : 1.25em 1.25em 1.5em;
+}
+.swal2-textarea{
+margin-top: 20px;
+}
+</style>
 
 <body>
    <div class="my-container" th:object="${signInMember}">
-      <th:block th:if="${signInMember.saved_filename != null}">
-      <img th:src="@{'/images/upload/' + ${signInMember.saved_filename}}" alt="프로필사진" class="my-img" />         
-      </th:block>
-      <th:block th:if="${signInMember.saved_filename == null}">
-      <img src="/images/upload/user.png" alt="프로필 사진" class="my-img">
-      </th:block>
-      <div class="nameIcon-container">
-         <span class="myNickName" th:text="${signInMember.member_nick}"></span>
-      </div>
-      <span class="myMBTI" th:text="${signInMember.member_mbti}"></span>
-      <section class="content-category">
-         <span><i class="fa-solid fa-dollar-sign"></i></i>
-            <p>등록내역</p>
-         </span>
-         <span th:onclick="location.href='/user/myrent'"><i class="fa-regular fa-clock"></i>
-            <p>예약내역</p>
-         </span>
-         <span><i class="fa-regular fa-heart"></i>
-            <p>관심장소</p>
-         </span>
-         <span th:onclick="location.href='/review/place'"><i class="fa-solid fa-bars"></i>
-            <p>리뷰내역</p>
-         </span>
-         <span th:onclick="location.href='/'"><i class="fa-solid fa-house"></i>
-            <p>홈으로</p>
-         </span>
-      </section>
-      <div class="row body-container" th:each="review : ${reviews}">
+     	<div th:replace="navbar"></div>
+     	
+   	<div class="togglebtn">
+			<input type="checkbox" id="chk1" /> 
+			<label for="chk1" onclick="switchCheck()" id="chk2"></label>
+		</div>
+     	
+<!-- 공간 리뷰 출력-->
+      <div class="row body-container" id="pl-container">
+      <th:block th:each="review : ${reviews}">
          <p class="place-h" th:text="${review.place_name}"></p>
       <div class="col-md-8">
          <span class="place-addr bold" th:text="${review.place_address}">주소</span>
@@ -85,8 +159,21 @@
          <div class="col-md-4">
          <img th:src="@{'/images/upload/' + ${review.saved_filename}}" alt="이미지" width="100%" height="100px"/>            
          </div>
+       </th:block>
+      </div>
+      
+<!-- 사람 리뷰 출력--> 
+      <div class="row body-container hide" th:each="reviewPerson : ${reviewPerson}" id="pe-container">
+       <p class="place-h" th:text="'호스트: ' + ${reviewPerson.member_nick}"></p>
+      <div class="col-md-8">
+         <div class="place-addr" th:text="${#dates.format(reviewPerson.review_time ,'yyyy-MM-dd HH:mm')}"></div>
+         <div th:text="${reviewPerson.review_contents}"></div>
+         <div class="re-btn" th:onclick="removeReview(this.getAttribute('id'))" th:id="${reviewPerson.review_id}">리뷰삭제</div>
+      </div>
+         <div class="col-md-4">
+         <img th:src="@{'/images/upload/' + ${reviewPerson.saved_filename}}" alt="이미지" width="100%" height=""/>            
+         </div>
       </div>
    </div>
-
 </body>
 </html>

@@ -23,7 +23,10 @@ import com.example.cookie.model.member.Member;
 import com.example.cookie.model.member.MemberSignIn;
 import com.example.cookie.model.member.MemberSignUp;
 import com.example.cookie.model.member.MemberValidator;
+import com.example.cookie.model.rent.RentPerson;
 import com.example.cookie.model.rent.RentPlace;
+import com.example.cookie.model.sperson.SPerson;
+import com.example.cookie.model.splace.Splace;
 import com.example.cookie.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
@@ -113,9 +116,27 @@ public class MemberController {
 
 		List<RentPlace> rentPlace = memberService.findRentPlaces(signinMember.getMember_id());
 		// log.info("rentPlace : {}", rentPlace);
+		List<RentPerson> rentPerson = memberService.findRentPerson(signinMember.getMember_id());
+		log.info("rentPerson : {}" , rentPerson);
 		model.addAttribute("rentPlace", rentPlace);
+		model.addAttribute("rentPerson", rentPerson);
 
 		return "user/myrent";
+	}
+	
+	@GetMapping("myregister")
+	public String myRegister(@SessionAttribute("signInMember") Member signinMember, Model model) {
+		
+		model.addAttribute("signInMember", signinMember);
+		
+		List<Splace> Splace = memberService.findRegisterPlaces(signinMember.getMember_id());
+		// log.info("rentPlace : {}", rentPlace);
+		List<SPerson> SPerson = memberService.findRegisterPerson(signinMember.getMember_id());
+//		log.info("rentPerson : {}" , rentPerson);
+		model.addAttribute("Splace", Splace);
+		model.addAttribute("SPerson", SPerson);
+		
+		return "user/myregister";
 	}
 
 	@GetMapping("mypage")

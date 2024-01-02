@@ -2,90 +2,15 @@
 <html>
 <head th:replace="~{head :: #head}"></head>
 <head th:replace="~{header :: #header}"></head>
+<head th:replace="~{PersonCategoryList :: #PersonCategoryList}"></head>
 <link rel="stylesheet" type="text/css" href="/css/flaticon.css">
 
 </style>
 <body>
 	<div th:replace="header"/>
+	<div th:replace="PersonCategoryList"></div>
 	<!--explore start -->
 		<section id="explore" class="explore">
-			<div class="container">
-				<div class="section-header">
-					<h2>사람 대여</h2>
-				</div><!--/.section-header-->
-				
-				<section id="list-topics" class="list-topics">
-			<div class="container">
-			<div class="list-topics-content">
-				<ul>
-					<li>
-						<button class="single-list-topics-content" onclick="location.href='/place/list'">
-							<div class="single-list-topics-icon">
-								<i class="fa-solid fa-house"></i>
-							</div>
-							<h2><a>전체</a></h2>
-						</button>
-					</li>
-					<li>
-						<button class="single-list-topics-content" onclick="location.href='/'">
-							<div class="single-list-topics-icon">
-								<i class="fa-solid fa-utensils"></i>
-							</div>
-							<h2><a>식사</a></h2>
-						</button>
-					</li>
-					<li>
-						<button class="single-list-topics-content" onclick="location.href='/'">
-							<div class="single-list-topics-icon">
-								<i class="fa-solid fa-comments"></i>
-							</div>
-							<h2><a>고민상담</a></h2>
-						</button>
-					</li>
-					<li>
-						<button class="single-list-topics-content" onclick="location.href='/'">
-							<div class="single-list-topics-icon">
-								<i class="fa-solid fa-cart-shopping"></i>
-							</div>
-							<h2><a>장보기</a></h2>
-						</button>
-					</li>
-					<li>
-						<button class="single-list-topics-content" onclick="location.href='/'">
-							<div class="single-list-topics-icon">
-								<i class="fa-solid fa-dog"></i>
-							</div>
-							<h2><a >애견산책</a></h2>
-						</button>
-					</li>
-					<li>
-						<button class="single-list-topics-content" onclick="location.href='/'">
-							<div class="single-list-topics-icon">
-								<i class="fa-solid fa-person-half-dress"></i>
-							</div>
-							<h2><a href="#">역할대행</a></h2>
-						</button>
-					</li>
-					<li>
-						<button class="single-list-topics-content" onclick="location.href='/'">
-							<div class="single-list-topics-icon">
-								<i class="fa-solid fa-bars"></i>
-							</div>
-							<h2><a href="">기타</a></h2>
-						</button>
-					</li>
-					<li>
-						<button class="single-list-topics-content red" onclick="location.href='/person/register'">
-							<div class="single-list-topics-icon">
-								<i class="fa-solid fa-plus"></i>
-							</div>
-							<h2><a href="/person/register">등록하기</a></h2>
-						</button>
-					</li>
-				</ul>
-			</div>
-		</div><!--/.container-->
-		
 				<div class="explore-content">
 					<div class="row">
 						<div class=" col-md-4 col-sm-6" th:each="person, personStat: ${persons}">

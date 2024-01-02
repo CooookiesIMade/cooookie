@@ -1,4 +1,4 @@
-package com.example.cookie.model.review_pl;
+package com.example.cookie.model.review;
 
 
 import java.util.Date;

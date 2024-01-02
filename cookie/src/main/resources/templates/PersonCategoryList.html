@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head id="PersonCategoryList">
+
+<!--explore start -->
+		<section id="explore" class="explore">
+			<div class="container">
+				<div class="section-header">
+					<h2>사람</h2>
+				</div><!--/.section-header-->
+				<!--welcome-hero end -->
+		
+		<section id="list-topics" class="list-topics">
+			<div class="container">
+			<div class="list-topics-content">
+				<ul>
+					<li>
+						<button class="single-list-topics-content" th:onclick="location.href='/person/list'">
+							<div class="single-list-topics-icon">
+								<i class="fa-solid fa-children"></i>
+							</div>
+							<h2><a>전체</a></h2>
+						</button>
+					</li>
+					<li>										
+						<button class="single-list-topics-content" th:onclick="|location.href='@{/person/category(person_category=식사)}'|">
+							<div class="single-list-topics-icon">
+								<i class="fa-solid fa-utensils"></i>
+							</div>
+							<h2><a>식사</a></h2>
+						</button>
+					</li>
+					<li>
+						<button class="single-list-topics-content" th:onclick="|location.href='@{/person/category(person_category=고민상담)}'|">
+							<div class="single-list-topics-icon">
+								<i class="fa-solid fa-comments"></i>
+							</div>
+							<h2><a>고민상담</a></h2>
+						</button>
+					</li>
+					<li>
+						<button class="single-list-topics-content" th:onclick="|location.href='@{/person/category(person_category=장보기)}'|">
+							<div class="single-list-topics-icon">
+								<i class="fa-solid fa-cart-shopping"></i>
+							</div>
+							<h2><a>장보기</a></h2>
+						</button>
+					</li>
+					<li>
+						<button class="single-list-topics-content" th:onclick="|location.href='@{/person/category(person_category=애견산책)}'|">
+							<div class="single-list-topics-icon">
+								<i class="fa-solid fa-dog"></i>
+							</div>
+							<h2><a >애견산책</a></h2>
+						</button>
+					</li>
+					<li>
+						<button class="single-list-topics-content" th:onclick="|location.href='@{/person/category(person_category=역할대행)}'|">
+							<div class="single-list-topics-icon">
+								<i class="fa-solid fa-person-half-dress"></i>
+							</div>
+							<h2><a>역할대행</a></h2>
+						</button>
+					</li>
+					<li>
+						<button class="single-list-topics-content" th:onclick="|location.href='@{/person/category(person_category=기타)}'|">
+							<div class="single-list-topics-icon">
+							<i class="fa-solid fa-bars"></i>
+							</div>
+							<h2><a>기타</a></h2>
+						</button>
+					</li>
+					<li>
+						<button class="single-list-topics-content red" onclick="location.href='/person/register'">
+							<div class="single-list-topics-icon">
+							<i class="fa-solid fa-plus"></i>
+							</div>
+							<h2><a href="/person/register">등록하기</a></h2>
+						</button>
+					</li>
+					
+				</ul>
+			</div>
+		</div><!--/.container-->
+
+	</section><!--/.list-topics-->
+	<!--list-topics end-->
+
+</head>
+</html>
