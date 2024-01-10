@@ -82,6 +82,27 @@
 		
 	</insert>
 	
+	<insert id="likePlace">
+		<selectKey keyProperty="wishPlace_id" resultType="long" order="BEFORE">
+			select seq_like.nextval from dual
+		</selectKey>
+		insert into wishPlace(
+			wishPlace_id,
+			place_id,
+			member_id,
+			wishPlace_cr	
+		) values(
+			#{wishPlace_id},
+			#{place_id},
+			#{member_id},
+			#{SYSDATE}
+		)
+		
+	</insert>
+	
+	
+	
+	
 	<select id="findRentPlaceById" resultType="rentPlace" parameterType="map">
 		select * from rentPlace where place_id = #{place_id} and member_id = #{member_id}
 	</select>

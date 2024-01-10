@@ -212,7 +212,8 @@ form .formbtn_box .buynowbtn:hover {
 
 .sns_talk button.kakao_talk {
 	background-color: #ffee2e;
-	margin-top: 3px;
+	margin-left: 10px;
+	color:black;
 }
 
 

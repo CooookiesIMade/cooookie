@@ -67,6 +67,10 @@ public class  PlaceService {
 	public void rentPlace(RentPlaceRegister rentPlaceRegister) {
 		placeMapper.rentPlace(rentPlaceRegister);
 	}
+	public void likePlace(Long place_id, String member_id) {
+		placeMapper.likePlace(place_id, member_id);
+	}
+	
 	
 	public RentPlace findRentPlaceById(Long place_id ,String member_id) {
 		return placeMapper.findRentPlaceById(place_id, member_id);

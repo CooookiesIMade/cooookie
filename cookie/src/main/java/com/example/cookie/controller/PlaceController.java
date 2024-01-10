@@ -115,4 +115,17 @@ public class PlaceController {
 		
 	}
 	
+	@PostMapping("like")
+	public String likePlace(@SessionAttribute("signInMember") Member signInMember,
+							 @RequestParam("place_id") Long place_id, BindingResult result) {
+		
+		log.info("like : {}" , place_id);
+		
+		placeService.likePlace(place_id, signInMember.getMember_id());
+		
+		return "redirect:/place/detail";
+	}
+	
+	
+	
 }

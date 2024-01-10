@@ -37,6 +37,9 @@ public interface PlaceMapper {
 	// 장소 예약하기 
 	void rentPlace(RentPlaceRegister rentPlaceRegister);
 	
+	// 관심장소 좋아요
+	void likePlace(Long place_id, String member_id);
+	
 	// 장소 아이디와 멤버아이디로 찾기 
 	RentPlace findRentPlaceById(@Param("place_id")Long place_id ,@Param("member_id")String member_id);
 }

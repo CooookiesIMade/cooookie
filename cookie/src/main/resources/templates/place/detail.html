@@ -51,18 +51,10 @@
 		
 		
 	});		
-	
-	
-	
-	
-	
 	let max_per = /*[[${place.place_count}]]*/'';	
 	let place_id = /*[[${place.place_id}]]*/'';	
 	
 
-	
-	
-	
 	
 	// 필요없는 함수(경험)
 	function handleOnInput(el){
@@ -92,10 +84,6 @@
 			
 		})
 	}
-	
-	
-	
-	
 	
 	function rentHandler(){
 		let start = new Date($(".first-date").val());
@@ -142,6 +130,34 @@
 			}
 		})
 }
+
+	function likeHandler(){
+		const place_id = /*[[${place.place_id}]]*/'';
+		const url = '/place/like?place_id=' + place_id;
+		$.ajax({
+			url : url,
+			method : 'POST',
+			success : function(result){
+				Swal.fire(
+					'관심장소로 등록되었습니다'
+				).then((result)=>{
+					loaction.href='/user/mylike';
+				})
+			},
+			error : function(error){
+				Swal.fire({
+					title : '이미 관심목록에 있습니다',
+					icon : 'error'
+				}).then((result)=>{
+					if(result.isConfirmed){
+						location.reload();
+					}
+				})
+			}
+		})
+	}
+
+
 </script>
 
 <body>
@@ -271,8 +287,9 @@
 							<button class="buynowbtn formbtn" id="reservation" onclick="rentHandler()" type="button">예약하기</button>
 						</div>
 					</form>
-					<div class="sns_talk">
+					<div class="sns_talk" style="display: flex;">
 						<button class="naver_talk" onclick="chatHandler()">호스트대여자에게 <b>톡톡</b> 문의하세요!</button>
+						<button class="kakao_talk" onclick="likeHandler()">관심리스트에 담기</button>
 					</div>
 				</div>
 			</div>
