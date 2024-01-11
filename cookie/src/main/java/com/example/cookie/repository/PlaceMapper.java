@@ -9,6 +9,7 @@ import com.example.cookie.model.file.PlaceAttachedFile;
 import com.example.cookie.model.rent.RentPlace;
 import com.example.cookie.model.rent.RentPlaceRegister;
 import com.example.cookie.model.splace.Splace;
+import com.example.cookie.model.wish.WishPlace;
 
 @Mapper
 public interface PlaceMapper {
@@ -38,8 +39,11 @@ public interface PlaceMapper {
 	void rentPlace(RentPlaceRegister rentPlaceRegister);
 	
 	// 관심장소 좋아요
-	void likePlace(Long place_id, String member_id);
+	void likePlace(@Param("place_id")Long place_id, @Param("member_id")String member_id);
 	
-	// 장소 아이디와 멤버아이디로 찾기 
+	// 장소 아이디와 멤버아이디로 대여장소 찾기 
 	RentPlace findRentPlaceById(@Param("place_id")Long place_id ,@Param("member_id")String member_id);
+
+	// 장소 아이디와 멤버아이디로 관심장소 찾기
+	WishPlace findLikePlaceById(@Param("place_id")Long place_id, @Param("member_id")String member_id);
 }

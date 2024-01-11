@@ -95,16 +95,17 @@
 			#{wishPlace_id},
 			#{place_id},
 			#{member_id},
-			#{SYSDATE}
+			SYSDATE
 		)
 		
 	</insert>
 	
-	
-	
-	
 	<select id="findRentPlaceById" resultType="rentPlace" parameterType="map">
 		select * from rentPlace where place_id = #{place_id} and member_id = #{member_id}
+	</select>
+	
+	<select id="findLikePlaceById" resultType="wishPlace" parameterType="map">
+		select * from wishPlace where place_id = #{place_id} and member_id = #{member_id}
 	</select>
 	
 	

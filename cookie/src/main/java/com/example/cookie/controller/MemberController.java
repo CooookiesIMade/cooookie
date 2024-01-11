@@ -138,6 +138,14 @@ public class MemberController {
 		
 		return "user/myregister";
 	}
+	
+	@GetMapping("mylike")
+	public String myLike(@SessionAttribute("signInMember") Member signinMember, Model model) {
+		
+		model.addAttribute("signInMember", signinMember);
+		
+		return "user/mylike";
+	}
 
 	@GetMapping("mypage")
 	public String myPage(Model model, HttpSession session) {
@@ -151,7 +159,8 @@ public class MemberController {
 			return "redirect:/user/signin";
 		}
 	}
-
+	
+	
 	@RequestMapping(value = "update", method = { RequestMethod.GET, RequestMethod.POST })
 	public String update(@Validated @ModelAttribute("updatedMember") Member updatedMember, BindingResult result,
 			Model model, HttpServletRequest request) {

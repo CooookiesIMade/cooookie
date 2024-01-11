@@ -8,12 +8,15 @@ $(document).ready(function () {
 	let reg = $(".sign");
 	let res = $(".clock");
 	let rev = $(".bars");
+	let lik = $(".like");
 		if(url === "http://localhost:9001/user/myregister"){
 			reg.addClass('active');
 		} else if(url === "http://localhost:9001/user/myrent"){
 			res.addClass('active');
 		} else if(url === "http://localhost:9001/review/place"){
 			rev.addClass('active');
+		} else if(url === "http://localhost:9001/user/mylike"){
+			lik.addClass('active');
 		}
 	
 })
@@ -45,7 +48,7 @@ $(document).ready(function () {
 				<i class="fa-regular fa-clock"></i>
 				<p>예약내역</p>
 			</span>
-			<span>
+			<span th:onclick="location.href='/user/mylike'" class="like">
 				<i class="fa-regular fa-heart"></i>
 				<p>관심장소</p>
 			</span>

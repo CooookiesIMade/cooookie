@@ -18,6 +18,7 @@ import com.example.cookie.model.rent.RentPlaceRegister;
 import com.example.cookie.model.review.ReviewPlace;
 import com.example.cookie.model.splace.Splace;
 import com.example.cookie.model.splace.SplaceRegister;
+import com.example.cookie.model.wish.WishPlace;
 import com.example.cookie.repository.ReviewMapper;
 import com.example.cookie.service.PlaceService;
 
@@ -117,13 +118,19 @@ public class PlaceController {
 	
 	@PostMapping("like")
 	public String likePlace(@SessionAttribute("signInMember") Member signInMember,
-							 @RequestParam("place_id") Long place_id, BindingResult result) {
-		
+							 @RequestParam("place_id") Long place_id , BindingResult result) {
 		log.info("like : {}" , place_id);
 		
-		placeService.likePlace(place_id, signInMember.getMember_id());
+		WishPlace findWishPlace= placeService.findLikePlaceById(place_id, signInMember.getMember_id());	
 		
-		return "redirect:/place/detail";
+		if(findWishPlace != null) {
+			result.reject("alreadyWish", "이미 등록된 관심장소입니다");
+			return "redirect:/place/detail";
+		} else {
+			placeService.likePlace(place_id, signInMember.getMember_id());
+			return "redirect:/place/detail";
+		}
+	
 	}
 	
 	

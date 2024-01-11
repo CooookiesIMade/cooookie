@@ -12,6 +12,7 @@ import com.example.cookie.model.file.PlaceAttachedFile;
 import com.example.cookie.model.rent.RentPlace;
 import com.example.cookie.model.rent.RentPlaceRegister;
 import com.example.cookie.model.splace.Splace;
+import com.example.cookie.model.wish.WishPlace;
 import com.example.cookie.repository.PlaceMapper;
 import com.example.cookie.util.FileService;
 
@@ -74,6 +75,11 @@ public class  PlaceService {
 	
 	public RentPlace findRentPlaceById(Long place_id ,String member_id) {
 		return placeMapper.findRentPlaceById(place_id, member_id);
+	}
+
+	public WishPlace findLikePlaceById(Long place_id, String member_id) {
+		return placeMapper.findLikePlaceById(place_id, member_id);
+		
 	}
 
 }

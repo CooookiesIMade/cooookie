@@ -14,6 +14,7 @@
 		<typeAlias type="com.example.cookie.model.rent.RentPerson" alias="rentPerson"/>
 		<typeAlias type="com.example.cookie.model.review.ReviewPlace" alias="reviewPlace"/>
 		<typeAlias type="com.example.cookie.model.review.ReviewPerson" alias="reviewPerson"/>
+		<typeAlias type="com.example.cookie.model.wish.WishPlace" alias="wishPlace"/>
 
 	</typeAliases>
 </configuration>
